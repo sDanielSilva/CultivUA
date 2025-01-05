@@ -1,0 +1,96 @@
+<mat-sidenav-container
+    class="mainWrapper"
+    autosize
+    autoFocus
+    [ngClass]="{
+        'sidebarNav-mini':
+            options.sidenavCollapsed &&
+            options.navPos !== 'top' &&
+            !options.horizontal &&
+            !resView,
+        'sidebarNav-horizontal': options.horizontal,
+        cardBorder: options.cardBorder,
+        orange_theme: options.activeTheme == 'orange_theme',
+        blue_theme: options.activeTheme == 'blue_theme',
+        aqua_theme: options.activeTheme == 'aqua_theme',
+        purple_theme: options.activeTheme == 'purple_theme',
+        green_theme: options.activeTheme == 'green_theme',
+        cyan_theme: options.activeTheme == 'cyan_theme'
+    }"
+    [dir]="options.dir!"
+>
+    <mat-sidenav
+        #leftsidenav
+        position="start"
+        [mode]="isOver ? 'over' : 'side'"
+        [opened]="!isOver"
+        class="sidebarNav"
+    >
+        <!-- Sidebar Content -->
+        <div class="flex-layout">
+            <!-- Sidebar Component -->
+            <app-sidebar></app-sidebar>
+
+            <!-- Scrollable Navigation -->
+            <ng-scrollbar class="position-relative" style="height: 100%">
+                <mat-nav-list class="sidebar-list">
+                    <!-- Navigation Items -->
+                    <app-nav-item
+                        *ngFor="let item of navItems"
+                        [item]="item"
+                        (notify)="sidenav.toggle()"
+                    ></app-nav-item>
+                </mat-nav-list>
+            </ng-scrollbar>
+            <!-- Profile Section -->
+            <div class="p-16 m-t-auto profile-bar">
+                <div
+                    class="d-flex align-items-center rounded p-24" style="background-color:#E5F5EC;"
+                >
+                    <img
+                    [src]="
+                    adminImg ||
+                    '../../../../../assets/images/profile/user-default.jpg'
+                "
+                        class="rounded-circle"
+                        width="45"
+                    />
+                    <div class="m-l-16">
+                        <h5 class="f-s-18 m-0 f-w-600 m-b-4">CultivUA</h5>
+                        <span class="f-s-14">{{ adminName || 'Admin' }}</span>
+                    </div>
+                    <div class="m-l-auto">
+                        <a
+                            mat-icon-button
+                            (click)="logout()"
+                            class="d-flex justify-content-center"
+                            matTooltip="Terminar Sessão"
+                        >
+                            <i-tabler
+                                name="power"
+                                class="icon-18 d-flex" style="color:green;"
+                            ></i-tabler>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </mat-sidenav>
+
+    <!-- Main Content -->
+    <mat-sidenav-content class="contentWrapper">
+        <main class="pageWrapper">
+            <!-- Breadcrumb -->
+            <app-breadcrumb></app-breadcrumb>
+
+            <!-- Main Content Area -->
+            <div class="m-t-30 p-l-24 p-r-24">
+                <router-outlet></router-outlet>
+            </div>
+        </main>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+
+<!-- ------------------------------------------------------------------
+  Mobile Apps Sidebar
+  ------------------------------------------------------------------ -->

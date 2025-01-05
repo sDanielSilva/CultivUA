@@ -1,0 +1,293 @@
+.primary-title {
+    font-size: 3rem !important;
+    color: #009a3e;
+    text-align: center;
+    line-height: 1 !important;
+}
+
+.black-title {
+    font-size: 3rem !important;
+    color: black;
+    text-align: center;
+    line-height: 1 !important;
+}
+
+
+.contact-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch; /* Mantém os itens alinhados em altura */
+    gap: 24px;
+    padding: 32px;
+    background-color: #f9f9f9; /* Fundo claro para o container */
+    border-radius: 12px;
+}
+
+.contact-info-card {
+    flex: 1;
+    max-width: 40%; /* Reduz ligeiramente a largura */
+    background-color: #e8f6e8; /* Fundo verde claro */
+    border-radius: 12px; /* Bordas arredondadas */
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+.contact-info-card mat-card-title {
+    text-align: center; /* Centraliza o texto no card */
+    font-size: 24px; /* Aumenta o tamanho da fonte */
+    font-weight: bold; /* Torna o texto mais destacado */
+    margin-bottom: 16px; /* Espaço entre o título e o restante do conteúdo */
+    margin-top: 5px;
+    color: #333; /* Altere a cor conforme necessário */
+}
+
+.contact-info {
+    margin-top: 16px;
+}
+
+.contact-info p {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Espaço entre o ícone e o texto */
+    margin: 0 0 12px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #4a4a4a; /* Texto em cinza escuro */
+}
+
+.contact-info p strong {
+    font-weight: bold;
+}
+
+.contact-info svg,
+.contact-info img {
+    width: 18px;
+    height: 18px;
+}
+
+/* Ícones de redes sociais abaixo do card */
+.social-icons-container {
+    margin-top: auto; /* Empurra os ícones para o final do card */
+    display: flex;
+    justify-content: left;
+    gap: 16px;
+    padding-top: 16px;
+}
+
+.social-icons-container a {
+    width: 40px;
+    height: 40px;
+    background-color: #ffffff;
+    border: 2px solid #cccccc;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    text-decoration: none; /* Remove o sublinhado dos links */
+}
+
+
+.social-icons-container a:hover {
+    background-color: #2f4f2f;
+    border-color: #2f4f2f;
+}
+
+.social-icons-container img {
+    width: 20px;
+    height: 20px;
+}
+.contact-form-card {
+    flex: 1;
+    max-width: 60%; /* Ocupa mais espaço */
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+.contact-form-card mat-card-title {
+    text-align: center; /* Centraliza o texto no card */
+    font-size: 24px; /* Aumenta o tamanho da fonte */
+    font-weight: bold; /* Torna o texto mais destacado */
+    margin-bottom: 16px; /* Espaço entre o título e o restante do conteúdo */
+    margin-top: 5px;
+    color: #333; /* Altere a cor conforme necessário */
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px; /* Espaçamento consistente entre os campos */
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Espaço entre o rótulo e o campo */
+}
+
+.form-group mat-label {
+    font-weight: bold;
+    font-size: 14px;
+    color: #4a4a4a;
+}
+
+.mat-form-field {
+    width: 100%;
+}
+
+textarea {
+    resize: none; /* Impede redimensionamento manual */
+}
+
+.action-row {
+    text-align: right; /* Botão alinhado à direita */
+}
+
+.large-button {
+    padding: 12px 24px;
+    font-size: 16px;
+    background-color: #2f4f2f; /* Verde escuro */
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.large-button:hover {
+    background-color: #3b5b3b; /* Verde mais claro no hover */
+}
+
+.large-button:disabled {
+    background-color: #d3d3d3;
+    cursor: not-allowed;
+}
+
+.error-message {
+    color: #d32f2f;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.contact-info-card {
+    position: relative; /* Define o card como o contêiner de referência */
+    background-color: #e8f6e8; /* Fundo verde claro */
+    border-radius: 12px; /* Bordas arredondadas */
+    padding: 24px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    text-align: left;
+}
+
+.contact-info {
+    margin-bottom: 16px; /* Espaço entre o texto e o final do card */
+}
+
+.contact-card-image {
+    position: absolute; /* Posiciona a imagem no canto inferior direito */
+    bottom: 16px; /* Distância do canto inferior */
+    right: 16px; /* Distância do canto direito */
+    width: 174px; /* Ajuste o tamanho da imagem conforme necessário */
+    height: auto; /* Mantém a proporção da imagem */
+}
+
+
+.social-icons a {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease;
+}
+
+.social-icons a:hover {
+    background-color: #2f4f2f;
+    border-color: #2f4f2f;
+}
+
+.social-icons img {
+    width: 18px;
+    height: 18px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .contact-container {
+        flex-direction: column;
+        padding: 16px;
+    }
+
+    .contact-info-card,
+    .contact-form-card {
+        max-width: 100%;
+    }
+
+    .action-row {
+        text-align: center;
+    }
+
+    .large-button {
+        width: 100%; /* Botão ocupa toda a largura */
+    }
+}
+
+.custom-slider-wrapper {
+    overflow: hidden;
+    position: relative;
+    margin-top: 40px;
+    padding-top: 30px;
+    padding-bottom: 10px;
+
+    .custom-slider-container {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        animation: customSlideAnimation 20s linear infinite;
+    }
+
+    .custom-slider-img {
+        position: relative;
+        flex-shrink: 0;
+        width: 25%;
+        overflow: hidden;
+        margin-right: 10px;
+
+        img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .custom-slider-name {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+    }
+
+    @keyframes customSlideAnimation {
+        0% {
+            transform: translateX(0);
+        }
+
+        100% {
+            transform: translateX(-100%);
+        }
+    }
+}

@@ -1,0 +1,43 @@
+<mat-card class="cardWithShadow theme-card">
+  <mat-card-header>
+    <mat-card-title class="m-b-0">Add Plant</mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="b-t-1">
+    <div>
+      <mat-label class="mat-subtitle-2 f-w-600 m-b-8 d-block">Plant Name</mat-label>
+      <mat-form-field appearance="outline" class="w-100" color="primary">
+        <input matInput [(ngModel)]="plantName" placeholder="Plant Name" />
+      </mat-form-field>
+
+      <div class="m-t-12">
+        <button mat-flat-button color="primary" (click)="searchPlant()">Search</button>
+      </div>
+
+      <div *ngIf="errorMessage" class="error m-t-12">
+        {{ errorMessage }}
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
+
+<!-- Cartões de Resultado -->
+<div *ngIf="searchResults.length > 0" class="cards-container m-t-12">
+  <mat-card
+    *ngFor="let plant of searchResults"
+    class="plant-card"
+  >
+    <mat-card-header>
+      <mat-card-title>{{ plant.common_name }}</mat-card-title>
+    </mat-card-header>
+    <img
+      mat-card-image
+      [src]="plant.default_image?.thumbnail || 'https://i0.wp.com/thinkfirstcommunication.com/wp-content/uploads/2022/05/placeholder-1-1.png?fit=1200%2C800&ssl=1'"
+      alt="{{ plant.common_name }}"
+    />
+    <mat-card-actions>
+      <button mat-flat-button color="primary" (click)="addToDashboard(plant.id, plant.common_name)">
+        Add to Dashboard
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

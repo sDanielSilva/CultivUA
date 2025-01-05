@@ -1,0 +1,62 @@
+.container {
+    display: flex;
+    justify-content: space-around; // Espaço uniforme entre os cards
+    flex-wrap: wrap; // Permite que os cards quebrem de linha em telas menores
+    gap: 1.5rem; // Espaçamento entre os cards
+    padding: 2rem;
+}
+
+.card {
+    flex: 1 1 30%; // Faz os cards ocuparem cerca de 30% do container e serem responsivos
+    max-width: 30%; // Limita a largura máxima dos cards
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 0.5rem;
+    background-color: #fff;
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease; // Adiciona animação suave para hover
+    position: relative;
+    z-index: 4;
+
+    img[mat-card-image] {
+            width: 100%;
+            height: 60%; // Limita a altura da imagem a 60% da altura do card
+            object-fit: cover; // Mantém a proporção da imagem sem distorção
+        }
+
+    &:hover {
+        transform: translateY(-5px); // Efeito de elevação no hover
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2); // Aumenta a sombra no hover
+    }
+
+    // Media query para responsividade
+    @media (max-width: 768px) {
+        flex: 1 1 100%; // Os cards vão ocupar 100% da largura em telas menores
+        max-width: 100%;
+    }
+}
+
+.cardWithShadow {
+    display: flex;
+    flex-direction: column;
+    border-radius: 0.5rem;
+    overflow: hidden;
+
+    mat-card-content {
+        padding: 1rem;
+        text-align: center;
+    }
+
+    .mat-card-title {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+        color: #333; // Cor mais escura para o título
+    }
+
+    p {
+        font-size: 1rem;
+        color: #555;
+        margin-top: 0; // Remove margem no topo
+    }
+}

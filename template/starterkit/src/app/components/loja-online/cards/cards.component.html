@@ -1,0 +1,82 @@
+<div class="container-fluid product-container">
+    <div class="row rounded-container">
+        <!-- Filters -->
+        <div class="col-lg-2 col-md-3 col-sm-4 rounded-sidenav">
+            <div class="sidenav-content">
+                <h5 class="mb-3">Categories</h5>
+                <div *ngFor="let category of categories" class="form-check mb-2">
+                    <input type="checkbox" class="form-check-input" [id]="category" [(ngModel)]="selectedCategories[category]" (change)="applyCategoryFilter()" />
+                    <label class="form-check-label" [for]="category">
+                        {{ category }}
+                    </label>
+                </div>
+                <h5>Filter by Price</h5>
+                <div *ngFor="let range of priceRanges" class="form-check mb-2">
+                    <input type="checkbox" class="form-check-input" [id]="range.label" [(ngModel)]="selectedPriceRanges[range.label]" (change)="applyPriceFilter()" />
+                    <label class="form-check-label" [for]="range.label">
+                        {{ range.label }}
+                    </label>
+                </div>
+                <label for="priceOrder" class="me-2">Sort by:</label>
+                <div class="mb-3 d-flex align-items-center">
+                    
+                    <select id="priceOrder" class="form-select" [(ngModel)]="priceOrder" (change)="applyPriceSorting()">
+                        <option value="">Default</option>
+                        <option value="asc">Low to High</option>
+                        <option value="desc">High to Low</option>
+                    </select>
+                </div>
+                <button class="btn custom-btn-filter mt-3" (click)="clearFilters()">Clear Filters</button>
+            </div>
+        </div>
+        
+        <!-- Products -->
+        <div class="col-lg-10 col-md-9 col-sm-8">
+            <div class="header-container d-flex justify-content-between align-items-center">
+                <div class="left">
+                    <h2>Products</h2>
+                </div>
+                <div class="search-bar mb-3 w-100 d-flex justify-content-end">
+                    <div class="input-group" style="width: 300px; position: relative;">
+                        <input type="text" class="form-control search-input" placeholder="Search Product" [(ngModel)]="searchQuery" (input)="applySearchAndFilter()" />
+                        <mat-icon class="search-icon">search</mat-icon>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Spinner while products are loading -->
+            <mat-spinner *ngIf="loading" diameter="50" class="loading-spinner"></mat-spinner>
+
+            <!-- Product List -->
+            <div *ngIf="!loading && filteredProducts.length > 0" class="row g-4">
+                <div class="col-sm-6 col-lg-3" *ngFor="let product of filteredProducts; let i = index">
+                  <mat-card 
+                    class="cardWithShadow productcard overflow-hidden"
+                    (click)="navigateToProductDetails(product.id)">
+                    <img [src]="product.imagem" alt="{{ product.name }}" class="w-100 img-card" mat-card-image />
+                    <mat-card-content class="p-b-24 p-t-12 position-relative">
+                      <mat-card-title class="mat-headline-2 f-s-16 m-b-4">{{ product.name }}</mat-card-title>
+                      <div class="card-price">{{ product.price }}€</div>
+                      <button 
+                      mat-fab 
+                      color="primary" 
+                      class="cart-btn" 
+                      matTooltip="Add to Cart" 
+                      (click)="addToCart(product, $event)">
+                      <i-tabler name="basket" class="icon-26"></i-tabler>
+                    </button>
+                    
+                    </mat-card-content>
+                    <div class="category-badge">{{ product.category_name }}</div>
+                  </mat-card>
+                </div>
+              </div>
+              
+
+            <!-- Message if no products are found -->
+            <div *ngIf="!loading && filteredProducts.length === 0" class="text-center">
+                <p class="text-muted">No products found.</p>
+            </div>
+        </div>
+    </div>
+</div>

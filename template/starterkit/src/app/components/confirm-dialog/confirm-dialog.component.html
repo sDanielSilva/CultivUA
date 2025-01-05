@@ -1,0 +1,12 @@
+<!-- confirm-dialog.component.html -->
+<div class="p-x-24 p-b-24">
+    Are you sure you want to permanently delete '<span class="f-w-600">{{ data.title }}</span
+    >' ?
+</div>
+
+<div mat-dialog-actions class="p-24 p-t-0">
+    <button mat-flat-button (click)="onConfirm()" color="primary">
+        Confirm
+    </button>
+    <button mat-stroked-button color="warn" (click)="onCancel()">Cancel</button>
+</div>

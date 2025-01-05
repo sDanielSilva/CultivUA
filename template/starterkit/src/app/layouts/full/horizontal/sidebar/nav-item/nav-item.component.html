@@ -1,0 +1,20 @@
+@if(!item.navCap) {
+<a class="cursor-pointer menuLink {{ item.bgcolor }}" (click)="onItemSelected(item)" [ngClass]="{
+      activeMenu: item.route ? router.isActive(item.route, true) : false
+    }">
+  <i-tabler class="routeIcon icon-18" name="{{ item.iconName }}"></i-tabler>
+  {{ item.displayName | translate }}
+  @if(item.children && item.children.length) {
+  <span class="down-icon d-flex m-l-auto">
+    <mat-icon> expand_more </mat-icon>
+  </span>
+  }
+</a>
+} @if(item.children) {
+<div class="childBox">
+  @for(child of item.children; track child) {
+  <app-horizontal-nav-item [item]="child" class="ddmenu">
+  </app-horizontal-nav-item>
+  }
+</div>
+}

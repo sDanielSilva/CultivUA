@@ -1,0 +1,66 @@
+.cards-container {
+    display: grid;
+    gap: 16px; /* Espaço entre os cartões */
+    grid-template-columns: repeat(4, 1fr); /* 4 cartões por linha em telas grandes */
+    justify-items: center; /* Centraliza os cartões */
+  }
+  
+  .plant-card {
+    max-width: 300px; /* Limite de tamanho para os cartões */
+    min-width: 200px; /* Tamanho mínimo para os cartões */
+    width: 100%; /* O cartão ocupa a largura total disponível */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+  }
+  
+  .plant-card img {
+    width: 100%; /* Garante que a imagem ocupa toda a largura do cartão */
+    height: 200px; /* Altura fixa para a imagem */
+    object-fit: cover; /* Garante que a imagem seja redimensionada sem distorção */
+    border-radius: 8px;
+  }
+  
+  .plant-card h3 {
+    font-size: 18px; /* Tamanho fixo do título */
+    text-align: center;
+    margin: 16px 0;
+  }
+  
+  .plant-card .card-button {
+    width: 100%; /* Garante que o botão ocupe toda a largura */
+    height: 40px; /* Altura fixa para o botão */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .cards-container {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(4, 1fr); /* 4 cartões por linha em telas grandes */
+    justify-items: center;
+  }
+  
+  @media (max-width: 1200px) {
+    /* Para telas médias (como tablets) - 2 cartões por linha */
+    .cards-container {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    /* Para telas pequenas (como celulares) - 1 cartão por linha */
+    .cards-container {
+      grid-template-columns: 1fr;
+    }
+  }

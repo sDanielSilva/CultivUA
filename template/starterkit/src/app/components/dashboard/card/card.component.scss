@@ -1,0 +1,86 @@
+/* Estilo do card principal */
+.card {
+  background-color: #e0f7e9;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Diminuindo o tamanho geral do card */
+.card-small {
+  max-width: 1000px; /* Define a largura máxima do card */
+  margin: 0 auto; /* Centraliza o card */
+  padding: 15px; /* Adiciona padding interno */
+}
+
+/* Corpo do card - texto */
+.card-body {
+  padding: 20px;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Título do card */
+.card-title {
+  font-size: 1.75rem;
+  color: #388e3c;
+}
+
+/* Texto do card - Descrição */
+.card-text {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* Estilo da imagem do card */
+.card-img {
+  width: 100%;
+  height: auto;
+  border-radius: 0 10px 10px 0;
+}
+
+/* Botão customizado */
+.btn-custom {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  cursor: pointer;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease;
+}
+
+.btn-custom:hover {
+  background-color: #45a049;
+}
+
+/* Responsividade para telas pequenas (ex: smartphones) */
+@media (max-width: 768px) {
+  .card-small {
+      max-width: 100%; /* O card ocupa toda a largura da tela */
+      padding: 10px; /* Ajusta o padding para telas menores */
+  }
+
+  .card-body {
+      padding: 15px;
+  }
+
+  .card-title {
+      font-size: 1.5rem;
+  }
+
+  .card-text {
+      font-size: 0.9rem;
+  }
+
+  .btn-custom {
+      width: 100%;
+      padding: 15px;
+  }
+
+  .card-img {
+      border-radius: 0;
+  }
+}

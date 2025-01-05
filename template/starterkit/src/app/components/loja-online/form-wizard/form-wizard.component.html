@@ -1,0 +1,104 @@
+<div class="overlay" *ngIf="loading">
+  <div class="spinner-container">
+    <mat-spinner diameter="50" class="loading-spinner"></mat-spinner>
+    <p class="loading-text">We are processing your payment...</p>
+  </div>
+</div>
+
+
+<mat-card class="cardWithShadow theme-card">
+  <mat-card-header>
+    <mat-card-title class="m-b-0">Shopping Cart</mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="b-t-1">
+    <mat-stepper #stepper>
+      <mat-step>
+        <ng-template matStepLabel>Order Summary</ng-template>
+      
+        <!-- Cart Summary Section -->
+        <div class="cart-summary-container">
+          <div class="cart-items-list">
+            <div *ngFor="let item of cartItems" class="cart-item">
+              <div class="item-image">
+                <img [src]="item.imagem" alt="{{ item.name }}" />
+              </div>
+              <div class="item-details">
+                <span class="item-name">{{ item.name }}</span>
+                <div class="quantity-control">
+                  <button mat-icon-button (click)="decreaseQuantity(item)">
+                    <mat-icon>remove</mat-icon>
+                  </button>
+                  <span>{{ item.quantity }}</span>
+                  <button mat-icon-button (click)="increaseQuantity(item)">
+                    <mat-icon>add</mat-icon>
+                  </button>
+                </div>
+              </div>
+              <div class="item-price">
+                <span>{{ item.price * item.quantity | number: '1.2-2' }}€</span>
+              </div>
+              <button mat-icon-button color="warn" (click)="removeItem(item)">
+                <mat-icon class="red-icon">delete</mat-icon>
+              </button>
+            </div>
+          </div>
+      
+          <!-- Cart Summary -->
+          <div class="cart-summary">
+            <table class="cart-summary-table">
+              <tr>
+                <th>Name</th>
+                <th>Qty</th>
+                <th>Price/Unit</th>
+                <th>Total</th>
+              </tr>
+              <tr *ngFor="let item of cartItems">
+                <td>{{ item.name }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>{{ item.price }}€</td>
+                <td>{{ (item.price * item.quantity) | number: '1.2-2' }}€</td>
+              </tr>
+            </table>
+            <!-- Total Geral -->
+             
+            <div class="total">
+              <br>
+              <p><strong>Shopping Cart Total:</strong> {{ totalAmountWithoutTax() }}€</p>
+            </div>
+          </div>
+        </div>
+        <!-- Finalize Button -->
+        <div class="text-right m-t-16">
+          <button mat-flat-button color="primary" matStepperNext (click)="onCompleteOrder()">Complete Order</button>
+        </div>
+      </mat-step>
+
+      <mat-step>
+        <ng-template matStepLabel>Order Details</ng-template>
+        
+        <!-- Payment Instructions -->
+        <div class="payment-summary-container">
+          <div class="payment-details">
+            <p><strong>Order Details:</strong></p>
+            <ul>
+              <li><mat-icon color="primary">attach_money</mat-icon> Total: <strong>{{ totalAmountWithoutTax() }}€</strong></li>
+              <li><mat-icon color="primary">lock</mat-icon> The payment will be securely processed through Stripe.</li>
+              <li><mat-icon color="primary">arrow_forward</mat-icon> You will be redirected to Stripe's page when you click the button below.</li>
+            </ul>
+          </div>
+        </div>
+      
+        <!-- Botões -->
+        <div class="payment-actions">
+          <button mat-flat-button color="warn" matStepperPrevious>Back</button>
+          <button mat-raised-button color="primary" [disabled]="cartItems.length === 0" (click)="makePayment()">
+            <mat-icon>payment</mat-icon> Proceed to Payment
+          </button>          
+        </div>
+      </mat-step>
+      
+
+    </mat-stepper>
+  </mat-card-content>
+</mat-card>
+<script src="https://js.stripe.com/v3/"></script>

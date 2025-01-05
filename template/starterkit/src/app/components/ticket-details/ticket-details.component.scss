@@ -1,0 +1,11 @@
+.actions-container {
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente o botão */
+    margin-top: 16px;
+  }
+  
+  button[mat-flat-button] {
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #009A3E;
+  }

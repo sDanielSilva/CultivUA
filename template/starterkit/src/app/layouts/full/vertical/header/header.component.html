@@ -1,0 +1,464 @@
+<mat-toolbar class="topbar">
+    <!-- --------------------------------------------------------------- -->
+    <!-- Desktop Menu -->
+    @if(showToggle) {
+    <button
+        mat-icon-button
+        (click)="toggleCollapsed.emit()"
+        class="d-flex justify-content-center"
+    >
+        <i-tabler name="align-left" class="icon-20 d-flex"></i-tabler>
+    </button>
+    }
+
+    <!-- Mobile Menu -->
+    @if(!showToggle) {
+    <button
+        mat-icon-button
+        (click)="toggleMobileNav.emit()"
+        class="d-flex justify-content-center"
+    >
+        <i-tabler name="align-left" class="icon-20 d-flex"></i-tabler>
+    </button>
+    }
+
+    <!-- --------------------------------------------------------------- -->
+
+    <div class="d-none d-lg-flex">
+        <!-- --------------------------------------------------------------- -->
+        <!--  Links -->
+        <!-- --------------------------------------------------------------- -->
+        <!--   <button
+            mat-button
+            [matMenuTriggerFor]="appsmenu"
+            aria-label="Notifications"
+        >
+            <div class="d-flex align-items-center">
+                Apps
+                <i-tabler name="chevron-down" class="icon-16 m-l-4"></i-tabler>
+            </div>
+      </button>
+        <mat-menu #appsmenu="matMenu" class="apps-dd cardWithShadow">
+            <div class="row">
+                <div class="col-sm-8 b-r-1 p-r-0">
+                    <div class="p-32 p-b-0">
+                        <div class="row">
+                            @for(appdd of apps; track appdd.title) {
+                            <div class="col-sm-6 text-hover-primary">
+                                <a
+                                    [routerLink]="[appdd.link]"
+                                    class="d-flex align-items-center text-decoration-none m-b-24"
+                                >
+                                    <span
+                                        class="text-primary bg-light-primary rounded icon-40 d-flex align-items-center justify-content-center"
+                                    >
+                                        <img [src]="appdd.img" width="20" />
+                                    </span>
+
+                                    <div class="m-l-16">
+                                        <h5
+                                            class="f-s-14 f-w-600 m-0 textprimary mat-subtitle-1 hover-text"
+                                        >
+                                            {{ appdd.title }}
+                                        </h5>
+                                        <span class="mat-body-1 f-s-12">{{
+                                            appdd.subtitle
+                                        }}</span>
+                                    </div>
+                                </a>
+                            </div>
+                            }
+                        </div>
+                    </div>
+                    <div
+                        class="b-t-1 p-24 d-none d-lg-flex align-items-center justify-content-between"
+                    >
+                        <span
+                            class="d-flex align-items-center mat-subtitle-1 f-s-16 f-w-500"
+                        >
+                            <i-tabler
+                                name="help"
+                                class="icon-20 m-r-8"
+                            ></i-tabler
+                            >Frequently Asked Questions
+                        </span>
+                        <a
+                            [routerLink]="['/theme-pages/faq']"
+                            mat-flat-button
+                            color="primary"
+                            >Check</a
+                        >
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="p-x-16 p-y-32">
+                        <h4 class="f-s-18 f-w-600 mat-subtitle-1 m-b-16">
+                            Quick Links
+                        </h4>
+                        @for(quicklink of quicklinks; track quicklink.title) {
+                        <div class="text-hover-primary">
+                            <a
+                                [routerLink]="[quicklink.link]"
+                                class="hover-text text-decoration-none mat-body-1 f-w-600 d-block p-y-8"
+                                >{{ quicklink.title }}</a
+                            >
+                        </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </mat-menu> -->
+        <a mat-button href="javascript:void(0)">Chat</a>
+        <a mat-button href="javascript:void(0)">Calendar</a>
+        <a mat-button href="javascript:void(0)">Email</a>
+    </div>
+
+    <span class="flex-1-auto"></span>
+
+    <!-- Mobile Menu -->
+
+
+    <!-- --------------------------------------------------------------- -->
+    <!--  Search -->
+    <!-- --------------------------------------------------------------- -->
+    <button mat-stroked-button class="d-none d-lg-flex" (click)="openDialog()">
+        <div class="d-flex align-items-center">
+            <i-tabler name="search" class="icon-20 d-flex m-r-10"></i-tabler>
+            Try to Searching...
+        </div>
+    </button>
+
+    <!-- --------------------------------------------------------------- -->
+    <!-- langugage Dropdown -->
+    <!-- --------------------------------------------------------------- -->
+    <button [matMenuTriggerFor]="flags" mat-icon-button class="m-l-10">
+        <img
+            [src]="selectedLanguage.icon"
+            class="rounded-circle object-cover icon-20"
+        />
+    </button>
+    <mat-menu #flags="matMenu" class="cardWithShadow">
+        @for(lang of languages; track lang) {
+        <button mat-menu-item (click)="changeLanguage(lang)">
+            <div class="d-flex align-items-center">
+                <img
+                    [src]="lang.icon"
+                    class="rounded-circle object-cover m-r-8 icon-20"
+                />
+                <span class="mat-subtitle-1 f-s-14">{{ lang.language }}</span>
+            </div>
+        </button>
+        }
+    </mat-menu>
+
+    <!-- --------------------------------------------------------------- -->
+    <!-- Messages Dropdown -->
+    <!-- --------------------------------------------------------------- -->
+    <button mat-icon-button [matMenuTriggerFor]="msgMenu" aria-label="Messages">
+        <i-tabler class="d-flex" name="message-2"></i-tabler>
+        <div class="pulse" *ngIf="unreadCount > 0">
+            <span class="heartbit border-primary"></span>
+            <span class="point bg-primary"></span>
+        </div>
+    </button>
+    <mat-menu
+        #msgMenu="matMenu"
+        xPosition="before"
+        class="topbar-dd cardWithShadow"
+        (menuOpened)="onMenuOpened(true)"
+        (menuClosed)="onMenuOpened(false)"
+    >
+        <div class="d-flex align-items-center p-x-32 p-y-16">
+            <h6 class="f-s-16 f-w-600 m-0 mat-subtitle-1">Notificações</h6>
+            <span class="m-l-16">
+                <span
+                    class="bg-warning text-white p-x-8 p-y-4 f-w-500 rounded f-s-12"
+                >
+                    {{ unreadCount }} new
+                </span>
+            </span>
+        </div>
+
+        <div *ngFor="let notification of notifications">
+            <button
+                mat-menu-item
+                class="p-x-32 p-y-16"
+                [ngClass]="{
+                    'bg-light':
+                        notification.is_read === 0 &&
+                        notification.type !== 'plant_care',
+                    'bg-warn':
+                        notification.is_read === 0 &&
+                        notification.type === 'plant_care'
+                }"
+                (click)="handleNotificationClick(notification)"
+            >
+                <div class="d-flex align-items-center">
+                    <mat-icon class="text-primary">
+                        {{
+                            notification.type === "new_blog_post"
+                                ? "article"
+                                : "nature"
+                        }}
+                    </mat-icon>
+                    <div class="m-l-16">
+                        <h5 class="f-s-14 f-w-600 m-0 mat-subtitle-1">
+                            {{ notification.message }}
+                        </h5>
+                        <span class="text-muted f-s-12">
+                            {{ notification.created_at | date : "short" }}
+                        </span>
+                    </div>
+                </div>
+            </button>
+        </div>
+
+        <div class="p-y-12 p-x-32">
+            <button
+                mat-flat-button
+                color="primary"
+                class="w-100"
+                [routerLink]="'/notifications'"
+            >
+                Ver todas
+            </button>
+        </div>
+    </mat-menu>
+    <style>
+        .bg-warn {
+            background-color: #ffcc0040 !important; /*Cor de aviso*/
+        }
+    </style>
+
+    <!-- --------------------------------------------------------------- -->
+    <!-- Shortcuts Dropdown -->
+    <!-- --------------------------------------------------------------- -->
+    <button
+        mat-icon-button
+        [matMenuTriggerFor]="notificationMenu"
+        aria-label="Notifications"
+    >
+        <i-tabler class="d-flex" name="layout-grid-add"></i-tabler>
+        <div class="pulse">
+            <span class="heartbit border-success"></span>
+            <span class="point bg-success"></span>
+        </div>
+    </button>
+    <mat-menu
+        #notificationMenu="matMenu"
+        xPosition="before"
+        class="topbar-dd cardWithShadow"
+    >
+        <div class="d-flex align-items-center p-x-32 p-y-16">
+            <h6 class="f-s-16 f-w-600 m-0 mat-subtitle-1">Shortcuts</h6>
+        </div>
+        <div class="row m-x-0">
+            <div class="col-6 p-x-0">
+                <a
+                    class="bg-light-primary-hover d-flex justify-content-center flex-column gap-8 text-decoration-none p-x-20 p-y-12 text-center b-t-1 b-b-1 b-r-1"
+                    [routerLink]="['/']"
+                >
+                    <div
+                        class="icon-45 bg-light-info rounded-circle m-auto round d-flex align-items-center justify-content-center"
+                    >
+                        <i-tabler
+                            name="list-check"
+                            class="icon-20 text-info"
+                        ></i-tabler>
+                    </div>
+                    <h6 class="f-s-16 f-w-600 m-0 mat-subtitle-1">Invoice</h6>
+                    <p class="d-block m-0 mat-body-1 f-w-500">
+                        Get latest invoice
+                    </p>
+                </a>
+            </div>
+            <div class="col-6 p-x-0">
+                <a
+                    class="bg-light-primary-hover d-flex justify-content-center flex-column gap-8 text-decoration-none p-x-20 p-y-12 text-center b-t-1 b-b-1"
+                    [routerLink]="['/']"
+                >
+                    <div
+                        class="icon-45 bg-light-primary rounded-circle m-auto round d-flex align-items-center justify-content-center"
+                    >
+                        <i-tabler
+                            name="message-2"
+                            class="icon-20 text-primary"
+                        ></i-tabler>
+                    </div>
+                    <h6 class="f-s-16 f-w-600 m-0 mat-subtitle-1">Chat</h6>
+                    <p class="d-block m-0 mat-body-1 f-w-500">New messages</p>
+                </a>
+            </div>
+            <div class="col-6 p-x-0">
+                <a
+                    class="bg-light-primary-hover d-flex justify-content-center flex-column gap-8 text-decoration-none p-x-20 p-y-12 text-center b-b-1 b-r-1"
+                    [routerLink]="['/']"
+                >
+                    <div
+                        class="icon-45 bg-light-accent rounded-circle m-auto round d-flex align-items-center justify-content-center"
+                    >
+                        <i-tabler
+                            name="phone-call"
+                            class="icon-20 text-accent"
+                        ></i-tabler>
+                    </div>
+                    <h6 class="f-s-16 f-w-600 m-0 mat-subtitle-1">Contact</h6>
+                    <p class="d-block m-0 mat-body-1 f-w-500">
+                        2 Unsaved Contacts
+                    </p>
+                </a>
+            </div>
+            <div class="col-6 p-x-0">
+                <a
+                    class="bg-light-primary-hover d-flex justify-content-center flex-column gap-8 text-decoration-none p-x-20 p-y-12 text-center b-b-1"
+                    [routerLink]="['/']"
+                >
+                    <div
+                        class="icon-45 bg-light-error rounded-circle m-auto round d-flex align-items-center justify-content-center"
+                    >
+                        <i-tabler
+                            name="mail"
+                            class="icon-20 text-error"
+                        ></i-tabler>
+                    </div>
+                    <h6 class="f-s-16 f-w-600 m-0 mat-subtitle-1">Email</h6>
+                    <p class="d-block m-0 mat-body-1 f-w-500">Get new emails</p>
+                </a>
+            </div>
+            <div class="col-6 p-x-0">
+                <a
+                    class="bg-light-primary-hover d-flex justify-content-center flex-column gap-8 text-decoration-none p-x-20 p-y-12 text-center b-r-1"
+                    [routerLink]="['/']"
+                >
+                    <div
+                        class="icon-45 bg-light-warning rounded-circle m-auto round d-flex align-items-center justify-content-center"
+                    >
+                        <i-tabler
+                            name="edit"
+                            class="icon-20 text-warning"
+                        ></i-tabler>
+                    </div>
+                    <h6 class="f-s-16 f-w-600 m-0 mat-subtitle-1">ToDo</h6>
+                    <p class="d-block m-0 mat-body-1 f-w-500">Daily tasks</p>
+                </a>
+            </div>
+            <div class="col-6 p-x-0">
+                <a
+                    class="bg-light-primary-hover d-flex justify-content-center flex-column gap-8 text-decoration-none p-x-20 p-y-12 text-center"
+                    [routerLink]="['/']"
+                >
+                    <div
+                        class="icon-45 bg-light-success rounded-circle m-auto round d-flex align-items-center justify-content-center"
+                    >
+                        <i-tabler
+                            name="calendar"
+                            class="icon-20 text-success"
+                        ></i-tabler>
+                    </div>
+                    <h6 class="f-s-16 f-w-600 m-0 mat-subtitle-1">Calendar</h6>
+                    <p class="d-block m-0 mat-body-1 f-w-500">Get dates</p>
+                </a>
+            </div>
+        </div>
+    </mat-menu>
+
+    <!-- --------------------------------------------------------------- -->
+    <!-- profile Dropdown -->
+    <!-- --------------------------------------------------------------- -->
+    <button
+        mat-fab
+        extended
+        color="inherit"
+        [matMenuTriggerFor]="profileMenu"
+        aria-label="Notifications"
+    >
+        <div class="d-flex align-items-center">
+            <img
+                src="/assets/images/profile/user5.jpg"
+                class="rounded-circle object-cover"
+                width="40"
+            />
+
+            <div class="m-l-16 text-left d-none d-lg-flex">
+                <div>
+                    <h5 class="f-s-16">{{ username || "User" }}</h5>
+                    <span class="f-s-14 mat-body-1">Admin</span>
+                </div>
+            </div>
+        </div>
+    </button>
+    <mat-menu
+        #profileMenu="matMenu"
+        xPosition="before"
+        class="topbar-dd cardWithShadow"
+    >
+        <ng-scrollbar class="position-relative" style="height: 495px">
+            <div class="p-x-32 p-y-16">
+                <h6 class="f-s-16 f-w-600 m-0 mat-subtitle-1">User Profile</h6>
+
+                <div class="d-flex align-items-center p-b-24 b-b-1 m-t-16">
+                    <img
+                        src="/assets/images/profile/user5.jpg"
+                        class="rounded-circle"
+                        width="95"
+                    />
+                    <div class="m-l-16">
+                        <h6 class="f-s-16 f-w-600 m-0 mat-subtitle-1">
+                            {{ username || "User" }}
+                        </h6>
+                        <span class="f-s-14 mat-body-1 d-block m-b-4"
+                            >Admin</span
+                        >
+                        <span class="d-flex align-items-center">
+                            <i-tabler
+                                name="mail"
+                                class="icon-15 m-r-4"
+                            ></i-tabler>
+                            {{ email || "E-mail" }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="p-x-32">
+                @for(profile of profiledd; track profile.title) {
+                <a
+                    class="p-y-16 text-decoration-none d-block text-hover-primary"
+                    [routerLink]="[profile.link]"
+                >
+                    <div class="d-flex align-items-center">
+                        <span
+                            class="text-{{ profile.color }} bg-light-{{
+                                profile.color
+                            }} icon-50 d-flex align-items-center justify-content-center shadow-none rounded"
+                        >
+                            <i-tabler [name]="profile.img" class="icon-20" />
+                        </span>
+
+                        <div class="m-l-16">
+                            <h5
+                                class="f-s-14 f-w-600 m-0 textprimary mat-subtitle-1 hover-text"
+                            >
+                                {{ profile.title }}
+                            </h5>
+                            <span class="mat-body-1">{{
+                                profile.subtitle
+                            }}</span>
+                        </div>
+                    </div>
+                </a>
+                }
+            </div>
+
+            <div class="p-y-12 p-x-32">
+                <button
+                    (click)="logout()"
+                    mat-flat-button
+                    color="primary"
+                    class="w-100"
+                >
+                    Logout
+                </button>
+            </div>
+        </ng-scrollbar>
+    </mat-menu>
+</mat-toolbar>

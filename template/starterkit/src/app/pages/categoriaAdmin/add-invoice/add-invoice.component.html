@@ -1,0 +1,57 @@
+<mat-card class="cardWithShadow">
+  <mat-card-content class="p-24">
+    <div *ngIf="!isSaving; else savingTemplate">
+      <form [formGroup]="addForm">
+        <div class="row justify-content-between m-b-24">
+          <div class="col-sm-4 d-flex align-items-center">
+            <h4 class="mat-subtitle-2 f-s-18 f-w-600">
+              #<span>{{ invoice.id }}</span>
+            </h4>
+          </div>
+          <div class="col-sm-4 text-right">
+            <a
+              routerLink="/categoriaAdmin"
+              mat-stroked-button
+              color="warn"
+              class="m-r-10"
+            >
+              Cancel
+            </a>
+            <button
+              mat-raised-button
+              color="primary"
+              [disabled]="!addForm.valid"
+              (click)="saveDetail()"
+            >
+              Create Category
+            </button>
+          </div>
+        </div>
+        <mat-divider></mat-divider>
+
+        <div class="m-t-24">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Category Name</mat-label>
+            <input
+              type="text"
+              matInput
+              formControlName="name"
+              placeholder="Insira o nome da categoria"
+            />
+            <mat-error *ngIf="addForm.get('name')?.hasError('required')">
+              The category name is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </form>
+    </div>
+
+    <!-- Template do Spinner -->
+    <ng-template #savingTemplate>
+      <div class="spinner-container text-center p-24">
+        <mat-spinner color="primary"></mat-spinner>
+        <p class="m-t-16">Creating category...</p>
+      </div>
+    </ng-template>
+  </mat-card-content>
+</mat-card>

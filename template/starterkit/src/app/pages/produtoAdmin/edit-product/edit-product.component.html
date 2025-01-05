@@ -1,0 +1,143 @@
+<mat-card class="cardWithShadow">
+    <mat-card-content class="p-24">
+      <form [formGroup]="editForm">
+        <div class="row m-b-24">
+          <div class="col-sm-4 d-flex align-items-center">
+            <h4 class="mat-subtitle-2 f-s-18 f-w-600">
+               ID: #{{ product?.id }}
+            </h4>
+          </div>
+          <div class="col-sm-8 text-right">
+            <a
+              routerLink="/produtoAdmin"
+              mat-stroked-button
+              color="warn"
+              class="m-r-10"
+            >
+              Cancel
+            </a>
+            <button
+              mat-flat-button
+              color="primary"
+              (click)="$event.preventDefault(); saveProduct()"
+              [disabled]="isSaving || isLoading"
+            >
+              Save Product
+            </button>
+          </div>
+        </div>
+
+        <mat-divider></mat-divider>
+
+         <!-- Spinner durante o loading -->
+        <div *ngIf="isLoading" class="spinner-container">
+          <mat-spinner color="primary"></mat-spinner>
+          <div class="loading-message">Loading...</div>
+        </div>
+
+        <!-- Spinner durante o guardamento -->
+        <div *ngIf="isSaving" class="spinner-container">
+          <mat-spinner color="primary"></mat-spinner>
+          <div class="loading-message">Saving...</div>
+        </div>
+
+        <div class="table-responsive" *ngIf="!isSaving && !isLoading">
+          <table class="table table-hover b-1 no-wrap w-100 rounded">
+            <thead>
+              <tr>
+                <th class="p-16">Product Name</th>
+                <th class="p-16">Price</th>
+                <th class="p-16">threshold</th>
+                <th class="p-16">Stock</th>
+                <th class="p-16">Category</th>
+                <th class="p-16">Current Image</th>
+                <th class="p-16">New Imagem</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <!-- Nome do Produto -->
+                <td class="p-16">
+                  <mat-form-field appearance="outline" class="w-100 hide-hint">
+                    <input
+                      matInput
+                      type="text"
+                      placeholder="Product Name"
+                      formControlName="name"
+                    />
+                  </mat-form-field>
+                </td>
+
+                <!-- Preço -->
+                <td class="p-16">
+                  <mat-form-field appearance="outline" class="w-100 hide-hint">
+                    <input
+                      matInput
+                      type="number"
+                      placeholder="Price"
+                      formControlName="price"
+                      min="0"
+                    />
+                  </mat-form-field>
+                </td>
+
+                <td class="p-16">
+                  <mat-form-field appearance="outline" class="w-100 hide-hint">
+                    <input
+                      matInput
+                      type="number"
+                      placeholder="Threshold"
+                      formControlName="threshold"
+                      min="0"
+                    />
+                  </mat-form-field>
+                </td>
+
+                <!-- Stock -->
+                <td class="p-16">
+                  <mat-form-field appearance="outline" class="w-100 hide-hint">
+                    <input
+                      matInput
+                      type="number"
+                      placeholder="Stock"
+                      formControlName="stock"
+                      min="0"
+                    />
+                  </mat-form-field>
+                <!-- Categoria -->
+                <td class="p-16">
+                  <mat-form-field appearance="outline" class="w-100 hide-hint">
+                    <mat-select placeholder="Category" formControlName="categories_id">
+                      <mat-option *ngFor="let category of categories" [value]="category.id">
+                        {{ category.name }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </td>
+
+                 <!-- Imagem Atual -->
+              <td class="p-16">
+                <div class="image-preview-container">
+                  <img
+                    *ngIf="selectedImageA"
+                    [src]="selectedImageA"
+                    alt="Imagem Atual"
+                    class="preview-image"
+                  />
+                </div>
+              </td>
+
+              <!-- Nova Imagem -->
+              <td class="p-16">
+                <div class="image-upload-container">
+                  <img *ngIf="selectedImage" [src]="selectedImage" alt="Imagem do Produto" class="preview-image" />
+                  <input type="file" accept="image/*" (change)="onFileSelected($event)" />
+                </div>
+              </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>

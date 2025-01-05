@@ -1,0 +1,10 @@
+{
+  "/storage": {
+    "target": "https://perenual.com",
+    "secure": false,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/storage": "/storage"
+    }
+  }
+}

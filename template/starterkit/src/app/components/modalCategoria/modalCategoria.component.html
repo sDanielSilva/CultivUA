@@ -1,0 +1,57 @@
+<mat-card-content class="p-24 cardWithShadow">
+    <h2 class="f-w-500 m-b-24">Create Category</h2>
+
+    <div *ngIf="!isSaving; else savingTemplate">
+        <form [formGroup]="addForm">
+            <!-- Campo de entrada para o nome da categoria -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Category Name</mat-label>
+                        <input
+                            type="text"
+                            matInput
+                            formControlName="name"
+                            placeholder="Insira o nome da categoria"
+                        />
+                        <mat-error
+                            *ngIf="addForm.get('name')?.hasError('required')"
+                        >
+                            The category name is required
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <!-- Botões de ação -->
+            <div class="row m-t-24 text-right">
+                <div class="col-lg-12">
+                    <button
+                        mat-stroked-button
+                        color="warn"
+                        class="m-r-8"
+                        (click)="onCancel()"
+                    >
+                        Cancel
+                    </button>
+                    <button
+                        mat-flat-button
+                        style="background-color: green; color: white"
+                        [disabled]="!addForm.valid"
+                        (click)="saveDetail()"
+                    >
+                        Create Category
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Template do Spinner -->
+    <ng-template #savingTemplate>
+        <div class="spinner-container text-center p-24">
+            <mat-spinner color="primary"></mat-spinner>
+            <p class="m-t-16">Creating category...</p>
+        </div>
+    </ng-template>
+</mat-card-content>

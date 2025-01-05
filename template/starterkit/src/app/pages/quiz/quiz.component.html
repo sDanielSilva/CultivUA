@@ -1,0 +1,35 @@
+<mat-card class="cardWithShadow" *ngIf="isLoading">
+    <mat-card-content class="quiz-content" style="display: flex; justify-content: center; align-items: center; height: 300px;">
+      <mat-spinner diameter="50"></mat-spinner>
+    </mat-card-content>
+  </mat-card>
+  
+  <mat-card class="cardWithShadow" *ngIf="!isLoading">
+    <mat-card-content class="quiz-content">
+      <div class="row">
+        <div class="col-sm-6 col-xs-12">
+          <div class="left-group">
+            <mat-card-title class="primary-title">
+              Find the ideal plant for you
+            </mat-card-title>
+            <div class="subtitle-container">
+              <mat-card-subtitle class="mat-body-1">
+                Answer this short questionnaire so we can
+                identify the perfect plant according to your
+                preferences.
+              </mat-card-subtitle>
+            </div>
+            <button mat-flat-button color="primary" (click)="redirectToQuiz()">Start</button>
+          </div>
+        </div>
+        <div class="col-sm-6 col-xs-12">
+          <img
+            id="quiz-image"
+            src="../../../assets/images/quiz/Quiz.svg"
+            alt="Quiz Illustration"
+          />
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  

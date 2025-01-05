@@ -1,0 +1,32 @@
+<mat-card class="cardWithShadow theme-card">
+  <mat-card-header>
+    <mat-card-title class="m-b-0">Monthly Sales History</mat-card-title>
+    <div class="month-selector">
+      <mat-form-field appearance="fill" class="month-dropdown">
+        <mat-label>Select the month</mat-label>
+        <mat-select [(value)]="selectedMonth" (selectionChange)="onMonthChange($event.value)">
+          <mat-option *ngFor="let month of months" [value]="month.value">
+            {{ month.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </mat-card-header>
+  <mat-card-content class="b-t-1">
+    <!-- Gráfico -->
+    <apx-chart
+      [series]="lineChartOptions.series"
+      [chart]="lineChartOptions.chart"
+      [xaxis]="lineChartOptions.xaxis"
+      [yaxis]="lineChartOptions.yaxis"
+      [grid]="lineChartOptions.grid"
+      [stroke]="lineChartOptions.stroke"
+      [tooltip]="lineChartOptions.tooltip"
+      [dataLabels]="lineChartOptions.dataLabels"
+      [legend]="lineChartOptions.legend"
+      [colors]="lineChartOptions.colors"
+      [markers]="lineChartOptions.markers"
+    >
+    </apx-chart>
+  </mat-card-content>
+</mat-card>

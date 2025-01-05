@@ -1,0 +1,8 @@
+<div class="toast-container" [ngClass]="type">
+  <div class="toast-content">
+    <mat-icon *ngIf="type === 'success'" [ngClass]="'success-icon'">check_circle</mat-icon>
+    <mat-icon *ngIf="type === 'error'" [ngClass]="'error-icon'">cancel</mat-icon>
+    <mat-icon *ngIf="type === 'warning'" [ngClass]="'warning-icon'">warning</mat-icon>    
+    <span class="message">{{ message }}</span>
+  </div>
+</div>

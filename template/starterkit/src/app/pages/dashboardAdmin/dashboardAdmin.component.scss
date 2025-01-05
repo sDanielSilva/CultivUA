@@ -1,0 +1,28 @@
+.chart-container {
+    display: flex;
+    gap: 2rem;
+  }
+  
+  .chart-container > * {
+    flex: 1; 
+  }
+
+  .calendar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  button {
+    margin-left: auto;
+  }
+
+  .icon-date-container {
+    display: flex;
+    align-items: center; /* Alinha o ícone e a data verticalmente */
+    gap: 8px; /* Espaçamento entre o ícone e a data */
+  }
+  
+  .calendar-icon {
+    font-size: 20px; /* Ajuste o tamanho do ícone se necessário */
+  }

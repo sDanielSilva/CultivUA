@@ -1,0 +1,32 @@
+<mat-card class="cardWithShadow theme-card">
+  <mat-card-content class="b-t-1">
+    <mat-stepper #stepper>
+      <mat-step [stepControl]="firstFormGroup">
+        <form class="m-t-24" [formGroup]="firstFormGroup">
+          <ng-template matStepLabel>House site</ng-template>
+          <div class="text-right">
+            <button mat-flat-button color="primary" matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="secondFormGroup">
+        <form class="m-t-24" [formGroup]="secondFormGroup">
+          <ng-template matStepLabel>Water</ng-template>
+          <div class="d-flex align-items-center justify-content-between">
+            <button mat-flat-button color="warn" matStepperPrevious>
+              Back
+            </button>
+            <button mat-flat-button color="primary" matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Sun exposure</ng-template>
+        <div class="d-flex justify-content-between m-t-16">
+          <button mat-flat-button color="warn" matStepperPrevious>Back</button>
+          <button mat-flat-button color="primary" (click)="stepper.reset()">Finish</button>
+        </div>
+      </mat-step>
+    </mat-stepper>
+  </mat-card-content>
+</mat-card>

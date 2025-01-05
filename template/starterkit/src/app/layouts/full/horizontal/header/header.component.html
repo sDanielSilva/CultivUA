@@ -1,0 +1,388 @@
+<mat-toolbar class="topbar horizontal-topbar">
+    <div class="container">
+        <div class="d-none d-sm-flex">
+            <app-branding></app-branding>
+        </div>
+
+        <!-- Mobile Menu -->
+
+        <!-- Navegação Desktop -->
+        <div class="d-none d-lg-flex">
+            <a
+                mat-button
+                [routerLink]="'/landingpage'"
+                [ngClass]="{ 'active-link': currentRoute === '/landingpage' }"
+                (click)="navigate('/landingpage')"
+                >Home</a
+            >
+            <a
+                mat-button
+                [routerLink]="'/dashboard'"
+                [ngClass]="{ 'active-link': currentRoute === '/dashboard' }"
+                (click)="navigate('/dashboard')"
+                >Dashboard</a
+            >
+            <a
+                mat-button
+                [routerLink]="'/loja-online'"
+                [ngClass]="{ 'active-link': currentRoute === '/loja-online' }"
+                (click)="navigate('/loja-online')"
+                >Store</a
+            >
+            <a
+                mat-button
+                [routerLink]="'/identificar'"
+                [ngClass]="{ 'active-link': currentRoute === '/identificar' }"
+                (click)="navigate('/identificar')"
+                >Identify</a
+            >
+            <a
+                mat-button
+                [routerLink]="'/quiz'"
+                [ngClass]="{ 'active-link': currentRoute === '/quiz' }"
+                (click)="navigate('/quiz')"
+                >Quiz</a
+            >
+            <a
+                mat-button
+                [routerLink]="'/blog'"
+                [ngClass]="{ 'active-link': currentRoute === '/blog' }"
+                (click)="navigate('/blog')"
+                >Blog</a
+            >
+            <a
+                mat-button
+                [routerLink]="'/contactos'"
+                [ngClass]="{ 'active-link': currentRoute === '/contactos' }"
+                (click)="navigate('/contactos')"
+                >Contacts</a
+            >
+        </div>
+
+        <span class="flex-1-auto"></span>
+
+        <!-- Mobile Menu -->
+
+        <!-- Carrinho de Compras -->
+        <!--  <button mat-icon-button aria-label="Carrinho de Compras">
+            <i-tabler name="basket" class="icon-40 d-flex"></i-tabler>
+        </button> -->
+
+        <button
+            mat-icon-button
+            [matMenuTriggerFor]="cartMenu"
+            aria-label="Carrinho de Compras"
+        >
+            <i-tabler name="basket" class="icon-40 d-flex"></i-tabler>
+            <span class="cart-count" *ngIf="cartCount > 0">{{
+                cartCount
+            }}</span>
+        </button>
+
+        <mat-menu
+            #cartMenu="matMenu"
+            xPosition="before"
+            class="topbar-dd cardWithShadow"
+        >
+            <div class="cart-container">
+                <h5>My Cart</h5>
+                <div *ngIf="cartItems.length === 0" class="empty-cart">
+                    The cart is empty
+                </div>
+                <div *ngFor="let item of cartItems" class="cart-item">
+                    <img
+                        [src]="item.imagem"
+                        alt="{{ item.name }}"
+                        class="cart-item-image"
+                    />
+                    <div class="cart-item-content">
+                        <div class="cart-item-header">
+                            <div class="cart-item-name">{{ item.name }}</div>
+                            <div class="cart-item-price">
+                                {{ item.price | number : "1.2-2" }} €
+                            </div>
+                        </div>
+                        <div class="cart-item-footer">
+                            <div class="cart-item-quantity">
+                                <button
+                                    (click)="
+                                        decreaseQuantity(item.id);
+                                        $event.stopPropagation()
+                                    "
+                                >
+                                    -
+                                </button>
+                                {{ item.quantity }}
+                                <button
+                                    (click)="
+                                        increaseQuantity(item.id);
+                                        $event.stopPropagation()
+                                    "
+                                >
+                                    +
+                                </button>
+                            </div>
+                            <button
+                                class="remove-item"
+                                (click)="
+                                    removeItem(item.id);
+                                    $event.stopPropagation()
+                                "
+                            >
+                                Remove
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="cart-total" *ngIf="cartItems.length > 0">
+                    Total: <strong>{{ total | number : "1.2-2" }} €</strong>
+                </div>
+                <br />
+                <button
+                    mat-raised-button
+                    class="verde"
+                    (click)="checkout()"
+                    [disabled]="cartItems.length === 0"
+                    [ngClass]="{ 'disabled-btn': cartItems.length === 0 }"
+                >
+                    Checkout
+                </button>
+            </div>
+        </mat-menu>
+
+        <!-- --------------------------------------------------------------- -->
+        <!-- Notificações (somente se autenticado) -->
+        <!-- --------------------------------------------------------------- -->
+        <ng-container *ngIf="isAuthenticated; else notLoggedIn">
+            <button
+                mat-icon-button
+                [matMenuTriggerFor]="msgMenu"
+                aria-label="Notifications"
+                class="notification-btn"
+            >
+                <i-tabler class="d-flex" name="bell"></i-tabler>
+                <div class="pulse" *ngIf="unreadCount > 0">
+                    <span class="heartbit border-primary"></span>
+                    <span class="point bg-primary"></span>
+                </div>
+            </button>
+            <mat-menu
+                #msgMenu="matMenu"
+                xPosition="before"
+                class="topbar-dd cardWithShadow"
+                (menuOpened)="onMenuOpened(true)"
+                (menuClosed)="onMenuOpened(false)"
+            >
+                <div class="d-flex align-items-center p-x-32 p-y-16">
+                    <h6 class="f-s-16 f-w-600 m-0 mat-subtitle-1">
+                        Notifications
+                    </h6>
+                    <span class="m-l-16">
+                        <span
+                            class="bg-warning text-white p-x-8 p-y-4 f-w-500 rounded f-s-12"
+                        >
+                            {{ unreadCount }} novas
+                        </span>
+                    </span>
+                </div>
+
+                <div *ngFor="let notification of notifications">
+                    <button
+                        mat-menu-item
+                        class="p-x-32 p-y-16 notification-item"
+                        [ngClass]="{
+                            'bg-light':
+                                notification.is_read === 0 &&
+                                notification.type !== 'plant_care',
+                            'bg-warn':
+                                notification.is_read === 0 &&
+                                notification.type === 'plant_care',
+                            read: notification.is_read === 1
+                        }"
+                        (click)="handleNotificationClick(notification)"
+                    >
+                        <div class="d-flex align-items-center">
+                            <mat-icon class="text-primary">
+                                {{
+                                    notification.type === "new_blog_post"
+                                        ? "article"
+                                        : "nature"
+                                }}
+                            </mat-icon>
+                            <div class="m-l-16">
+                                <h5 class="f-s-14 f-w-600 m-0 mat-subtitle-1">
+                                    {{ notification.message }}
+                                </h5>
+                                <span class="text-muted f-s-12">
+                                    {{
+                                        notification.created_at | date : "short"
+                                    }}
+                                </span>
+                            </div>
+                        </div>
+                    </button>
+                </div>
+
+                <div class="p-y-12 p-x-32">
+                    <button
+                        mat-flat-button
+                        class="w-100 btn-verde"
+                        [routerLink]="'/notifications'"
+                    >
+                        View all
+                    </button>
+                </div>
+            </mat-menu>
+
+            <style>
+                .bg-warn {
+                    background-color: #ffcc0040 !important; /*Cor de aviso*/
+                }
+                .active-link {
+                    color: green !important;
+                    font-weight: bold !important;
+                }
+            </style>
+            <!-- Menu de perfil -->
+            <button
+                mat-fab
+                extended
+                color="inherit"
+                [matMenuTriggerFor]="profileMenu"
+                aria-label="Profile"
+            >
+                <div class="d-flex align-items-center">
+                    <img
+                        [src]="
+                            user.imagem ||
+                            '../../../../../assets/images/profile/user-default.jpg'
+                        "
+                        class="rounded-circle object-cover"
+                        width="40"
+                    />
+                    <div class="m-l-16 text-left d-none d-lg-flex">
+                        <div>
+                            <h5 class="f-s-16">
+                                {{ user.username || "User" }}
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+            </button>
+
+            <mat-menu
+                #profileMenu="matMenu"
+                xPosition="before"
+                class="topbar-dd cardWithShadow"
+            >
+                <ng-scrollbar class="position-relative" style="height: 490px">
+                    <div class="p-x-32 p-y-16">
+                        <h6 class="f-s-16 f-w-600 m-0 mat-subtitle-1">
+                            User Profile
+                        </h6>
+
+                        <div
+                            class="d-flex align-items-center p-b-24 b-b-1 m-t-16"
+                        >
+                            <img
+                                [src]="
+                                    user?.imagem ||
+                                    '../../../../../assets/images/profile/user-default.jpg'
+                                "
+                                class="rounded-circle"
+                                width="95"
+                            />
+                            <div class="m-l-16">
+                                <h6 class="f-s-16 f-w-600 m-0 mat-subtitle-1">
+                                    {{ user?.username || "User" }}
+                                </h6>
+
+                                <span class="email-container">
+                                    <i-tabler
+                                        name="mail"
+                                        class="email-icon"
+                                    ></i-tabler>
+                                    <span class="email-text">{{
+                                        user?.email || " email@domain.com"
+                                    }}</span>
+                                </span>
+                                <style>
+                                    svg {
+                                        vertical-align: middle !important;
+                                    }
+                                </style>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-x-32">
+                        <!-- Exemplo de lista de opções de menu -->
+                        <ng-container *ngFor="let profile of profiledd">
+                            <a
+                                class="p-y-16 text-decoration-none d-block textprimary"
+                                [routerLink]="[profile.link]"
+                            >
+                                <div class="d-flex align-items-center">
+                                    <span
+                                        class="text-{{
+                                            profile.color
+                                        }} bg-light-{{
+                                            profile.color
+                                        }} icon-50 d-flex align-items-center justify-content-center shadow-none rounded"
+                                    >
+                                        <i-tabler
+                                            [name]="profile.img"
+                                            class="icon-20"
+                                        ></i-tabler>
+                                    </span>
+
+                                    <div class="m-l-16 textprimary">
+                                        <h5
+                                            class="f-s-14 f-w-600 m-0 textprimary mat-subtitle-1 hover-text"
+                                        >
+                                            {{ profile.title }}
+                                        </h5>
+                                        <span class="mat-body-1 textprimary">{{
+                                            profile.subtitle
+                                        }}</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </ng-container>
+                    </div>
+
+                    <div class="p-y-12 p-x-32">
+                        <button
+                            mat-flat-button
+                            class="w-100 btn-verde"
+                            (click)="logout()"
+                        >
+                            Log Out
+                        </button>
+                    </div>
+                </ng-scrollbar>
+            </mat-menu>
+        </ng-container>
+
+        <!-- --------------------------------------------------------------- -->
+        <!-- Login/Registo (se não autenticado) -->
+        <!-- --------------------------------------------------------------- -->
+        <ng-template #notLoggedIn>
+            <div class="d-flex align-items-center gap-2">
+                <button
+                    mat-stroked-button
+                    color="primary"
+                    [routerLink]="'/login'"
+                >
+                    Login
+                </button>
+                <button
+                    mat-flat-button
+                    color="primary"
+                    [routerLink]="'/register'"
+                >
+                    Register
+                </button>
+            </div>
+        </ng-template>
+    </div>
+</mat-toolbar>

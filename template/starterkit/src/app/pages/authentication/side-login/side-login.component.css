@@ -1,0 +1,19 @@
+.text-primary {
+    color: green!important;
+}
+button[mat-icon-button] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+mat-icon {
+    font-size: 24px;
+}
+/* Remove o ícone padrão de visibilidade do Edge */
+input::-ms-reveal {
+    display: none;
+}
+input::-ms-clear {
+    display: none;
+}

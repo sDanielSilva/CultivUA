@@ -1,0 +1,371 @@
+<mat-card class="cardWithShadow">
+    <div class="container my-4">
+        <div class="row mb-4">
+            <!-- Filtros -->
+            <div class="col-12 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <label for="kitFilter">Show plants with kit</label>
+                    <select
+                        id="kitFilter"
+                        class="form-control"
+                        [(ngModel)]="filters.hasKit"
+                        aria-label="Filtro de kit"
+                    >
+                        <option value="">All</option>
+                        <option value="true">With Kit</option>
+                        <option value="false">Without Kit</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <label for="seasonFilter">Filter by season</label>
+                    <select
+                        id="seasonFilter"
+                        class="form-control"
+                        [(ngModel)]="filters.season"
+                        aria-label="Season filter"
+                    >
+                        <option value="">All</option>
+                        <option value="Summer">Summer</option>
+                        <option value="Spring">Spring</option>
+                        <option value="Fall">Fall</option>
+                        <option value="Winter">Winter</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-12 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <label for="locationFilter">Filter by location</label>
+                    <select
+                        id="locationFilter"
+                        class="form-control"
+                        [(ngModel)]="filters.locationId"
+                        name="locationId"
+                    >
+                        <option value="">All</option>
+                        <option
+                            *ngFor="let location of locations"
+                            [value]="location.id"
+                        >
+                            {{ location.name }}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-12 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <label for="searchFilter">Search by name</label>
+                    <input
+                        type="text"
+                        id="searchFilter"
+                        class="form-control"
+                        [(ngModel)]="filters.searchTerm"
+                        placeholder="Plant name"
+                        aria-label="Search plant by name"
+                    />
+                </div>
+            </div>
+        </div>
+    </div>
+</mat-card>
+
+<div class="row mt-4">
+    <!-- Verificação de plantas -->
+    <div *ngIf="filteredPlants().length === 0" class="col-12 text-center">
+        <p class="alert alert-warning">
+            No plants found with the applied filters.
+        </p>
+    </div>
+
+    <!-- Iterar sobre a lista de plantas, aplicando filtros -->
+    <div
+        class="col-12 col-md-6 col-lg-4"
+        *ngFor="let plant of filteredPlants(); let i = index"
+        [attr.data-plant-index]="i"
+    >
+        <div class="card shadow-sm">
+            <div class="location-card">
+                {{ plant.location?.name || "Location not available" }}
+            </div>
+            <button
+                mat-icon-button
+                class="edit-button"
+                (click)="openEditDialog(plant)"
+            >
+                <mat-icon>edit</mat-icon>
+            </button>
+            <!-- Imagem da planta -->
+            <img
+                [src]="
+                    plant.image ||
+                    'https://i0.wp.com/thinkfirstcommunication.com/wp-content/uploads/2022/05/placeholder-1-1.png?fit=1200%2C800&ssl=1'
+                "
+                class="card-img-top"
+                [alt]="plant.name || 'Imagem da planta'"
+                loading="lazy"
+            />
+
+            <div class="card-body">
+                <!-- Nome da planta -->
+                <h5 class="card-title text-center">
+                    {{ plant.name || "Name unavailable" }}
+                </h5>
+
+                <!-- Nome científico -->
+                <h6 class="card-subtitle mb-2 text-muted text-center">
+                    <i>{{ plant.species || "Species not specified" }}</i>
+                </h6>
+                <h6
+                    class="card-subtitle mb-2 text-muted text-center"
+                    [ngStyle]="{ 'background-color': 'transparent' }"
+                >
+                    <span *ngIf="!showFullDescriptionMap[plant.id]">
+                        {{
+                            plant.description || "Description not specified"
+                                | slice : 0 : 150
+                        }}
+                        <button
+                            class="btn btn-link p-0 btn-success custom-ver-mais-btn"
+                            (click)="toggleDescription(plant.id)"
+                        >
+                            See more
+                        </button>
+                    </span>
+
+                    <span *ngIf="showFullDescriptionMap[plant.id]">
+                        {{ plant.description || "Description not specified" }}
+                        <button
+                            class="btn btn-link p-0 btn-success custom-ver-mais-btn"
+                            (click)="toggleDescription(plant.id)"
+                        >
+                            See less
+                        </button>
+                    </span>
+                </h6>
+
+                <!-- Informações da planta -->
+                <ul class="list-unstyled">
+                    <!-- Temperatura -->
+                    <li
+                        [ngClass]="
+                            plant.kit_id && plant.kitReadings?.length > 0
+                                ? getTemperatureClass(plant)
+                                : ''
+                        "
+                        class="info-line"
+                    >
+                    <i-tabler name="temperature" class="icon-20" style="vertical-align: middle; margin-right: 2px;"></i-tabler>
+                        &#9; Temperature:
+                        {{
+                            plant.kit_id && plant.kitReadings?.length > 0
+                                ? plant.kitReadings[
+                                      plant.kitReadings.length - 1
+                                  ].temperatura
+                                : plant.ideal_temperature || "N/D"
+                        }}
+                        <span
+                            *ngIf="
+                                plant.kit_id && plant.kitReadings?.length > 0
+                            "
+                        >
+                            / {{ plant.ideal_temperature || "N/D" }}°C
+                        </span>
+                        <i-tabler
+                            *ngIf="
+                                plant.kit_id && plant.kitReadings?.length > 0
+                            "
+                            [name]="getTemperatureIcon(plant)"
+                            class="icon-right" 
+                        ></i-tabler>
+                    </li>
+
+                    <!-- Luz -->
+                    <li
+                        [ngClass]="
+                            plant.kit_id && plant.kitReadings?.length > 0
+                                ? getLightClass(plant)
+                                : ''
+                        "
+                        class="info-line"
+                    >
+                        <i-tabler name="sun" class="icon-20"  style="vertical-align: middle; margin-right: 2px;"></i-tabler>
+                        &#9; Light:
+                        {{
+                            plant.kit_id && plant.kitReadings?.length > 0
+                                ? plant.kitReadings[
+                                      plant.kitReadings.length - 1
+                                  ].luz
+                                : plant.ideal_light || "N/D"
+                        }}
+                        <span
+                            *ngIf="
+                                plant.kit_id && plant.kitReadings?.length > 0
+                            "
+                        >
+                            / {{ plant.ideal_light || "N/D" }}
+                        </span>
+                        <i-tabler
+                            *ngIf="
+                                plant.kit_id && plant.kitReadings?.length > 0
+                            "
+                            [name]="getLightIcon(plant)"
+                            class="icon-right"
+                        ></i-tabler>
+                    </li>
+
+                    <!-- Humidade -->
+                    <li
+                        [ngClass]="
+                            plant.kit_id && plant.kitReadings?.length > 0
+                                ? getHumidityClass(plant)
+                                : ''
+                        "
+                        class="info-line"
+                    >
+                        <i-tabler name="droplet" class="icon-20"  style="vertical-align: middle; margin-right: 2px;"></i-tabler>
+                        &#9; Humidity:
+                        {{
+                            plant.kit_id && plant.kitReadings?.length > 0
+                                ? plant.kitReadings[
+                                      plant.kitReadings.length - 1
+                                  ].humidade
+                                : plant.ideal_humidity || "N/D"
+                        }}%
+                        <span
+                            *ngIf="
+                                plant.kit_id && plant.kitReadings?.length > 0
+                            "
+                        >
+                            / {{ plant.ideal_humidity || "N/D" }}%
+                        </span>
+                        <i-tabler
+                            *ngIf="
+                                plant.kit_id && plant.kitReadings?.length > 0
+                            "
+                            [name]="getHumidityIcon(plant)"
+                            class="icon-right"
+                        ></i-tabler>
+                    </li>
+
+                    <!-- Frequência de rega -->
+                    <li class="info-line">
+                        <i-tabler
+                            name="droplet-half-2"
+                            class="icon-20"  style="vertical-align: middle; margin-right: 2px;"
+                        ></i-tabler>
+                        &#9; Watering (Days):
+                        {{ plant.watering_frequency || "N/D" }}
+                    </li>
+                </ul>
+
+                <!-- Título de colheita -->
+                <p class="harvest-title">Harvest</p>
+
+                <!-- Barras de estações -->
+                <div class="seasons-bar">
+                    <div
+                        class="season"
+                        *ngFor="
+                            let season of ['Winter', 'Spring', 'Summer', 'Fall']
+                        "
+                        [ngClass]="{
+                            highlighted: plant.harvest_season === season,
+                            faded: plant.harvest_season !== season
+                        }"
+                        matTooltip="{{ getHarvestTooltip(season) }}"
+                    >
+                        {{ getSeasonInPortuguese(season) }}
+                    </div>
+                </div>
+
+                <!-- Botão "Ver Kit" -->
+                <button
+                    class="btn btn-info w-100 custom-btn"
+                    (click)="viewKitDetails(plant)"
+                >
+                    See more
+                </button>
+
+                <!-- Botão de 'Adicionar Kit' -->
+                <button
+                    *ngIf="
+                        !plant.kit_name ||
+                        plant.kit_name === null ||
+                        plant.kit_name === ''
+                    "
+                    class="btn btn-secondary w-100 custom-btn"
+                    (click)="toggleKitForm(plant, false)"
+                >
+                    Add Kit
+                </button>
+
+                <!-- Botão de 'Editar Kit' -->
+                <button
+                    *ngIf="
+                        plant?.kit_name && plant.kit_name !== ''
+                    "
+                    class="btn btn-warning w-100 custom-btn"
+                    (click)="toggleKitForm(plant, true)"
+                >
+                    Edit Kit
+                </button>
+
+                <div *ngIf="selectedPlant === plant" class="mt-2">
+                    <form (ngSubmit)="submitKitForm()" #kitForm="ngForm">
+                        <div class="form-group">
+                            <label for="kitcodigo">Kit Code</label>
+                            <input
+                                type="text"
+                                id="kitcodigo"
+                                class="form-control"
+                                [(ngModel)]="kit.codigo"
+                                name="codigo"
+                                placeholder="Enter the kit code"
+                                required
+                            />
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="kitName">Kit Name</label>
+                            <input
+                                type="text"
+                                id="kitName"
+                                class="form-control"
+                                [(ngModel)]="kit.name"
+                                name="name"
+                                required
+                            />
+                        </div>
+                        <button
+                            type="submit"
+                            class="btn btn-primary w-100"
+                            [disabled]="!kitForm.form.valid"
+                            style="background-color: green; color: white;"
+                        >
+                            Save
+                        </button>
+                        <button
+                            *ngIf="isEditMode"
+                            type="button"
+                            class="btn btn-danger w-100 mt-2"
+                            (click)="removeKit()"
+                        >
+                            Remove Kit
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-4">
+        <div
+            class="card shadow-sm text-center add-new-plant-card"
+            (click)="navigateToAddPlant()"
+            style="cursor: pointer"
+        >
+            <i-tabler name="plus" class="icon-giant"></i-tabler>
+            <h5 class="mt-2">Add New Plant</h5>
+        </div>
+    </div>
+</div>

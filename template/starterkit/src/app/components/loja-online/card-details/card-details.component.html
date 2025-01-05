@@ -1,0 +1,65 @@
+<!-- Mostra o Spinner enquanto a página está carregando -->
+<mat-spinner *ngIf="loading" diameter="50" class="loading-spinner"></mat-spinner>
+<div *ngIf="product" class="container mt-5">
+    <div class="row justify-content-center">
+      <!-- Imagem do produto à esquerda -->
+      <div class="col-md-5 col-12 mb-4">
+        <div class="product-image-container position-relative">
+          <!-- Tamanho sobre a imagem -->
+          <div class="size-label position-absolute top-0 start-0 p-2">
+            {{ product.size }}
+          </div>
+          <img [src]="product.imagem" alt="{{ product.name }}" class="img-fluid rounded">
+        </div>
+      </div>
+  
+      <!-- Informações do produto à direita -->
+      <div class="col-md-7 col-12">
+        <div class="product-description">
+          <h1 class="display-4">{{ product.name }}</h1>
+          <p class="scientific-name"><i>{{ product.scientific_name }}</i></p>
+          <p>{{ product.description }}</p>
+          <div class="category">
+            <i *ngIf="categoryName === 'Soil'" class="fas fa-globe"></i>
+            <i *ngIf="categoryName === 'Pots'" class="fas fa-pottery"></i>
+            <i *ngIf="categoryName === 'Plants'" class="fas fa-leaf"></i>
+            <i *ngIf="categoryName === 'Seeds'" class="fas fa-seedling"></i>
+            <i *ngIf="categoryName === 'Kits'" class="fas fa-box"></i>
+            <i *ngIf="categoryName === 'Garden Tools'" class="fas fa-tools"></i>
+            {{ categoryName }}
+          </div>
+          <br>
+          <div class="price-stock-container d-flex align-items-center">
+            <p class="price me-3">{{ product.price }}€</p>
+            <p *ngIf="product.stock !== undefined" 
+               [ngClass]="{'stock-warning': true, 'stock-warning-low': product.stock < 10}">
+              Stock {{ product.stock }}
+            </p>
+          </div>
+          
+          
+          <!-- Controles de quantidade e botão "Adicionar ao carrinho" -->
+          <div class="controls d-flex align-items-center mt-4">
+            <div class="btn-group">
+              <button class="btn btn-outline-secondary" (click)="decreaseQuantity()">-</button>
+              <button class="btn btn-outline-secondary" disabled>{{ quantity }}</button>
+              <button class="btn btn-outline-secondary" (click)="increaseQuantity()">+</button>
+            </div>
+            <button class="btn btn-loja btn-success ms-3 d-flex align-items-center" (click)="addToCart(product)">
+              <i-tabler name="basket" class="icon-26 me-2"></i-tabler>
+              Add to Cart
+            </button>
+            <button *ngIf="product?.isKit === 1" class="btn btn-loja btn-success ms-3 d-flex align-items-center" (click)="downloadPDF()">
+              <i-tabler name="download" class="icon-26 me-2"></i-tabler>
+              Guide
+            </button>
+          </div>
+          
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <br><br><br>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  

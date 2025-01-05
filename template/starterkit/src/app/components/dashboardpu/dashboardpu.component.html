@@ -1,0 +1,527 @@
+<mat-card class="cardWithShadow">
+    <mat-card-content class="p-0">
+        <mat-tab-group mat-stretch-tabs="false" animationDuration="0ms">
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <div class="d-flex align-items-center conta-tab">
+                        <mat-icon>
+                            <i-tabler
+                                name="user-circle"
+                                class="icon-20 m-r-8"
+                            ></i-tabler>
+                        </mat-icon>
+                    </div>
+                    Account
+                </ng-template>
+                <mat-card-content class="p-y-24 b-t-1">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <mat-card class="cardWithShadow">
+                                <mat-card-content class="p-y-24">
+                                    <mat-card-title
+                                        >Update profile information</mat-card-title
+                                    >
+                                    <mat-card-subtitle class="mat-body-1"
+                                        >Update profile image</mat-card-subtitle
+                                    >
+                                    <div class="text-center m-t-24">
+                                        <img
+                                            [src]="
+                                                profilePictureUrl ||
+                                                '../../../assets/images/profile/user-default.jpg'
+                                            "
+                                            class="rounded-circle"
+                                            width="120"
+                                            alt="Pré-visualização da imagem de perfil"
+                                        />
+                                        <div class="m-t-24">
+                                            <input
+                                                type="file"
+                                                id="fileInput"
+                                                hidden
+                                                (change)="
+                                                    onFileSelected($event)
+                                                "
+                                            />
+                                            <button
+                                                mat-flat-button
+                                                color="primary"
+                                                class="m-r-8"
+                                                (click)="triggerFileInput()"
+                                            >
+                                                Choose Image
+                                            </button>
+                                            <button
+                                                mat-stroked-button
+                                                color="primary"
+                                                (click)="saveProfilePicture()"
+                                                [disabled]="!selectedImage"
+                                            >
+                                                Save
+                                            </button>
+                                        </div>
+                                        <span class="f-s-14 m-t-24 d-block">
+                                            JPG, GIF or PNG. Maximum size 800KB
+                                        </span>
+                                    </div>
+                                </mat-card-content>
+                            </mat-card>
+                        </div>
+                        <div class="col-sm-6">
+                            <mat-card class="cardWithShadow">
+                                <mat-card-content class="p-y-24">
+                                    <mat-card-title
+                                        >Personal details</mat-card-title
+                                    >
+                                    <mat-card-subtitle class="mat-body-1"
+                                        >Edit your personal details here</mat-card-subtitle
+                                    >
+
+                                    <div class="row m-t-24">
+                                        <div class="col-sm-12">
+                                            <!-- input -->
+                                            <!-- Formulário de Atualização de Dados -->
+                                            <form
+                                                *ngIf="!isLoadingUserData"
+                                                [formGroup]="userForm"
+                                                (ngSubmit)="updateUserDetails()"
+                                            >
+                                                <!-- Campo Username -->
+                                                <mat-label
+                                                    class="mat-subtitle-2 f-w-600 m-b-8 d-block"
+                                                    >Username</mat-label
+                                                >
+                                                <mat-form-field
+                                                    appearance="outline"
+                                                    class="w-100"
+                                                    color="primary"
+                                                >
+                                                    <input
+                                                        matInput
+                                                        type="text"
+                                                        formControlName="username"
+                                                        placeholder="Enter your username"
+                                                    />
+                                                    <mat-error
+                                                        *ngIf="
+                                                            userForm
+                                                                .get('username')
+                                                                ?.hasError(
+                                                                    'required'
+                                                                )
+                                                        "
+                                                    >
+                                                    The "Username" field is required.
+                                                    </mat-error>
+                                                    <mat-error
+                                                        *ngIf="
+                                                            userForm
+                                                                .get('username')
+                                                                ?.hasError(
+                                                                    'minlength'
+                                                                )
+                                                        "
+                                                    >
+                                                    The "Username" field must contain at least 2 characters.
+                                                    </mat-error>
+                                                    <mat-error
+                                                        *ngIf="
+                                                            userForm
+                                                                .get('username')
+                                                                ?.hasError(
+                                                                    'maxlength'
+                                                                )
+                                                        "
+                                                    >
+                                                    The "Username" field must contain a maximum of 255 characters.
+                                                    </mat-error>
+                                                </mat-form-field>
+
+                                                <!-- Campo Email -->
+                                                <mat-label
+                                                    class="mat-subtitle-2 f-w-600 m-b-8 d-block"
+                                                    >Email</mat-label
+                                                >
+                                                <mat-form-field
+                                                    appearance="outline"
+                                                    class="w-100"
+                                                    color="primary"
+                                                >
+                                                    <input
+                                                        matInput
+                                                        type="email"
+                                                        formControlName="email"
+                                                        placeholder="Enter your email"
+                                                    />
+                                                    <mat-error
+                                                        *ngIf="
+                                                            userForm
+                                                                .get('email')
+                                                                ?.hasError(
+                                                                    'required'
+                                                                )
+                                                        "
+                                                    >
+                                                    The "Email" field is required.
+                                                    </mat-error>
+                                                    <mat-error
+                                                        *ngIf="
+                                                            userForm
+                                                                .get('email')
+                                                                ?.hasError(
+                                                                    'email'
+                                                                )
+                                                        "
+                                                    >
+                                                    The "Email" field must be a valid address.
+                                                    </mat-error>
+                                                </mat-form-field>
+                                                <button
+                                                    mat-raised-button
+                                                    color="primary"
+                                                    (click)="
+                                                        updateUserDetails()
+                                                    "
+                                                    [disabled]="
+                                                        !userForm.dirty ||
+                                                        userForm.invalid
+                                                    "
+                                                >
+                                                Save Changes
+                                                </button>
+                                                <div
+                                                    class="d-flex align-items-center m-t-24 m-b-24"
+                                                >
+                                                    <button
+                                                        mat-mini-fab
+                                                        class="bg-light-primary shadow-none rounded icon-48"
+                                                    >
+                                                        <i-tabler
+                                                            name="article"
+                                                            class="icon-20 d-flex text-primary"
+                                                        ></i-tabler>
+                                                    </button>
+                                                    <div class="m-l-16 w-100">
+                                                        <h5
+                                                            class="f-s-16 f-w-600 m-0"
+                                                        >
+                                                            Our newsletter
+                                                        </h5>
+                                                        <div
+                                                            class="d-flex align-items-center justify-content-between w-100"
+                                                        >
+                                                            <span class="f-s-14"
+                                                                >We'll always
+                                                                let you know
+                                                                about important
+                                                                changes</span
+                                                            >
+                                                            <mat-slide-toggle
+                                                                class="m-l-auto align-self-center custom-green-slider"       
+                                                                formControlName="newsletter"
+                                                                (change)="
+                                                                    toggleNewsletterSubscription()
+                                                                "
+                                                            >
+                                                            </mat-slide-toggle>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Botões -->
+
+                                                
+                                            </form>
+                                            <!-- Mostra o template de loading enquanto os dados estão a ser carregados -->
+                                            <ng-container
+                                                *ngIf="isLoadingUserData"
+                                            >
+                                                <ng-container
+                                                    *ngTemplateOutlet="loading"
+                                                ></ng-container>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                </mat-card-content>
+                            </mat-card>
+                            <mat-card class="cardWithShadow">
+                                <mat-card-content class="p-y-24">
+                                    <mat-card-title
+                                        >Change Password</mat-card-title
+                                    >
+                                    <form
+                                        class="m-t-24"
+                                        [formGroup]="passwordForm"
+                                    >
+                                        <!-- Campo Password Atual -->
+                                        <mat-label
+                                            class="mat-subtitle-2 f-w-600 m-b-8 d-block"
+                                            >Current Password</mat-label
+                                        >
+                                        <mat-form-field
+                                            appearance="outline"
+                                            class="w-100"
+                                            color="primary"
+                                        >
+                                            <input
+                                                matInput
+                                                [type]="
+                                                    hideCurrentPassword
+                                                        ? 'password'
+                                                        : 'text'
+                                                "
+                                                formControlName="currentPassword"
+                                            />
+                                            <button
+                                                mat-icon-button
+                                                matSuffix
+                                                type="button"
+                                                aria-label="Alternar visibilidade da password atual"
+                                                (click)="
+                                                    togglePasswordVisibility(
+                                                        'current'
+                                                    )
+                                                "
+                                            >
+                                                <mat-icon>{{
+                                                    hideCurrentPassword
+                                                        ? "visibility_off"
+                                                        : "visibility"
+                                                }}</mat-icon>
+                                            </button>
+                                        </mat-form-field>
+
+                                        <!-- Campo Nova Password -->
+                                        <mat-label
+                                            class="mat-subtitle-2 f-w-600 m-b-8 d-block"
+                                            >New Password</mat-label
+                                        >
+                                        <mat-form-field
+                                            appearance="outline"
+                                            class="w-100"
+                                            color="primary"
+                                        >
+                                            <input
+                                                matInput
+                                                [type]="
+                                                    hideNewPassword
+                                                        ? 'password'
+                                                        : 'text'
+                                                "
+                                                formControlName="newPassword"
+                                            />
+                                            <button
+                                                mat-icon-button
+                                                matSuffix
+                                                type="button"
+                                                aria-label="Alternar visibilidade da nova password"
+                                                (click)="
+                                                    togglePasswordVisibility(
+                                                        'new'
+                                                    )
+                                                "
+                                            >
+                                                <mat-icon>{{
+                                                    hideNewPassword
+                                                        ? "visibility_off"
+                                                        : "visibility"
+                                                }}</mat-icon>
+                                            </button>
+                                        </mat-form-field>
+
+                                        <!-- Campo Confirmar Nova Password -->
+                                        <mat-label
+                                            class="mat-subtitle-2 f-w-600 m-b-8 d-block"
+                                            >Confirm New Password</mat-label
+                                        >
+                                        <mat-form-field
+                                            appearance="outline"
+                                            class="w-100"
+                                            color="primary"
+                                        >
+                                            <input
+                                                matInput
+                                                [type]="
+                                                    hideConfirmPassword
+                                                        ? 'password'
+                                                        : 'text'
+                                                "
+                                                formControlName="confirmPassword"
+                                            />
+                                            <button
+                                                mat-icon-button
+                                                matSuffix
+                                                type="button"
+                                                aria-label="Alternar visibilidade da confirmação da nova password"
+                                                (click)="
+                                                    togglePasswordVisibility(
+                                                        'confirm'
+                                                    )
+                                                "
+                                            >
+                                                <mat-icon>{{
+                                                    hideConfirmPassword
+                                                        ? "visibility_off"
+                                                        : "visibility"
+                                                }}</mat-icon>
+                                            </button>
+                                        </mat-form-field>
+
+                                        <button
+                                            mat-raised-button
+                                            color="primary"
+                                            (click)="updatePassword()"
+                                            [disabled]="passwordForm.invalid"
+                                        >
+                                            Update Password
+                                        </button>
+                                    </form>
+                                </mat-card-content>
+                            </mat-card>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-tab>
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <div class="d-flex align-items-center ticket-tab">
+                        <mat-icon>
+                            <i-tabler
+                                name="ticket"
+                                class="icon-20 m-r-8"
+                            ></i-tabler>
+                        </mat-icon>
+                        <span>Tickets</span>
+                    </div>
+                </ng-template>
+                <mat-card-content class="p-y-24 b-t-1">
+                    <div class="header-with-button">
+                        <h3 class="m-b-16">My Tickets</h3>
+                        <button
+                            mat-flat-button
+                            color="primary"
+                            class="create-ticket-button"
+                            (click)="navigateToContactos()"
+                        >
+                            Create Ticket
+                        </button>
+                    </div>
+                    <mat-table
+                        [dataSource]="tickets"
+                        class="mat-elevation-z8"
+                        *ngIf="!isLoadingTickets; else loadingTickets"
+                    >
+                        <!-- Coluna Assunto -->
+                        <ng-container matColumnDef="subject">
+                            <mat-header-cell *matHeaderCellDef>
+                                Subject
+                            </mat-header-cell>
+                            <mat-cell *matCellDef="let ticket">
+                                {{ ticket.subject }}
+                            </mat-cell>
+                        </ng-container>
+
+                        <!-- Coluna Mensagem -->
+                        <ng-container matColumnDef="message">
+                            <mat-header-cell
+                                *matHeaderCellDef
+                                class="mat-column-message"
+                            >
+                                Message
+                            </mat-header-cell>
+                            <mat-cell
+                                *matCellDef="let ticket"
+                                class="mat-column-message"
+                            >
+                                {{
+                                    ticket.message || "No message"
+                                        | slice : 0 : 15
+                                }}{{ ticket.message?.length > 50 ? "..." : "" }}
+                            </mat-cell>
+                        </ng-container>
+
+                        <!-- Coluna Criado Em -->
+                        <ng-container matColumnDef="created_at">
+                            <mat-header-cell *matHeaderCellDef>
+                                Created on
+                            </mat-header-cell>
+                            <mat-cell *matCellDef="let ticket">
+                                {{ ticket.created_at | date }}
+                            </mat-cell>
+                        </ng-container>
+
+                        <!-- Coluna Status -->
+                        <ng-container matColumnDef="status">
+                            <mat-header-cell *matHeaderCellDef>
+                                Status
+                            </mat-header-cell>
+                            <mat-cell *matCellDef="let ticket">
+                                {{ ticket.status }}
+                            </mat-cell>
+                        </ng-container>
+
+                        <!-- Coluna Resposta -->
+                        <ng-container matColumnDef="response">
+                            <mat-header-cell
+                                *matHeaderCellDef
+                                class="mat-column-response"
+                            >
+                            Response
+                            </mat-header-cell>
+                            <mat-cell
+                                *matCellDef="let ticket"
+                                class="mat-column-response"
+                            >
+                                {{
+                                    ticket.response || "Awaiting response"
+                                        | slice : 0 : 25
+                                }}{{
+                                    ticket.response?.length > 50 ? "..." : ""
+                                }}
+                            </mat-cell>
+                        </ng-container>
+
+                        <mat-header-row
+                            *matHeaderRowDef="displayedColumns"
+                        ></mat-header-row>
+                        <mat-row
+                            *matRowDef="let row; columns: displayedColumns"
+                            (click)="openTicketDetails(row)"
+                            style="cursor: pointer"
+                        >
+                        </mat-row>
+                    </mat-table>
+
+                    <!-- Loading Spinner -->
+                    <ng-template #loadingTickets>
+                        <mat-spinner></mat-spinner>
+                    </ng-template>
+                </mat-card-content>
+            </mat-tab>
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <div class="d-flex align-items-center history-tab">
+                        <mat-icon>
+                            <i-tabler
+                                name="history"
+                                class="icon-20 m-r-8"
+                            ></i-tabler>
+                        </mat-icon>
+                        <span>Purchase History</span>
+                    </div>
+                </ng-template>
+                <mat-card-content class="p-y-24 b-t-1">
+                    <div class="header-with-button">
+                        <h3 class="m-b-16">My Purchase History</h3>
+                    </div>
+
+                    <app-purchase-history></app-purchase-history>
+                </mat-card-content>
+            </mat-tab>
+            <!-- Template de Loading -->
+            <ng-template #loading>
+                <p>Updating data..</p>
+            </ng-template>
+        </mat-tab-group></mat-card-content
+    ></mat-card
+>

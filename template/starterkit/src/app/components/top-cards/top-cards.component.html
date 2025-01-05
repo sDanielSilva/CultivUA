@@ -1,0 +1,64 @@
+<div class="row">
+  <div class="col-lg-4" *ngIf="dashboardStats">
+    <mat-card class="cardWithShadow bg-primary-100 text-black overflow-hidden">
+      <mat-card-content>
+        <i-tabler name="users" class="icon-30 d-flex"></i-tabler> Total Users
+        <div class="m-t-35">
+          <h5 class="f-w-600 f-s-21 m-0">{{ dashboardStats.totalUsers }}</h5>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="col-lg-4">
+    <mat-card class="cardWithShadow bg-primary-100 text-black overflow-hidden">
+      <mat-card-content>
+        <i-tabler name="report-money" class="icon-30 d-flex"></i-tabler> Total Products Sold
+        <div class="m-t-35">
+          <h5 class="f-w-600 f-s-21 m-0">{{ dashboardStats.totalProductsSold }}</h5>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="col-lg-4">
+    <mat-card class="cardWithShadow bg-primary-100 text-black overflow-hidden">
+      <mat-card-content>
+        <i-tabler name="currency-dollar" class="icon-30 d-flex"></i-tabler> Total Sales
+        <div class="m-t-35">
+          <h5 class="f-w-600 f-s-21 m-0">{{ dashboardStats.totalSales | currency:'EUR' }}</h5>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-4">
+    <mat-card class="cardWithShadow bg-primary-100 text-black overflow-hidden">
+      <mat-card-content>
+        <i-tabler name="plant" class="icon-30 d-flex"></i-tabler> Total Active Gardens
+        <div class="m-t-35">
+          <h5 class="f-w-600 f-s-21 m-0">{{ dashboardStats.totalActiveGardens }}</h5>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="col-lg-4">
+    <mat-card class="cardWithShadow bg-primary-100 text-black overflow-hidden">
+      <mat-card-content>
+        <i-tabler name="building-store" class="icon-30 d-flex"></i-tabler> Total Products
+        <div class="m-t-35">
+          <h5 class="f-w-600 f-s-21 m-0">{{ dashboardStats.totalProducts }}</h5>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="col-lg-4">
+    <mat-card class="cardWithShadow bg-primary-100 text-black overflow-hidden">
+      <mat-card-content>
+        <i-tabler name="message-reply" class="icon-30 d-flex"></i-tabler> Total Questions Answered
+        <div class="m-t-35">
+          <h5 class="f-w-600 f-s-21 m-0">{{ dashboardStats.totalQuestionsAnswered }}</h5>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

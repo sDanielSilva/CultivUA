@@ -1,0 +1,89 @@
+<mat-card class="cardWithShadow">
+    <mat-card-content class="p-24">
+        <form [formGroup]="addForm">
+            <div class="row justify-content-between m-b-24">
+                <div class="col-sm-4 d-flex align-items-center">
+                    <h4 class="mat-subtitle-2 f-s-18 f-w-600">
+                        # <span>{{ invoice.id }}</span>
+                    </h4>
+                </div>
+                <div class="col-sm-4 text-right">
+                    <a routerLink="/produtoAdmin" mat-stroked-button color="warn" class="m-r-10">Cancel</a>
+                    <button mat-raised-button color="primary" (click)="$event.preventDefault(); saveDetail()"
+                        [disabled]="addForm.invalid">
+                        Save Product
+                    </button>
+                </div>
+            </div>
+
+            <mat-divider></mat-divider>
+
+            <div formGroupName="rows">
+                <div class="table-responsive">
+                    <table class="table table-hover b-1 no-wrap w-100 rounded">
+                        <thead>
+                            <tr>
+                                <th class="p-16">Product Name</th>
+                                <th class="p-16">Category</th>
+                                <th class="p-16">Price</th>
+                                <th class="p-16">Stock</th>
+                                <th class="p-16">Threshold</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let row of addForm.get('rows').controls; let i = index" [formGroupName]="i">
+                                <td class="p-16">
+                                    <mat-form-field appearance="outline" class="w-100">
+                                        <input type="text" matInput formControlName="name" />
+                                    </mat-form-field>
+                                </td>
+                                <td class="p-16">
+                                    <mat-form-field appearance="outline" class="w-100">
+                                        <mat-label>Category</mat-label>
+                                        <mat-select formControlName="category">
+                                            <mat-option *ngFor="let category of categories" [value]="category.id">
+                                                {{ category.name }}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </td>
+                                <td class="p-16">
+                                    <mat-form-field appearance="outline" class="w-100">
+                                        <input type="number" matInput formControlName="price" />
+                                    </mat-form-field>
+                                </td>
+                                <td class="p-16">
+                                    <mat-form-field appearance="outline" class="w-100">
+                                        <input type="number" matInput formControlName="stock" />
+                                    </mat-form-field>
+                                </td>
+                                <td class="p-16">
+                                    <mat-form-field appearance="outline" class="w-100">
+                                        <input type="number" matInput formControlName="threshold" />
+                                    </mat-form-field>
+                                </td>
+                                <td class="p-16">
+                                    <div class="image-container">
+                                        <!-- Botão estilizado com Material -->
+                                        <button mat-raised-button color="primary" (click)="fileInput.click()">
+                                            Choose Image
+                                        </button>
+
+                                        <!-- Campo de upload de arquivos oculto -->
+                                        <input type="file" accept="image/*" multiple #fileInput
+                                            (change)="onFileSelected($event, i)" style="display: none" />
+
+                                        <!-- Lista de imagens carregadas -->
+                                        <div *ngFor="let img of row.controls['imagem'].value" class="image-preview">
+                                            <img *ngIf="selectedImage" [src]="selectedImage" alt="Imagem do Produto" class="preview-image"/>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>

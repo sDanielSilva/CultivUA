@@ -1,0 +1,187 @@
+/* Títulos */
+.primary-title {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    line-height: 1 !important;
+}
+
+.primary-title .title-black {
+    font-size: 3rem;
+    color: #000;
+}
+
+.primary-title .title-green {
+    font-size: 3rem;
+    color: #009a3e;
+}
+
+.subtitle-container {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+.subtitle-container .mat-body-1 {
+    text-align: left;
+    font-size: 1rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    border-left: 4px solid #009a3e;
+    padding-left: 1rem;
+    max-width: 50%; /* Limita a largura a 50% da div parent */
+    word-wrap: break-word; /* Garante que o texto quebra adequadamente */
+    line-height: 1 !important;
+}
+
+/* Área de Upload */
+.drop-area {
+    width: 80%;
+    height: 300px;
+    margin: 0 auto;
+    background-color: #e0f7fa;
+    border-radius: 120px 0 120px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px dashed #4caf50;
+    position: relative;
+    transition: background-color 0.3s ease;
+    flex-direction: column;
+}
+
+.drop-area:hover {
+    background-color: #b2dfdb;
+}
+
+.drop-area .upload-icon {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 1rem;
+}
+
+.upload-instructions {
+    font-size: 0.9rem;
+    color: #666;
+    text-align: center;
+}
+
+/* Botões */
+.upload-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.upload-buttons .btn-upload {
+    font-size: 14px;
+    padding: 8px 20px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    transition: background-color 0.3s ease;
+}
+
+.upload-buttons button:hover {
+    background-color: #388e3c;
+}
+
+/* Resultados da Identificação */
+.result-container {
+    display: flex;
+    flex-direction: column; /* Alterar para coluna para empilhar os elementos */
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+    margin: 0 auto;
+}
+
+.result {
+    display: flex;
+    flex-direction: column; /* Garantir que a imagem e o texto fiquem empilhados */
+    align-items: center;
+    background-color: #f4f4f4;
+    padding: 1rem;
+    border-radius: 12px;
+    width: 60%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.image-container {
+    margin-bottom: 1rem; /* Garantir que a imagem tenha um espaço abaixo dela */
+}
+
+.action-buttons {
+    display: flex;
+    flex-direction: column; /* Colocar os botões em coluna */
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.action-buttons .mat-raised-button {
+    width: 100%; /* Ajustar para preencher a largura disponível */
+}
+
+
+.plant-image {
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border: 4px solid #009a3e;
+}
+
+.info-container h3 {
+    font-size: 1.5rem;
+    color: #009a3e;
+    margin-bottom: 0.5rem;
+}
+
+.info-container p {
+    font-size: 1rem;
+    color: #00796b;
+    margin-top: 0;
+}
+
+.b-1{
+    width: 60% !important;
+    margin: 0 auto;
+    margin-top: 1rem;
+}
+
+.plant-info-list {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.plant-info-list li {
+    margin-bottom: 5px;
+}
+
+.custom-green-slider .mdc-switch__track {
+    background-color: #4caf50 !important;
+}
+
+.custom-green-slider .mdc-switch__track::after {
+    background-color: #4caf50 !important;
+    transform: translateX(-100%);
+}
+
+.custom-green-slider.mat-checked .mdc-switch__track::after {
+    background-color: #4caf50 !important;
+    transform: translateX(0);
+}
+
+.custom-green-slider .mdc-switch__track,
+.custom-green-slider .mdc-switch__track::after {
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.custom-green-slider .mdc-switch--selected .mdc-switch__icon {
+    fill: #4caf50 !important;
+}
+
+.custom-green-slider {
+    margin-top: 10px;
+}

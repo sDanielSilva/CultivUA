@@ -1,0 +1,75 @@
+<h2 mat-dialog-title>Ticket Details</h2>
+
+<mat-dialog-content style="max-width: 700px" class="mat-typography m-t-24">
+  <form>
+    <!-- Assunto do Ticket -->
+    <div class="row">
+      <div class="col-sm-12">
+        <mat-form-field appearance="outline" class="w-100">
+            <label>Subject:</label>
+          <input
+            type="text"
+            matInput
+            id="subject"
+            name="subject"
+            [value]="data.subject"
+            placeholder="Ticket Subject"
+            readonly
+          />
+        </mat-form-field>
+      </div>
+
+      <!-- Mensagem do Ticket -->
+      <div class="col-sm-12">
+        <mat-form-field appearance="outline" class="w-100">
+            <label>Ticket Message:</label>
+          <textarea
+            matInput
+            id="message"
+            name="message"
+            [value]="data.message"
+            placeholder="Ticket Message"
+            readonly
+            rows="4"
+          ></textarea>
+        </mat-form-field>
+      </div>
+
+      <!-- Data de Criação -->
+      <div class="col-sm-12">
+        <mat-form-field appearance="outline" class="w-100">
+        <label>Creation Date:</label>
+          <input
+            type="date"
+            matInput
+            id="created_at"
+            name="created_at"
+            [value]="data.created_at | date:'yyyy-MM-dd'"
+            placeholder="Creation Date"
+            readonly
+          />
+        </mat-form-field>
+      </div>
+
+      <!-- Resposta ao Ticket -->
+      <div class="col-sm-12">
+        <mat-form-field appearance="outline" class="w-100">
+            <label>Ticket Response:</label>
+          <textarea
+            matInput
+            id="response"
+            name="response"
+            [value]="data.response || 'No response yet'"
+            placeholder="Ticket Response"
+            readonly
+            rows="4"
+          ></textarea>
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions class="actions-container">
+    <button mat-flat-button color="primary" mat-dialog-close>Close</button>
+</mat-dialog-actions>

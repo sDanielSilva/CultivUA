@@ -1,0 +1,41 @@
+.page-404 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: radial-gradient(
+      circle,
+      rgba(144, 238, 144, 1) 0%,
+      rgba(34, 139, 34, 1) 100%
+    );
+    margin: 0;
+  }
+  
+  .error-image {
+    max-width: 800px;
+    margin-bottom: 20px;
+  }
+  
+  .error-text {
+    font-size: 1.5rem;
+    color: #ffffff;
+    text-align: center;
+  }
+  
+  .back-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: white;
+    background-color: #228b22;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .back-button:hover {
+    background-color: #176117;
+  }
+  

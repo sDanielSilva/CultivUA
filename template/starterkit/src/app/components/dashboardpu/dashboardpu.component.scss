@@ -1,0 +1,196 @@
+
+.cardWithShadow {
+    margin-bottom: 0 !important;
+}
+
+.text-primary {
+    color: #4caf50 !important;
+}
+
+.bg-light-primary {
+    background-color: #e0f7fa !important;
+}
+
+.mat-slide-toggle {
+    color: #4caf50 !important;
+}
+
+.mat-column-response {
+    max-width: 300px; /* Ajuste o valor conforme o design desejado */
+    white-space: nowrap; /* Impede quebra de linha */
+    overflow: hidden; /* Esconde o conteúdo extra */
+    text-overflow: ellipsis; /* Mostra "..." para texto cortado */
+}
+
+.mat-column-message {
+    max-width: 300px; /* Ajuste conforme o design desejado */
+    white-space: nowrap; /* Impede quebra de linha */
+    overflow: hidden; /* Esconde o texto extra */
+    text-overflow: ellipsis; /* Adiciona "..." quando necessário */
+}
+
+.ticket-tab {
+    display: flex;
+    align-items: center; /* Centraliza verticalmente os itens */
+    gap: 8px; /* Espaçamento entre o ícone e o texto */
+}
+
+.ticket-tab mat-icon,
+.ticket-tab i-tabler {
+    display: inline-flex;
+    align-items: center; /* Garante que o ícone esteja alinhado no centro */
+    justify-content: center;
+    font-size: 20px; /* Garante de que o ícone tenha o mesmo tamanho que o texto */
+    line-height: 1; /* Remove possíveis inconsistências no alinhamento vertical */
+}
+
+.ticket-tab span {
+    font-size: 16px; /* Ajuste o tamanho do texto, se necessário */
+    line-height: 1.5; /* Controle o alinhamento com base na altura do texto */
+}
+
+history-tab {
+    display: flex;
+    align-items: center; /* Centraliza verticalmente os itens */
+    gap: 8px; /* Espaçamento entre o ícone e o texto */
+}
+
+.history-tab mat-icon,
+.history-tab i-tabler {
+    display: inline-flex;
+    align-items: center; /* Garante que o ícone esteja alinhado no centro */
+    justify-content: center;
+    font-size: 20px; /* Garante de que o ícone tenha o mesmo tamanho que o texto */
+    line-height: 1; /* Remove possíveis inconsistências no alinhamento vertical */
+}
+
+.history-tab span {
+    font-size: 16px; /* Ajuste o tamanho do texto, se necessário */
+    line-height: 1.5; /* Controle o alinhamento com base na altura do texto */
+}
+
+.dados-tab {
+    display: flex;
+    align-items: center; /* Centraliza verticalmente os itens */
+    gap: 8px; /* Espaçamento entre o ícone e o texto */
+}
+
+.dados-tab mat-icon,
+.dados-tab i-tabler {
+    display: inline-flex;
+    align-items: center; /* Garante que o ícone esteja alinhado no centro */
+    justify-content: center;
+    font-size: 20px; /* Garante de que o ícone tenha o mesmo tamanho que o texto */
+    line-height: 1; /* Remove possíveis inconsistências no alinhamento vertical */
+}
+
+.dados-tab span {
+    font-size: 16px; /* Ajuste o tamanho do texto, se necessário */
+    line-height: 1.5; /* Controle o alinhamento com base na altura do texto */
+}
+
+.notificacoes-tab {
+    display: flex;
+    align-items: center; /* Centraliza verticalmente os itens */
+    gap: 8px; /* Espaçamento entre o ícone e o texto */
+}
+
+.notificacoes-tab mat-icon,
+.notificacoes-tab i-tabler {
+    display: inline-flex;
+    align-items: center; /* Garante que o ícone esteja alinhado no centro */
+    justify-content: center;
+    font-size: 20px; /* Garante de que o ícone tenha o mesmo tamanho que o texto */
+    line-height: 1; /* Remove possíveis inconsistências no alinhamento vertical */
+}
+
+.notificacoes-tab span {
+    font-size: 16px; /* Ajuste o tamanho do texto, se necessário */
+    line-height: 1.5; /* Controle o alinhamento com base na altura do texto */
+}
+
+.conta-tab {
+    display: flex;
+    align-items: center; /* Centraliza verticalmente os itens */
+    gap: 8px; /* Espaçamento entre o ícone e o texto */
+}
+
+.conta-tab mat-icon,
+.conta-tab i-tabler {
+    display: inline-flex;
+    align-items: center; /* Garante que o ícone esteja alinhado no centro */
+    justify-content: center;
+    font-size: 20px; /* Garante de que o ícone tenha o mesmo tamanho que o texto */
+    line-height: 1; /* Remove possíveis inconsistências no alinhamento vertical */
+}
+
+.conta-tab span {
+    font-size: 16px; /* Ajuste o tamanho do texto, se necessário */
+    line-height: 1.5; /* Controle o alinhamento com base na altura do texto */
+}
+
+.header-with-button {
+    display: flex;
+    align-items: center; /* Centraliza verticalmente o título e o botão */
+    position: relative; /* Para permitir o posicionamento absoluto do botão */
+}
+
+.create-ticket-button {
+    position: absolute;
+    right: 0; /* Move o botão para o lado direito */
+    top: 50%; /* Posiciona o botão no meio verticalmente */
+    transform: translateY(
+        -50%
+    ); /* Ajusta para alinhar exatamente ao centro do título */
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 8px 16px;
+    font-size: 14px;
+}
+
+.text-primary {
+    color: green!important;
+}
+button[mat-icon-button] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+mat-icon {
+    font-size: 24px;
+}
+/* Remove o ícone padrão de visibilidade do Edge */
+input::-ms-reveal {
+    display: none;
+}
+input::-ms-clear {
+    display: none;
+}
+
+::ng-deep .custom-green-slider .mdc-switch__track {
+    background-color: #4caf50 !important;
+}
+
+::ng-deep .custom-green-slider .mdc-switch__track::after {
+    background-color: #4caf50 !important;
+    transform: translateX(-100%);
+}
+
+::ng-deep .custom-green-slider.mat-checked .mdc-switch__track::after {
+    background-color: #4caf50 !important;
+    transform: translateX(0);
+}
+
+::ng-deep .custom-green-slider .mdc-switch__track,
+::ng-deep .custom-green-slider .mdc-switch__track::after {
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+::ng-deep .custom-green-slider .mdc-switch--selected .mdc-switch__icon {
+    fill: #4caf50 !important;
+}
+
+::ng-deep .custom-green-slider {
+    margin-top: 10px;
+}

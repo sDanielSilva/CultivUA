@@ -1,0 +1,14 @@
+.spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 150px; /* Ajuste conforme necessário */
+  }
+  
+  .loading-message {
+    margin-top: 10px; /* Adiciona um pequeno espaço entre o spinner e a mensagem */
+    font-size: 18px;
+    color: #000; /* Cor do texto (cor primária, ajuste conforme necessário) */
+    font-weight: regular; /* Peso da fonte (ajuste conforme necessário) */
+  }

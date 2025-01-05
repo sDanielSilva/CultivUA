@@ -1,0 +1,46 @@
+.toast-container {
+  position: fixed;
+  top: 20px; /* Ajuste para ficar mais centralizado */
+  left: 50%;
+  transform: translateX(-50%); /* Centraliza o toast horizontalmente */
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  font-size: 14px;
+  border-radius: 8px; /* Bordas arredondadas para o efeito de card moderno */
+  color: black; /* Texto escuro para contraste com o fundo branco */
+  z-index: 1000;
+  background-color: white; /* Fundo branco */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08); /* Sombra moderna */
+}
+
+.toast-content {
+  display: flex;
+  align-items: center;
+  padding: 12px; /* Ajuste para mais espaço interno */
+  border-radius: 4px;
+  flex-grow: 1;
+}
+
+.toast-content mat-icon {
+  font-size: 24px;
+  margin-right: 12px; /* Aumentando o espaço entre o ícone e a mensagem */
+}
+
+.message {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+}
+.success-icon {
+  color: green; /* Cor verde para o ícone de sucesso */
+}
+
+.error-icon {
+  color: red; /* Cor vermelha para o ícone de erro */
+}
+
+.warning-icon {
+  color: orange; /* Cor laranja para o ícone de aviso */
+}
+

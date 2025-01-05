@@ -1,0 +1,413 @@
+/* ---------------------------
+   Estilo Geral para os Cards
+---------------------------- */
+.card {
+  border-radius: 10px;
+  background-color: #e5f5ec;
+  overflow: hidden;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.card-img-top {
+  width: 100%;
+  height: 200px;
+  object-fit: cover!important;
+}
+
+.card-body {
+  padding: 1.25rem;
+}
+
+.card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.card-subtitle {
+  font-size: 0.9rem;
+  color: #6c757d;
+  text-align: center;
+  background-color: transparent; /* Garantir que o fundo seja transparente */
+}
+
+
+/* ---------------------------
+   Lista de Características
+---------------------------- */
+
+/* Estilo para a checkbox quando estiver selecionada */
+input[type="checkbox"]:checked {
+  background-color: #28a745; /* Cor de fundo verde */
+  border-color: #28a745;     /* Cor da borda verde */
+}
+
+/* Estilo para o foco (focus) no input de pesquisa */
+input[type="text"]:focus {
+  border-color: #28a745;     /* Borda verde ao focar no campo */
+  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25); /* Sombra verde ao focar */
+}
+
+/* Estilo para o foco (focus) na checkbox */
+input[type="checkbox"]:focus {
+  outline: none; /* Remove o contorno padrão */
+  border-color: #28a745; /* Borda verde ao focar */
+  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25); /* Sombra verde ao focar */
+}
+
+/* Estilo para o ícone de lupa no campo de pesquisa */
+.search-input:focus + .search-icon {
+  color: #28a745; /* Cor verde para o ícone de lupa quando o campo de pesquisa estiver em foco */
+}
+
+/* Quando o select é focado ou clicado */
+select:focus {
+  border: 2px solid #28a745!important; /* Borda verde */
+  outline: none!important; /* Remove o contorno padrão */
+  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25); /* Efeito de sombra */
+}
+
+/* Estilo para as opções ao passar o mouse */
+select option:hover {
+  background-color: #28a745!important; /* Fundo verde */
+  color: white!important; /* Texto branco */
+}
+
+/* Estilo geral para o select */
+select {
+  border-radius: 4px; /* Cantos arredondados */
+  padding: 8px; /* Espaçamento interno */
+  font-size: 16px; /* Tamanho do texto */
+}
+
+
+ul {
+  margin: 0;
+  padding-left: 0;
+  list-style-type: none;
+}
+
+ul li {
+  font-size: 0.9rem;
+}
+
+ul li mat-icon {
+  margin-right: 8px;
+  color: #04301C;
+}
+
+/* ---------------------------
+   Botões de Ação
+---------------------------- */
+button {
+  margin-top: 1rem;
+  padding: 10px 15px;
+}
+
+.custom-btn {
+  background: linear-gradient(45deg, #4CAF50, #388E3C);
+  color: white;
+  border: none;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.custom-btn:hover {
+  background: linear-gradient(45deg, #388E3C, #4CAF50);
+  transform: scale(1.05);
+}
+
+.custom-btn-2 {
+  background: #04301C;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.custom-btn-2:hover {
+  background: linear-gradient(45deg, #04301C, #036137);
+  transform: scale(1.05);
+}
+
+/* ---------------------------
+   Barra de Estações de Colheita
+---------------------------- */
+.seasons-bar {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  padding: 5px;
+}
+
+.season {
+  flex: 1;
+  text-align: center;
+  padding: 8px 0;
+  font-weight: bold;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+}
+
+.season.highlighted {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.season.faded {
+  opacity: 0.7;
+  transform: scale(0.95);
+}
+
+.season:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+/* Título da seção de colheita */
+.harvest-title {
+  padding-top: 20px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 10px;
+  color: #333;
+  text-transform: uppercase;
+}
+
+/* ---------------------------
+   Estilo para os Filtros
+---------------------------- */
+.filter-container {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-top: 2rem;
+}
+
+.row.mb-4 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+.col-12.col-md-4 {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+/* Campos de filtro (select e input) */
+.form-group {
+  position: relative;
+}
+
+label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+}
+
+select,
+input {
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  transition: border-color 0.3s, background-color 0.3s;
+  width: 100%;
+}
+
+select:focus,
+input:focus {
+  outline: none;
+  border-color: #007bff;
+  background-color: #f1faff;
+}
+
+button {
+  padding: 0.75rem;
+  font-size: 1rem;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+
+
+/* ---------------------------
+   Responsividade
+---------------------------- */
+@media (max-width: 768px) {
+  .card-img-top {
+    height: 150px;
+  }
+
+  .custom-btn {
+    font-size: 0.9rem;
+  }
+
+  .filter-container {
+    padding: 1rem;
+  }
+
+  .row.mb-4 {
+    flex-direction: column;
+  }
+
+  .col-12.col-md-4 {
+    width: 100%;
+  }
+}
+
+@media (min-width: 768px) {
+  .row.mb-4 {
+    flex-direction: row;
+  }
+
+  .col-12.col-md-4 {
+    width: auto;
+  }
+}
+
+/* ---------------------------
+   Estilo Adicional para Cards com Sombra
+---------------------------- */
+mat-card.cardWithShadow {
+  padding: 20px;
+}
+
+.modal-backdrop {
+    z-index: 1040; /* Default para Bootstrap */
+}
+
+.modal {
+    z-index: 1050; /* Default para o modal estar acima do backdrop */
+}
+
+.custom-yellow-btn {
+  background-color: rgb(218, 190, 36);
+  color: white; /* Para garantir que o texto fique legível */
+  border-radius: 30px;
+}
+
+.custom-yellow-btn:hover {
+  background-color: #FFD700; /* Cor amarela mais escura para o hover */
+}
+
+.custom-ver-mais-btn {
+  background: none; /* Sem cor de fundo */
+  border: none; /* Sem borda */
+  color: #007bff; /* Cor do texto do botão (como um link) */
+  padding: 0; /* Remove o padding */
+  text-decoration: underline; /* Aplica sublinhado, se desejar */
+}
+
+.custom-ver-mais-btn:hover {
+  color: #0056b3; /* Cor do texto ao passar o mouse */
+}
+.edit-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #4caf4f94;
+  border-radius: 6px;
+  display: inline-block;
+  padding: 10px;
+  margin: 10px;
+}
+
+.location-card {
+  background-color: #4CAF50;
+  border-radius: 6px;
+  display: inline-block;
+  padding: 10px;
+  margin: 10px;
+  color: white;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.add-new-plant-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 98%;
+  min-height: 400px;
+  padding: 20px;
+  border: 3px dashed #4CAF50;
+  background-color: #e0f7fa;
+  border-radius: 120px 0 120px 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.add-new-plant-card i-tabler {
+  color: #4CAF50;
+  margin-bottom: 10px; /* Espaço entre o ícone e o título */
+}
+
+.add-new-plant-card h5 {
+  margin-top: 10px;
+  font-size: 18px;
+  color: #333;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .add-new-plant-card i-tabler {
+      font-size: 100px; /* Reduzir o tamanho do ícone em telas menores */
+  }
+
+  .add-new-plant-card h5 {
+      font-size: 16px;
+  }
+}
+
+
+.icon-giant {
+  font-size: 180px;
+  width: 180px;
+  height: 180px;
+}
+
+.green-class {
+  background-color: green;
+  color: white;
+}
+
+.yellow-class {
+  background-color: yellow; /* Amarelo claro */
+  color: black;
+}
+
+.orange-class {
+  background-color: orangered;
+  color: white;
+}
+
+.icon-right {
+  float: right;
+  //margin-left: 1rem;
+}
+

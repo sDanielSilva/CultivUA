@@ -1,0 +1,130 @@
+<div class="row">
+    <div
+        *ngFor="let blogPost of blogService.blogPosts; trackBy: trackByFn"
+        [class.col-lg-8]="blogPost.featuredPost"
+        [class.col-12]="blogPost.featuredPost"
+        [class.col-lg-4]="!blogPost.featuredPost"
+        [class.col-sm-6]="!blogPost.featuredPost"
+    >
+        <mat-card
+            *ngIf="blogPost.featuredPost; else regularPost"
+            class="cardWithShadow card2 position-relative card-hover featured-card overflow-hidden cursor-pointer"
+            (click)="selectBlog(blogPost.id)"
+        >
+            <img
+                mat-card-image
+                [src]="blogPost.image ? blogPost.image : '../../../assets/images/blog/placeholder_blog.jpg'"
+                alt="Imagem de capa da publicação"
+            />
+            <div
+                class="featured-overlay h-100 p-24 d-flex flex-column align-items-end justify-content-start"
+            >
+                <div
+                    class="d-flex align-items-center justify-content-between w-100"
+                >
+                    <img
+                        [src]="blogPost.admin?.profile_image"
+                        class="rounded-circle"
+                        width="40"
+                        alt="Foto de perfil"
+                    />
+                    <span
+                        class="f-s-12 f-w-600 bg-primary text-white rounded p-x-8 p-y-4"
+                    >
+                        {{ blogPost.category }}
+                    </span>
+                </div>
+                <div class="m-t-auto w-100">
+                    <mat-card-title class="mat-headline-4 text-white">
+                        <strong>{{ blogPost.title }}</strong>
+                    </mat-card-title>
+                    <div
+                        class="d-flex align-items-center justify-content-center m-t-24 text-white"
+                    >
+                        <div class="d-flex align-items-center">
+                            <span
+                                class="f-s-14 mat-subtitle-2 text-white d-flex align-items-center"
+                            >
+                                <i-tabler
+                                    name="message-2"
+                                    class="icon-18 m-r-4"
+                                ></i-tabler>
+                                {{ blogPost.comments_count }}
+                            </span>
+                        </div>
+                        <span
+                            class="m-l-auto f-s-14 mat-subtitle-2 text-white d-flex align-items-center"
+                        >
+                            <i-tabler
+                                name="point"
+                                class="icon-14 m-r-4"
+                            ></i-tabler>
+                            {{ blogPost.created_at }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </mat-card>
+        <ng-template #regularPost>
+            <mat-card
+                class="cardWithShadow card2 position-relative card-hover cursor-pointer"
+                (click)="selectBlog(blogPost.id)"
+            >
+                <img
+                    mat-card-image
+                    [src]="blogPost.image ? blogPost.image : '../../../assets/images/blog/placeholder_blog.jpg'"
+                    alt="Imagem de capa da publicação"
+                />
+                <div
+                    class="card-overlay h-100 d-flex p-16 p-y-0 align-items-end justify-content-between"
+                >
+                    <mat-chip class="f-s-12 m-y-16 f-w-600 bg-white">
+                        {{ blogPost.category }}
+                    </mat-chip>
+                    <mat-chip class="f-s-12 f-w-600 m-y-16 bg-white">
+                        {{ blogPost.reading_time }} minutes read
+                    </mat-chip>
+                </div>
+                <mat-card-content class="p-y-24">
+                    <div class="user-category">
+                        <div>
+                            <img
+                                [src]="blogPost.admin?.profile_image"
+                                class="rounded-circle"
+                                width="40"
+                                alt="Foto de perfil"
+                            />
+                        </div>
+                    </div>
+                    <mat-card-title class="mat-headline-6 m-t-15">
+                        {{ blogPost.title }}
+                    </mat-card-title>
+                    <div
+                        class="d-flex align-items-center justify-content-center m-t-24"
+                    >
+                        <div class="d-flex align-items-center">
+                            <span
+                                class="f-s-14 mat-subtitle-2 d-flex align-items-center"
+                            >
+                                <i-tabler
+                                    name="message-2"
+                                    class="icon-18 m-r-4"
+                                ></i-tabler>
+                                {{ blogPost.comments_count }}
+                            </span>
+                        </div>
+                        <span
+                            class="m-l-auto f-s-14 mat-subtitle-2 d-flex align-items-center"
+                        >
+                            <i-tabler
+                                name="point"
+                                class="icon-14 m-r-4"
+                            ></i-tabler>
+                            {{ blogPost.created_at }}
+                        </span>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </ng-template>
+    </div>
+</div>

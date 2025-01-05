@@ -1,0 +1,106 @@
+<h2 mat-dialog-title>Edit Product</h2>
+<mat-dialog-content>
+    <form [formGroup]="editForm">
+        <!-- Nome do Produto -->
+        <mat-form-field appearance="outline" class="w-100" style="margin-top: 0.5rem;">
+            <mat-label>Product Name</mat-label>
+            <input type="text" matInput formControlName="name" />
+            <mat-error *ngIf="editForm.get('name')?.hasError('required')">
+                The product name is required.
+            </mat-error>
+        </mat-form-field>
+
+        <!-- Categoria -->
+<mat-form-field appearance="outline" class="w-100">
+    <mat-label>Category</mat-label>
+    <mat-select formControlName="categories_id">
+        <mat-option *ngFor="let category of categories" [value]="category.id">
+            {{ category.name }}
+        </mat-option>
+    </mat-select>
+    <mat-error *ngIf="editForm.get('categories_id')?.hasError('required')">
+        The category is required.
+    </mat-error>
+</mat-form-field>
+
+        <!-- Preço -->
+        <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Price</mat-label>
+            <input type="number" matInput formControlName="price" />
+            <mat-error *ngIf="editForm.get('price')?.hasError('required')">
+                The price is required.
+            </mat-error>
+        </mat-form-field>
+
+        <!-- Stock -->
+        <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Stock</mat-label>
+            <input type="number" matInput formControlName="stock" />
+            <mat-error *ngIf="editForm.get('stock')?.hasError('required')">
+                The stock is required.
+            </mat-error>
+        </mat-form-field>
+
+        <!-- Threshold -->
+        <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Threshold</mat-label>
+            <input type="number" matInput formControlName="threshold" />
+            <mat-error *ngIf="editForm.get('threshold')?.hasError('required')">
+               The Threshold is required.
+            </mat-error>
+        </mat-form-field>
+
+        <!-- Nome Científico -->
+        <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Scientific Name</mat-label>
+            <input type="text" matInput formControlName="scientific_name" />
+        </mat-form-field>
+
+        <!-- Descrição -->
+        <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Description</mat-label>
+            <textarea matInput formControlName="description"></textarea>
+        </mat-form-field>
+
+        <!-- Tamanho -->
+        <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Size</mat-label>
+            <input type="text" matInput formControlName="size" />
+        </mat-form-field>
+
+<div class="row m-t-16">
+    <div class="col-6">
+        <mat-checkbox formControlName="isKit" color="primary">
+            Kit
+        </mat-checkbox>
+    </div>
+</div>
+
+        <!-- Imagem Atual -->
+<div class="image-container">
+    <h6>Current Image:</h6>
+    <div class="image-preview-wrapper">
+        <img *ngIf="selectedImageA" [src]="selectedImageA" alt="Imagem Atual" class="preview-image" />
+    </div>
+</div>
+
+<!-- Nova Imagem -->
+<div class="image-upload-container">
+    <button mat-raised-button style="background-color:green; color:white" class=" mb-4" (click)="fileInput.click()">Choose New Image</button>
+    <input type="file" #fileInput accept="image/*" (change)="onFileSelected($event)" hidden />
+    <div *ngIf="selectedImage" class="image-preview-wrapper">
+        <div class="image-container">
+            <img [src]="selectedImage" alt="Imagem Selecionada" class="preview-image mb-2" />
+        </div>
+    </div>
+</div>
+
+        
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button mat-stroked-button color="warn" (click)="close()">Cancel</button>
+    <button mat-raised-button style="background-color:green; color:white" [disabled]="editForm.invalid || isSaving"
+        (click)="saveProduct()">Save</button>
+</mat-dialog-actions>

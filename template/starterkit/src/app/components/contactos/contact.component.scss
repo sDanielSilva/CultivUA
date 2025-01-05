@@ -1,0 +1,71 @@
+.primary-title {
+    font-size: 3rem !important;
+    color: #009A3E;
+    text-align: center;
+    line-height: 1 !important;
+}
+.black-title {
+    font-size: 3rem !important;
+    color: black;
+    text-align: center;
+    line-height: 1 !important;
+}
+/* Custom Slider Wrapper */
+.custom-slider-wrapper {
+    overflow: hidden;
+    /* Esconde as imagens fora da área visível */
+    position: relative;
+    margin-top: 40px;
+    padding-top: 30px;
+    padding-bottom: 10px;
+
+    .custom-slider-container {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        animation: customSlideAnimation 20s linear infinite;
+        /* Loop contínuo */
+    }
+
+    .custom-slider-img {
+        position: relative;
+        flex-shrink: 0;
+        /* Impede que as imagens encolham */
+        width: 25%;
+        /* Garantir que cada imagem ocupe 25% da largura do container */
+        overflow: hidden;
+        margin-right: 10px;
+
+        img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .custom-slider-name {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+    }
+
+    /* Animação do loop infinito */
+    @keyframes customSlideAnimation {
+        0% {
+            transform: translateX(0);
+            /* Começa na posição inicial */
+        }
+
+        100% {
+            transform: translateX(-100%);
+            /* Move todas as imagens para a esquerda */
+        }
+    }
+}

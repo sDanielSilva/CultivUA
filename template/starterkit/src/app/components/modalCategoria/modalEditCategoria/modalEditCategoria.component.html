@@ -1,0 +1,42 @@
+   <mat-card-content class="p-24 cardWithShadow" >
+        <h2 class="f-w-500 m-b-24">Edit Category</h2>
+
+        <form [formGroup]="editForm">
+            <div *ngIf="isSaving" class="spinner-container text-center">
+                <mat-spinner color="primary"></mat-spinner>
+                <p class="m-t-16">Saving changes...</p>
+            </div>
+
+            <div class="m-t-24" *ngIf="!isSaving">
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Category Name</mat-label>
+                    <input matInput placeholder="Category Name" formControlName="name" />
+                    <mat-error *ngIf="editForm.get('name')?.hasError('required')">
+                        The category name is required.
+                    </mat-error>
+                </mat-form-field>
+                <div class="row m-t-16">
+                    <div class="col-6">
+                        <mat-checkbox formControlName="show" color="primary">
+                            Show in Store
+                        </mat-checkbox>
+                    </div>
+                    <div class="col-6">
+                        <mat-checkbox formControlName="blog" color="primary">
+                            Show in Blog
+                        </mat-checkbox>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botões embaixo do formulário -->
+            <div class="m-t-24 text-right">
+                <button mat-stroked-button color="warn" class="m-r-10" (click)="onCancel()">
+                    Cancel
+                </button>
+                <button mat-flat-button style="background-color:green; color:white" [disabled]="!editForm.valid || isSaving" (click)="saveDetail()">
+                    Save Changes
+                </button>
+            </div>
+        </form>
+    </mat-card-content>

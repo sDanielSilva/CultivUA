@@ -1,0 +1,106 @@
+<mat-card class="cardWithShadow">
+    <mat-card-content>
+        <div class="row justify-content-between gap-16">
+            <!-- Botão "Adicionar Categoria" à esquerda -->
+            <div class="col-sm-4 d-flex align-items-center">
+                <a mat-button mat-flat-button color="primary" [disabled]="isLoading" (click)="openEditDialog()">
+                    Add category
+                </a>
+            </div>
+
+            <!-- Campo de pesquisa à direita -->
+            <div class="col-sm-4 d-flex align-items-center justify-content-end">
+                <mat-form-field appearance="outline" class="w-100 hide-hint">
+                    <input matInput placeholder="Search Category" (keyup)="filter($any($event.target).value)" />
+                    <mat-icon matSuffix>
+                        <i-tabler name="search" class="icon-20"></i-tabler>
+                    </mat-icon>
+                </mat-form-field>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>
+
+<mat-card class="cardWithShadow" *ngIf="isLoading">
+    <div class="spinner-container">
+        <mat-spinner color="primary"></mat-spinner>
+        <div class="loading-message">Loading categories...</div>
+    </div>
+</mat-card>
+
+<mat-card class="cardWithShadow" *ngIf="!isLoading">
+    <div class="table-responsive">
+        <table mat-table [dataSource]="categories" matSort class="no-wrap m-t-0 v-middle w-100">
+
+            <!-- Coluna ID -->
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header class="f-w-600 f-s-15">
+                    ID
+                </th>
+                <td mat-cell *matCellDef="let element" class="f-s-14">
+                    {{ element.id }}
+                </td>
+            </ng-container>
+
+            <!-- Coluna Nome Categoria -->
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header class="f-w-600 f-s-15">
+                    Category Name
+                </th>
+                <td mat-cell *matCellDef="let element" class="f-s-14">
+                    {{ element.name }}
+                </td>
+            </ng-container>
+
+            <!-- Coluna Número de Produtos -->
+            <ng-container matColumnDef="number">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header class="f-w-600 f-s-15">
+                    Number of Products
+                </th>
+                <td mat-cell *matCellDef="let element" class="f-s-14">
+                    {{ element.number }}
+                </td>
+            </ng-container>
+
+            <!-- Coluna Loja -->
+            <ng-container matColumnDef="show">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header class="f-w-600 f-s-15">
+                    Store
+                </th>
+                <td mat-cell *matCellDef="let element" class="f-s-14">
+                    {{ element.mostrarLoja ? 'Visible' : 'Not Visible' }}
+                </td>
+            </ng-container>
+
+            <!-- Coluna Blog -->
+            <ng-container matColumnDef="blog">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header class="f-w-600 f-s-15">
+                    Blog
+                </th>
+                <td mat-cell *matCellDef="let element" class="f-s-14">
+                    {{ element.mostrarBlog ? 'Visible' : 'Not Visible' }}
+                </td>
+            </ng-container>
+
+            <!-- Coluna Ações -->
+            <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef class="f-w-600 f-s-15">Actions</th>
+                <td mat-cell *matCellDef="let element" class="f-s-14 d-flex">
+                    <button mat-icon-button (click)="openEditarDialog(element)" class="d-flex align-items-center justify-content-center">
+                        <i-tabler name="pencil" class="icon-18 d-flex align-items-center" style="color:green;"></i-tabler>
+                    </button>
+                    <button mat-icon-button (click)="confirmDelete(element.id)" class="d-flex align-items-center justify-content-center">
+                        <i-tabler name="trash" class="icon-18 d-flex align-items-center" style="color:green;"></i-tabler>
+                    </button>
+                </td>
+            </ng-container>
+
+            <!-- Linhas do Cabeçalho e Corpo da Tabela -->
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+
+        <!-- Paginação -->
+        <mat-paginator #paginator [pageSizeOptions]="[5, 8, 10]" showFirstLastButtons></mat-paginator>
+    </div>
+</mat-card>

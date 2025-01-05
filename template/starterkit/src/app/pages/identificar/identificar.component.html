@@ -1,0 +1,118 @@
+<mat-card class="cardWithShadow">
+    <mat-card-content>
+        <mat-card-title class="primary-title">
+            <span class="title-black">What plant is this?</span><br />
+            <span class="title-green">Let's find out!</span>
+        </mat-card-title>
+
+        <div class="subtitle-container">
+            <mat-card-subtitle class="mat-body-1">
+                Upload a photo of your plant and let our technology automatically identify the species.
+            </mat-card-subtitle>
+        </div>
+
+        <div
+            class="drop-area"
+            (dragover)="onDragOver($event)"
+            (drop)="onDrop($event)"
+        >
+            <img
+                class="upload-icon"
+                src="../../../assets/images/svgs/upload_icon.svg"
+                alt="Upload Icon"
+            />
+            <p>Select a file or drag it here</p>
+            <p class="upload-instructions">JPG or PNG. Size less than 5MB</p>
+            <input type="file" (change)="onFileChange($event)" hidden />
+
+            <div class="upload-buttons">
+                <button
+                    mat-raised-button
+                    class="btn-upload"
+                    (click)="triggerFileInput()"
+                >
+                Select File
+                </button>
+            </div>
+            <mat-slide-toggle
+                [checked]="sendGeolocation"
+                (change)="toggleGeolocation()"
+                class="custom-green-slider"
+            >
+            Send geolocation coordinates
+            </mat-slide-toggle>
+        </div>
+
+        <mat-card class="b-1 shadow-none" *ngIf="uploadingFile">
+            <mat-card-content>
+                <mat-card-title>Processing image...</mat-card-title>
+                <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+            </mat-card-content>
+        </mat-card>
+
+        <br />
+        <div *ngIf="plantData" class="result-container">
+            <div class="result">
+                <div class="image-container">
+                    <img
+                        [src]="plantData.image"
+                        alt="Planta"
+                        class="plant-image"
+                    />
+                </div>
+                <div class="info-container">
+                    <h3>{{ plantData.name }}</h3>
+                    <p>
+                        {{ plantData.probability | percent : "1.0-2" }} chance of being this plant
+                    </p>
+
+                    <!-- Informações adicionais da Perenual API -->
+                    <div *ngIf="plantData.perenualInfo">
+                        <h4>Plant Information</h4>
+                        <ul class="plant-info-list">
+                            <li>
+                                <strong>Common Name:</strong>
+                                {{ plantData.perenualInfo.common_name }}
+                            </li>
+                            <li>
+                                <strong>Cicle:</strong>
+                                {{ plantData.perenualInfo.cycle }}
+                            </li>
+                            <li>
+                                <strong>Watering:</strong>
+                                {{ plantData.perenualInfo.watering }}
+                            </li>
+                            <li>
+                                <strong>Sunlight:</strong>
+                                {{ plantData.perenualInfo.sunlight }}
+                            </li>
+                            <li>
+                                <strong>Description:</strong>
+                                {{ plantData.perenualInfo.description }}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Botões de ação abaixo da imagem -->
+                <div class="action-buttons">
+                    <button
+                        mat-raised-button
+                        color="primary"
+                        (click)="goToStore()"
+                        class="btn-store"
+                    >
+                        Go to Store
+                    </button>
+                    <button
+                        mat-raised-button
+                        color="accent"
+                        (click)="addToDashboard()"
+                        class="btn-dashboard"
+                    >
+                        Add to Dashboard
+                    </button>
+                </div>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>

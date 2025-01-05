@@ -1,0 +1,77 @@
+<mat-card class="cardWithShadow">
+    <mat-card-content>
+        <div class="row justify-content-between gap-16">
+            <div class="col-sm-4 d-flex align-items-center">
+                <button mat-flat-button color="primary" (click)="openAddLocationDialog()">
+                    Add Location
+                </button>
+            </div>
+            <div class="col-sm-4 d-flex align-items-center justify-content-end">
+                <mat-form-field appearance="outline" class="w-100 hide-hint">
+                    <input matInput placeholder="Search Location" (keyup)="filter($any($event.target).value)" />
+                    <mat-icon matSuffix>
+                        <i-tabler name="search" class="icon-20"></i-tabler>
+                    </mat-icon>
+                </mat-form-field>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>
+
+<mat-card 
+    class="" 
+    *ngIf="isLoading"
+    style="display: flex; align-items: center; justify-content: center; height: 100vh; width: 100%;"
+>
+    <div 
+        class="spinner-container" 
+        style="display: flex; flex-direction: column; align-items: center; gap: 10px;"
+    >
+        <mat-spinner color="primary"></mat-spinner>
+        <div class="loading-message">Loading locations...</div>
+    </div>
+</mat-card>
+
+
+
+
+<mat-card class="cardWithShadow" *ngIf="!isLoading">
+    <div class="table-responsive">
+        <table mat-table [dataSource]="locations" matSort class="no-wrap m-t-0 v-middle w-100">
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header class="f-w-600 f-s-15">Id</th>
+                <td mat-cell *matCellDef="let element" class="f-s-14">{{ element.id }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header class="f-w-600 f-s-15">Name</th>
+                <td mat-cell *matCellDef="let element" class="f-s-14">{{ element.name }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="action">
+<th mat-header-cell *matHeaderCellDef class="f-w-600 f-s-15">Action</th>
+<td mat-cell *matCellDef="let element" class="f-s-14 d-flex">
+    <a *ngIf="element.id" mat-icon-button (click)="openEditModal(element)"
+        class="d-flex align-items-center justify-content-center" aria-label="Editar Localização">
+        <i-tabler name="pencil" class="icon-18 d-flex align-items-center" style="color:green;"></i-tabler>
+    </a>
+<button mat-icon-button (click)="confirmDelete(element.id)" class="d-flex align-items-center justify-content-center">
+    <i-tabler name="trash" class="icon-18 d-flex align-items-center" style="color:green;"></i-tabler>
+</button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+        <mat-paginator
+        [pageSizeOptions]="pageSizeOptions"
+        [pageSize]="pageSize"
+        [length]="locations.data.length"
+        showFirstLastButtons
+        (page)="handlePageEvent($event)">
+      </mat-paginator>
+
+    </div>
+
+</mat-card>

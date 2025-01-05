@@ -1,0 +1,98 @@
+/* Estilos Gerais */
+.payment-container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+label {
+  display: block;
+  font-size: 16px;
+  margin: 15px 0;
+  color: #555;
+}
+
+/* Estilos para os botões */
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+button {
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 48%;
+}
+
+.back-button {
+  background-color: #ddd;
+  color: #333;
+}
+
+.continue-button {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.continue-button:hover {
+  background-color: #45a049;
+}
+
+.back-button:hover {
+  background-color: #bbb;
+}
+
+/* Estilo para a opção de pagamento */
+.payment-option {
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.payment-option input[type="radio"] {
+  margin-right: 10px;
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+  .payment-container {
+    padding: 15px;
+    max-width: 100%;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  .buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  button {
+    width: 100%;
+  }
+
+  .back-button,
+  .continue-button {
+    font-size: 18px;
+  }
+}

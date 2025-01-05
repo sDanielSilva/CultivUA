@@ -1,0 +1,128 @@
+<div *ngIf="blogDetail; else noData">
+    <mat-card class="cardWithShadow">
+        <img
+            mat-card-image
+            [src]="
+                blogDetail.image ||
+                '../../../assets/images/blog/placeholder_blog.jpg'
+            "
+            alt="Imagem de capa da publicação"
+            height="440"
+        />
+        <div
+            class="card-overlay h-100 d-flex align-items-end justify-content-end"
+        >
+            <mat-chip class="f-s-12 f-w-600 m-y-16 m-r-16 bg-white">
+                {{ blogDetail.read_time }} minutes of reading
+            </mat-chip>
+        </div>
+        <mat-card-content class="p-24 b-b-1">
+            <div class="user-category">
+                <div>
+                    <img
+                        [src]="blogDetail.admin.profile_image"
+                        class="rounded-circle"
+                        width="40"
+                    />
+                </div>
+                <mat-chip class="f-s-12 m-y-16 f-w-600">
+                    {{ blogDetail.category }}
+                </mat-chip>
+            </div>
+            <mat-card-title class="m-t-16 m-b-24 blog-title">
+                {{ blogDetail.title }}
+            </mat-card-title>
+            <div
+                class="d-flex align-items-center justify-content-center m-t-24"
+            >
+                <div class="d-flex align-items-center">
+                    <span
+                        class="f-s-14 mat-subtitle-2 d-flex align-items-center"
+                    >
+                        <i-tabler
+                            name="message-2"
+                            class="icon-18 m-r-4"
+                        ></i-tabler
+                        >{{ blogDetail.comments_count }}
+                    </span>
+                </div>
+                <span
+                    class="m-l-auto f-s-14 mat-subtitle-2 d-flex align-items-center"
+                >
+                    <i-tabler name="point" class="icon-14 m-r-4"></i-tabler>
+                    {{ blogDetail.created_at }}
+                </span>
+            </div>
+        </mat-card-content>
+        <mat-card-content class="p-24">
+            <p class="mat-body-1 m-t-16">
+                {{ blogDetail.content }}
+            </p>
+        </mat-card-content>
+    </mat-card>
+    <mat-card class="cardWithShadow">
+        <mat-card-content class="p-24">
+            <mat-card-title class="m-b-24 f-s-21"
+                >Post Comment</mat-card-title
+            >
+            <form (ngSubmit)="postComment()">
+                <mat-form-field appearance="outline" class="w-100">
+                    <textarea
+                        matInput
+                        rows="5"
+                        [(ngModel)]="newCommentContent"
+                        name="commentContent"
+                        required
+                    ></textarea>
+                </mat-form-field>
+                <button mat-flat-button color="primary" type="submit">
+                    Publish
+                </button>
+            </form>
+
+            <mat-card-title class="m-t-30 f-s-21 p-t-24">
+                Comments
+                <span
+    class="p-x-12 p-y-8 rounded f-w-600 m-l-8 f-s-18"
+    style="background-color: #0A9E46; color: white;"
+>
+    {{ blogDetail.comments_count }}
+</span>
+
+            </mat-card-title>
+
+            <!-- Listar os comentários -->
+            <div
+                *ngFor="let comment of blogDetail.comments"
+                class="bg-light rounded p-24 m-t-24"
+            >
+                <div class="d-flex align-items-center">
+                    <img
+                        [src]="
+                            comment.profile_image
+                                ? comment.profile_image
+                                : '../../../assets/images/profile/user-1.jpg'
+                        "
+                        alt="user"
+                        width="35"
+                        class="rounded-circle"
+                    />
+                    <span class="mat-body-2 f-w-600 m-l-12">{{
+                        comment.username
+                    }}</span>
+                    <span class="m-l-12 f-s-12 d-flex align-items-center">
+                        <i-tabler
+                            class="icon-7 op-5 d-flex m-r-4"
+                            name="circle-filled"
+                        ></i-tabler>
+                        {{ comment.created_at }}
+                    </span>
+                </div>
+                <p class="mat-body-1 m-t-16">{{ comment.content }}</p>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>
+<ng-template #noData>
+    <p>Post not found!</p>
+</ng-template>

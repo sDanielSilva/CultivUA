@@ -1,0 +1,70 @@
+<mat-divider></mat-divider>
+<br>
+<mat-card class="cardWithShadow">
+  <mat-card-header>
+    <mat-card-title class="primary-title">Contact us</mat-card-title>
+    <mat-card-subtitle class="mat-subtitle-1">
+      Any questions or feedback? Send us a message!
+    </mat-card-subtitle>
+  </mat-card-header>
+
+  <div class="action-row text-center m-t-24">
+    <button mat-flat-button color="accent" class="large-button" (click)="verificarLogin()">
+      Verify Login
+    </button>
+  </div>
+
+  <mat-card-content>
+    <form [formGroup]="contactForm" (ngSubmit)="enviarMensagem($event)">
+      <div class="form-container wide-form">
+        <!-- Nome -->
+        <div class="form-group">
+          <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-8">
+            Name
+          </mat-label>
+          <mat-form-field appearance="outline" class="w-100 mat-form-field-lg">
+            <input matInput placeholder="Enter your name" formControlName="name" />
+          </mat-form-field>
+          <div *ngIf="contactForm.get('name')?.invalid && contactForm.get('name')?.touched" class="text-error">
+            The name is required and must be at least 3 characters long.
+
+          <div class="text-error">The 'Username' field is required.</div>
+          </div>
+        </div>
+
+        <!-- Assunto -->
+        <div class="form-group">
+          <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-8">
+            Subject
+          </mat-label>
+          <mat-form-field appearance="outline" class="w-100 mat-form-field-lg">
+            <input matInput placeholder="Enter your subject" formControlName="subject" />
+          </mat-form-field>
+          <div *ngIf="contactForm.get('subject')?.invalid && contactForm.get('subject')?.touched" class="error-message">
+            The subject is required.
+          </div>
+        </div>
+
+        <!-- Mensagem -->
+        <div class="form-group">
+          <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-8">
+            Message
+          </mat-label>
+          <mat-form-field appearance="outline" class="w-100 mat-form-field-lg">
+            <textarea matInput placeholder="Write your message here" rows="6" formControlName="message"></textarea>
+          </mat-form-field>
+          <div *ngIf="contactForm.get('message')?.invalid && contactForm.get('message')?.touched" class="error-message">
+            The message is required and must be at least 10 characters long.
+          </div>
+        </div>
+
+        <!-- Botão Enviar -->
+        <div class="action-row text-center m-t-24">
+          <button mat-flat-button color="primary" class="large-button" type="button" (click)="enviarMensagem($event)" [disabled]="contactForm.invalid">
+            Send message
+          </button>
+        </div>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

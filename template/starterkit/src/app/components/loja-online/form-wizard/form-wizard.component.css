@@ -1,0 +1,218 @@
+.red-icon {
+    color: rgba(228, 26, 26, 0.897);
+  }
+    /* Cart Summary Container */
+  .cart-summary-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  
+  /* Cart Items List */
+  .cart-items-list {
+    flex: 1;
+  }
+  
+  /* Cart Item Styling */
+  .cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 10px;
+  }
+  
+  /* Image Styling */
+  .item-image img {
+    border-radius: 5px;
+    width: 80px; /* Increased image size */
+    height: 80px;
+    margin-right: 15px; /* Added space between image and text */
+  }
+  
+  /* Item Details Styling */
+  .item-details {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px; /* Space between name and quantity control */
+  }
+  
+  /* Item Name */
+  .item-name {
+    font-weight: bold;
+    text-align: left; /* Align item name to the left */
+    flex: 1;
+  }
+  
+  /* Quantity Control */
+  .quantity-control {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  /* Buttons Styling */
+  button[mat-icon-button] {
+    color: #4CAF50; /* Green color for buttons */
+  }
+  
+  /* Item Price */
+  .item-price {
+    font-weight: bold;
+  }
+  
+  /* Cart Summary */
+  .cart-summary {
+    flex: 0 0 30%;
+    padding: 20px;
+    background: #f4f4f4;
+    border-radius: 8px;
+  }
+  
+  /* Cart Summary Table */
+  .cart-summary-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+  
+  /* Cart Summary Table Header */
+  .cart-summary-table th {
+    background-color: #f0f0f0;
+    font-weight: 600;
+    text-align: left; /* Align header to the left */
+    padding-left: 10px;
+  }
+  
+  /* Table Data */
+  .cart-summary-table th,
+  .cart-summary-table td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+  }
+  
+  /* Last Column (Total with Tax) */
+  .cart-summary-table td:last-child {
+    font-weight: bold;
+  }
+  
+  /* Align Total Column on Right */
+  .cart-summary-table td {
+    text-align: left;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .cart-summary-table td, .cart-summary-table th {
+      font-size: 14px;
+    }
+  }
+  
+
+  .payment-summary-container {
+    padding: 16px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .payment-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+  
+  .payment-icon {
+    font-size: 36px;
+    margin-right: 12px;
+  }
+  
+  .payment-title {
+    font-size: 1.5rem;
+    margin: 0;
+    color: #424242;
+  }
+  
+  .payment-details {
+    font-size: 1rem;
+    color: #616161;
+  }
+  
+  .payment-details ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .payment-details li {
+    display: flex;
+    align-items: center;
+    margin: 8px 0;
+  }
+  
+  .payment-details mat-icon {
+    margin-right: 8px;
+  }
+  
+  .payment-actions {
+    margin-top: 16px;
+  }
+  
+  .payment-button {
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: 500;
+  }
+  
+  .payment-button mat-icon {
+    margin-right: 8px;
+  }
+  .payment-actions {
+    display: flex;
+    justify-content: space-between; /* Alinha os botões nas extremidades */
+    margin-top: 16px;
+  }
+  ::ng-deep .mat-step-header .mat-step-icon {
+    background-color: green !important; /* Define o fundo verde */
+    color: white !important; /* Ajusta a cor do texto */
+  }
+
+
+
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Garante que o overlay apareça acima de tudo */
+    backdrop-filter: blur(10px); /* Desfoque mais forte */
+  }
+  
+  .spinner-container {
+    text-align: center;
+    color: white;
+    font-size: 18px;  /* Aumenta o tamanho do texto */
+  }
+  
+  .loading-spinner {
+    margin-bottom: 15px;
+  }
+  
+  .loading-text {
+    font-size: 18px;
+    font-weight: 500;
+    margin-top: 10px;  /* Dá um pouco de espaço entre o spinner e o texto */
+  }
+  

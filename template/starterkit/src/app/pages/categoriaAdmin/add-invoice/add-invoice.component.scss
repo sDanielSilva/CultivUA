@@ -1,0 +1,14 @@
+.spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 150px; /* Ajuste conforme necessário */
+  }
+  
+  .loading-message {
+    margin-top: 10px;
+    font-size: 18px;
+    color: #000; /* Cor primária ou outra cor que você deseja */
+    font-weight: regular; 
+  }

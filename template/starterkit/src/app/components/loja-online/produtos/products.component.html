@@ -1,0 +1,63 @@
+<div class="container product-container">
+    <!-- Barra de pesquisa e filtros -->
+    <div class="search-filters-container d-flex flex-column mb-4 align-items-start">
+      <!-- Barra de pesquisa -->
+      <div class="search-bar mb-3 w-100 d-flex justify-content-start">
+        <input
+          type="text"
+          class="form-control search-input"
+            placeholder="Search products..."
+
+          [(ngModel)]="searchQuery"
+          (input)="applySearchAndFilter()"
+        />
+      </div>
+  
+      <!-- Filtros de categoria -->
+      <div class="category-filters mb-3">
+        <button
+          *ngFor="let category of categories"
+          class="btn btn-outline-primary me-2"
+          (click)="filterByCategory(category)"
+        >
+          {{ category }}
+        </button>
+        <button class="btn custom-btn-filter" (click)="clearFilters()">
+          Show All
+        </button>
+      </div>
+    </div>
+  
+    <!-- Spinner enquanto os produtos estão carregando -->
+    <mat-spinner *ngIf="loading" diameter="50" class="loading-spinner"></mat-spinner>
+  
+    <!-- Lista de produtos -->
+    <div *ngIf="!loading && filteredProducts.length > 0" class="row g-4">
+      <div class="col-sm-6 col-md-4 col-lg-4" *ngFor="let product of filteredProducts">
+        <div class="card shadow-sm">
+          <div class="card-img-top img-container">
+            <img [src]="product.imagem" alt="{{ product.name }}" class="img-fluid" />
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">{{ product.name }}</h5>
+            <p class="card-text">Category: {{ product.category_name }}</p>
+            <p class="card-text fw-bold">Price: {{ product.price }}€</p>
+            <button class="btn btn-success w-100" (click)="addToCart(product)">
+              Add To Cart
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Mensagem caso não existam produtos -->
+    <div *ngIf="!loading && filteredProducts.length === 0" class="text-center">
+      <p class="text-muted">No products found.</p>
+    </div>
+  </div>
+  
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    rel="stylesheet"
+  />
+  

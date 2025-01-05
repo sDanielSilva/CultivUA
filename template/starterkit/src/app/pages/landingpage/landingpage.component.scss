@@ -1,0 +1,558 @@
+body {
+    overflow-x: hidden!important;
+  }
+  .custom-green-slider .mdc-switch__track::after {
+    transform: translateX(-100%);
+    background: #2ea72d !important;
+}
+.mdc-switch__track::after {
+    transform: translateX(-100%);
+    background: green!important;
+}
+
+.mdc-switch__track::after {
+    background: green!important;
+}
+
+.mdc-switch__track {
+    background: green!important;
+}
+
+.btn-custom {
+  font-size: 0.875rem; /* Reduz o tamanho do botão */
+  padding: 10px 10px; /* Ajusta o tamanho do botão */
+}
+/* Estilo da seção principal */
+.banner-section {
+  height: 100vh; /* Ocupa a altura total da janela */
+  max-height: 600px; /* Limita a altura máxima */
+  max-width: 100%; /* Garante que não ultrapasse a largura */
+  margin: 0 auto; /* Centraliza horizontalmente */
+  display: flex;
+  align-items: center; /* Alinha o conteúdo verticalmente */
+  justify-content: center; /* Centraliza o conteúdo horizontalmente */
+  overflow: hidden; /* Esconde qualquer conteúdo excedente */
+  padding: 20px; /* Espaçamento interno para conforto visual */
+  background-color: #E5F5EC; /* Cor de fundo opcional */
+}
+
+/* Responsividade para telas pequenas */
+@media (max-width: 768px) {
+  .banner-section {
+    max-height: 500px; /* Reduz a altura em telas menores */
+    padding: 15px; /* Ajusta o espaçamento interno */
+  }
+
+  .banner-title {
+    font-size: 1.5rem; /* Reduz o tamanho do título */
+  }
+
+  .banner-subtitle {
+    font-size: 0.9rem; /* Reduz o tamanho do subtítulo */
+  }
+
+  .btn-custom {
+    font-size: 0.875rem; /* Reduz o tamanho do botão */
+    padding: 10px 20px; /* Ajusta o tamanho do botão */
+  }
+}
+
+/* Estilo da imagem */
+.plant-image {
+  max-width: 70%;
+  height: auto;
+  margin: 0 auto;
+  padding-right: 40px;
+}
+
+/* Estilo do conteúdo */
+.content-wrapper {
+  max-width: 500px; /* Limita a largura do conteúdo */
+  text-align: center; /* Centraliza o texto */
+}
+
+.banner-title {
+  font-size: 2rem;
+  color: #4CAF50;
+}
+
+.banner-subtitle {
+  color: #555;
+  line-height: 1.5;
+}
+
+.btn-custom {
+  display: inline-block;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  padding: 12px 25px;
+  text-transform: uppercase;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.btn-custom:hover {
+  background-color: #45a049;
+}
+
+  .video-preview {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 15px; /* Cantos arredondados para a pré-visualização do vídeo */
+}
+
+.video-preview-image {
+    width: 100%;
+    height: auto;
+    filter: blur(4px); /* Reduz o desfoque para um valor mais suave */
+    transition: filter 0.3s ease-in-out;
+    border-radius: 15px; /* Adiciona cantos arredondados à imagem */
+}
+
+.video-preview:hover .video-preview-image {
+    filter: blur(0); /* Remove o desfoque quando o mouse passar por cima */
+}
+
+.video-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 10;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.play-button {
+    width: 80px;
+    height: 80px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    color: #28a745; /* Verde para o ícone de play */
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.play-button:hover {
+    transform: scale(1.1); /* Aumenta o botão quando o user passa o mouse */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3); /* Sombra mais forte ao passar o mouse */
+}
+
+/* Esconde o vídeo inicialmente */
+.video-preview video {
+    display: none;
+    width: 100%;
+    border-radius: 15px; /* Cantos arredondados para o vídeo */
+}
+
+.video-preview.active video {
+    display: block; /* Mostra o vídeo quando a classe 'active' for adicionada */
+}
+
+.cover-image {
+    background-size: cover!important;
+  background-position: center!important;
+  background-repeat: no-repeat!important;
+}
+
+.btn-custom-video {
+  display: inline-block; /* Garante que o botão respeite o texto */
+  background-color: #4CAF50; /* Cor do botão */
+  color: white; /* Cor do texto */
+  padding: 12px 25px; /* Tamanho confortável */
+  font-size: 0.8rem; /* Texto legível */
+  font-weight: bold; /* Destaque */
+  text-transform: uppercase; /* Texto em caixa alta */
+  border-radius: 8px; /* Cantos arredondados */
+  text-decoration: none; /* Remove sublinhado */
+  transition: background-color 0.3s ease;
+  text-align: center; /* Centraliza o texto horizontalmente */
+  line-height: 1.5; /* Garante alinhamento vertical */
+}
+
+.btn-custom-video:hover {
+  background-color: #3c8d40; /* Cor ao passar o mouse */
+}
+.mat-icon-large {
+  font-size: 50px; /* Aumenta o tamanho do ícone */
+  color: #4CAF50; /* Define uma cor (opcional) */
+}
+
+.mat-icon {
+  width: auto !important; /* Remove o tamanho fixo de 24px */
+  height: auto !important; /* Remove o tamanho fixo de 24px */
+  font-size: inherit; /* Permite que o tamanho seja controlado via 'font-size' */
+}
+
+.img-overlay {
+    width: 100%;
+    height: 420px;
+  }
+  
+  .demos-card {
+    overflow: hidden; /* Garante que nada escape da área da carta */
+  }
+  
+  .loading-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centraliza verticalmente */
+    align-items: center; /* Centraliza horizontalmente */
+    height: 150px;
+}
+.image-fallback {
+    display: none;
+    font-size: 16px;
+    color: #000;
+    background-color: #f2f2f2;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+  }
+  
+
+  span {
+    background-color: transparent !important;
+    color: #28a745 !important;
+}
+
+  .content-wrapper {
+    display: flex;
+    flex-direction: column; /* Organiza os elementos em coluna */
+    align-items: flex-start; /* Alinha os itens à esquerda */
+    padding: 20px;
+    text-align: left;
+  }
+  
+  .banner-title {
+    font-size: 2.75rem; /* Tamanho maior para maior impacto */
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+  
+  .verde {
+    color: #28a745; /* Verde mais destacado */
+  }
+  
+  .banner-subtitle {
+    font-size: 1.125rem;
+    color: #666;
+    margin-bottom: 24px;
+    line-height: 1.6; /* Melhor espaçamento entre linhas */
+  }
+  
+  .btn-custom {
+    display: flex; /* Usamos flexbox */
+    justify-content: center; /* Alinha o conteúdo horizontalmente */
+    align-items: center; /* Alinha o conteúdo verticalmente */
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 12px 30px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin-top: 24px; /* Espaçamento acima do botão */
+    text-align: center; /* Garante o alinhamento correto do texto */
+  }
+  
+  .btn-custom:hover {
+    background-color: #218838;
+    transform: translateY(-3px);
+  }
+  
+  
+  .left {
+    display: flex;
+    justify-content: center;
+    padding-left: 0;
+  }
+  
+  .banner-section .right {
+    display: flex;
+    justify-content: flex-start;
+    padding-right: 2rem;
+  }
+  
+  .content-wrapper {
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: left;
+  }
+  
+  @media (max-width: 768px) {
+    .banner-title {
+      font-size: 2rem;
+    }
+    
+    .banner-subtitle {
+      font-size: 1rem;
+    }
+  
+    .plant-image {
+      width: 100%;
+      max-width: 250px;
+    }
+  
+    .btn-custom {
+      font-size: 1rem;
+      padding: 10px 25px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .banner-title {
+      font-size: 1.5rem;
+    }
+    
+    .banner-subtitle {
+      font-size: 0.875rem;
+    }
+  
+    .btn-custom {
+      font-size: 0.875rem;
+      padding: 10px 20px;
+    }
+  
+    .left {
+      padding-left: 0;
+      text-align: center;
+    }
+  
+    .right {
+      padding-right: 0;
+      text-align: center;
+    }
+  }
+  
+
+.content-left {
+    padding: 1rem 3rem;
+}
+
+.f-s-18 {
+    max-width: 450px;
+}
+
+.rounded-video {
+    border-radius: 15px;
+}
+
+.bg-light-primary {
+    background-color: #E5F5EC !important;
+}
+
+.d-flex {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.button-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.selected-button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+}
+
+.p-24 {
+    padding: 24px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 24px;
+}
+
+.review-subtext {
+    font-size: 14px;
+    color: #444;
+}
+
+.line-break {
+    display: inline-block;
+    max-width: 90%;
+    margin-right: auto;
+    margin-left: auto;
+    line-height: 1.5;
+}
+
+img.rounded-circle {
+    border-radius: 50%;
+}
+
+i-tabler {
+    margin-left: 4px;
+}
+
+.section-title2{
+    color:#333 !important;
+    margin-left: 5%;
+    padding-top: 5%;
+    line-height: 1;
+}
+
+.bg-dark{
+    background-color: #E5F5EC !important;
+    max-width: 100%;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.bg-white .container {
+    max-width: 100%;
+    padding: 0 15px;
+}
+
+.text-right img{
+    margin-right: 20%;
+}
+
+
+
+@media (min-width: 576px) {
+    .bg-dark {
+        max-width: 85%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .banner-title {
+        font-size: 1.75rem;
+    }
+    .banner-subtitle {
+        font-size: 0.875rem;
+    }
+    .plant-image {
+        width: 70%;
+        max-width: 200px;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .f-s-18 {
+        font-size: 1rem;
+    }
+
+    .btn-custom {
+        font-size: 0.875rem;
+    }
+
+    .col-sm-12 {
+        margin-bottom: 16px;
+    }
+
+    .col-lg-7, .col-lg-4 {
+        text-align: center;
+    }
+    .c2a-img {
+        margin-right: 0;
+    }
+}
+
+@media (min-width: 768px) {
+    .col-lg-7 {
+        padding-right: 20px;
+    }
+    .c2a-img {
+        margin-right: 40px;
+    }
+}
+
+@media (max-width: 576px) {
+    .col-sm-8 {
+        margin-bottom: 10px;
+    }
+}
+
+
+/* Card Styles */
+/* Card Styles */
+.cardWithShadow {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 15px; /* Bordas arredondadas para os cards */
+
+}
+
+/* Hover Effect for Cards */
+.cardWithShadow:hover {
+    transform: translateY(-5px); /* Animação de elevação do card */
+}
+
+
+/* Títulos */
+.mat-subtitle-2 {
+    font-size: 1.125rem; /* Tamanho de fonte adequado */
+    font-weight: 400;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+.mat-subtitle-2:hover {
+    color: #28a745; /* Cor do título ao passar o mouse */
+}
+
+/* Imagens */
+.card img {
+    transition: transform 0.3s ease;
+    border-radius: 50%; /* Bordas arredondadas para as imagens */
+}
+
+/* Efeito de zoom na imagem */
+.card img:hover {
+    transform: scale(1.1); /* Aumenta a imagem ao passar o mouse */
+}
+
+/* Espaçamento entre os cards */
+.mb-4 {
+    margin-bottom: 1.5rem !important;
+}
+
+/* Adicionando animação de Fade-In */
+.transition-card {
+    animation: fadeIn 0.8s ease-out;
+}
+
+/* Animação Fade-In */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

@@ -1,0 +1,66 @@
+<mat-card class="cardWithShadow">
+    <h1 class="quiz-title">Find the ideal plant</h1>
+
+    <!-- Carregador de espera -->
+    <div *ngIf="loading" class="loading-spinner">
+        <mat-spinner></mat-spinner>
+        <p>Loading results...</p>
+    </div>
+
+    <div *ngIf="!loading">
+        <div class="question-container">
+            <div class="mascote-container">
+                <img
+                    src="../../../assets/images/quizperguntas/mascote.png"
+                    alt="Mascote"
+                    class="mascote"
+                />
+            </div>
+            <div class="question-bubble-container">
+                <div class="question-bubble">
+                    <p *ngIf="!isNoMatch">You are more compatible with...</p>
+                    <p *ngIf="isNoMatch">
+                        You are not compatible with any plant...
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="!isNoMatch" class="plants-grid">
+            <mat-card *ngFor="let plant of displayedPlants" class="plant-card">
+                <img
+                    mat-card-image
+                    [src]="plant.default_image.medium_url"
+                    alt="{{ plant.common_name }}"
+                    class="plant-card-image"
+                />
+
+                <mat-card-content class="plant-card-content">
+                    <mat-card-title>{{ plant.common_name }}</mat-card-title>
+                    <mat-card-subtitle>{{
+                        plant.scientific_name.join(", ")
+                    }}</mat-card-subtitle>
+                    <p><strong>Cicle:</strong> {{ plant.cycle }}</p>
+                    <p><strong>Watering:</strong> {{ plant.watering }}</p>
+                    <p><strong>Sunlight:</strong> {{ plant.sunlight }}</p>
+                    <button
+                        mat-raised-button
+                        color="primary"
+                        (click)="redirectToStore(plant)"
+                    >
+                        Go to Store
+                    </button>
+                </mat-card-content>
+            </mat-card>
+        </div>
+
+        <!-- Botão de tentar novamente -->
+        <div *ngIf="isNoMatch" class="retry-container">
+            <button mat-raised-button color="accent" (click)="redirectToQuiz()">
+                Try Again
+            </button>
+        </div>
+
+        <app-faq></app-faq>
+    </div>
+</mat-card>

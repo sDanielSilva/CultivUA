@@ -1,0 +1,11 @@
+ <div class="dashboard-container">
+    <!-- Boas-vindas. -->
+    <mat-card class="cardWithShadow">
+        <mat-card-content>
+            <mat-card-title>Welcome back, <b>{{ username || 'User' }}!</b></mat-card-title>
+            <mat-card-subtitle class="calendar-text">
+                <mat-icon class="calendar-icon">calendar_today</mat-icon> {{ todayDate }}
+            </mat-card-subtitle>
+        </mat-card-content>
+        <app-account-setting/>
+    </mat-card>

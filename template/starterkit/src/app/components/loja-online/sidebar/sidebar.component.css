@@ -1,0 +1,101 @@
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    top: 65px; /* Ajusta a altura da sidebar */
+    left: 0;
+    width: 250px;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    height: 100%;
+  }
+  
+  /* Título da Sidebar */
+  .sidebar-title {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+  
+  /* Filtros */
+  .filters {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Categorias */
+  .categories {
+    margin-bottom: 20px;
+  }
+  
+  .category-label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .category-checkbox {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    transform: scale(1.3); /* Aumenta o tamanho das checkboxes */
+    accent-color: #28a745; /* Cor moderna */
+  }
+  
+  .category-label span {
+    font-size: 1rem;
+    font-weight: 500;
+  }
+  
+  /* Preço */
+  .price-filter {
+    margin-bottom: 20px;
+  }
+  
+  .price-inputs {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+  }
+  
+  .input-group label {
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+  }
+  
+  .price-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+  }
+  
+  /* Hover para checkboxes */
+  .category-checkbox:hover {
+    cursor: pointer;
+    transform: scale(1.35);
+  }
+  
+  /* Responsividade */
+  @media (max-width: 768px) {
+    .sidebar {
+      width: 200px;
+    }
+  
+    .price-inputs {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .input-group {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  }
+  

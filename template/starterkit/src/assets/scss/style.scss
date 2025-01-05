@@ -1,0 +1,78 @@
+@use "@angular/material" as mat;
+@include mat.core();
+
+@import "themecolors/default_theme";
+@import "variables";
+@import "layouts/transitions";
+@import "helpers/color";
+@import "helpers/icon-size";
+
+//Theme colors
+
+@import "themecolors/default_theme";
+@include mat.all-component-themes($bluetheme);
+
+.dark-theme {
+  @include mat.all-component-colors($darkbluetheme);
+}
+
+.orange_theme {
+  @import "themecolors/orange_theme";
+  @include mat.all-component-colors($orangetheme);
+}
+
+.aqua_theme {
+  @import "themecolors/aqua_theme";
+  @include mat.all-component-colors($aquatheme);
+}
+
+.purple_theme {
+  @import "themecolors/purple_theme";
+  @include mat.all-component-colors($purpletheme);
+}
+
+.green_theme {
+  @import "themecolors/green_theme";
+  @include mat.all-component-colors($greentheme);
+}
+
+.cyan_theme {
+  @import "themecolors/cyan_theme";
+  @include mat.all-component-colors($cyantheme);
+}
+
+//container layout
+@import "overrides/materialoverrides";
+@import "dark/dark";
+@import "container";
+@import "layouts/layouts";
+@import "grid/grid";
+@import "helpers/custom-flex";
+@import "helpers/index";
+
+// horizontal
+@import "horizontal/horizontal";
+
+// pages
+@import "pages/auth";
+@import "pages/landingpage";
+
+// RTL Theme
+@import "rtl/rtl";
+
+svg {
+  vertical-align: unset !important;
+}
+
+.mat-accent.mat-mdc-checkbox {
+  --mdc-checkbox-selected-pressed-icon-color:green!important;
+  --mdc-checkbox-selected-checkmark-color: #ffffff;
+  --mdc-checkbox-selected-focus-icon-color:green!important;
+  --mdc-checkbox-selected-hover-icon-color:green!important;
+  --mdc-checkbox-selected-icon-color: green!important;
+  --mdc-checkbox-selected-focus-state-layer-color:green!important;
+  --mdc-checkbox-selected-hover-state-layer-color:green!important;
+  --mdc-checkbox-unselected-pressed-state-layer-color:green!important;
+  --mat-checkbox-disabled-label-color: rgba(26, 27, 31, 0.38);
+  --mat-checkbox-label-text-color: #1a1b1f;
+}

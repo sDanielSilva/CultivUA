@@ -1,0 +1,1228 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Chrome 131.0.0.0 (Windows 10)</title>
+<style>
+body { background-color: #eeeeee; padding: 0; margin: 5px; overflow-y: scroll; }
+#HTMLReporter h1 { font-size: 12px; font-weight: normal; text-align: right; margin: 10px 0 10px 0 !important; }
+#HTMLReporter { font-size: 11px; font-family: Monaco, "Lucida Console", monospace; line-height: 14px; color: #333333; }
+#HTMLReporter a { text-decoration: none; }
+#HTMLReporter a:hover { text-decoration: underline; }
+#HTMLReporter p, #HTMLReporter h1, #HTMLReporter h2, #HTMLReporter h3, #HTMLReporter h4, #HTMLReporter h5, #HTMLReporter h6 { margin: 0; line-height: 14px; }
+#HTMLReporter .banner, #HTMLReporter .symbolSummary, #HTMLReporter .summary, #HTMLReporter .resultMessage, #HTMLReporter .specDetail .description, #HTMLReporter .alert .bar, #HTMLReporter .stackTrace { padding-left: 9px; padding-right: 9px; }
+
+#HTMLReporter #jasmine_content { position: fixed; right: 100%; }
+#HTMLReporter .version { color: #aaaaaa; }
+#HTMLReporter .banner { margin-top: 14px; }
+#HTMLReporter .duration { color: #aaaaaa; float: right; }
+#HTMLReporter .exceptions { color: #fff; float: right; margin-top: 5px; margin-right: 5px; }
+#HTMLReporter .bar { line-height: 28px; font-size: 14px; display: block; color: #eee; }
+#HTMLReporter .runningAlert { background-color: #666666; }
+#HTMLReporter .skippedAlert { background-color: #aaaaaa; }
+#HTMLReporter .skippedAlert:first-child { background-color: #333333; }
+#HTMLReporter .skippedAlert:hover { text-decoration: none; color: white; text-decoration: underline; }
+#HTMLReporter .passingAlert { background-color: #a6b779; }
+#HTMLReporter .passingAlert:first-child { background-color: #5e7d00; }
+#HTMLReporter .failingAlert { background-color: #cf867e; }
+#HTMLReporter .failingAlert:first-child { background-color: #b03911; }
+#HTMLReporter .results { margin-top: 14px; }
+#HTMLReporter #details { display: none; }
+#HTMLReporter .resultsMenu { color: #999; background-color: #fff; }
+
+#HTMLReporter .summaryMenuItem { font-weight: normal; text-decoration: none; margin-right: 5px; color: #333; }
+#HTMLReporter .detailsMenuItem { font-weight: normal; text-decoration: none; margin-left: 5px; color: #999; }
+
+#HTMLReporter.showDetails .summaryMenuItem { color: #999; }
+#HTMLReporter.showDetails .detailsMenuItem { color: #333; }
+#HTMLReporter.showDetails .summaryMenuItem:hover { text-decoration: underline; }
+#HTMLReporter             .detailsMenuItem:hover { text-decoration: underline; }
+
+
+#HTMLReporter.showDetails .summary { display: none; }
+#HTMLReporter.showDetails #details { display: block; }
+#HTMLReporter .summary { margin-top: 14px; margin-bottom: 40px; }
+#HTMLReporter .summary .suite .suite, #HTMLReporter .summary .specSummary { margin-left: 14px; }
+#HTMLReporter .summary .specSummary.passed { color: #5e7d00; }
+#HTMLReporter .summary .specSummary.failed { color: #b03911; }
+#HTMLReporter .summary .specSummary.skipped { color: #ba9d37; }
+#HTMLReporter .description + .suite { margin-top: 0; }
+#HTMLReporter .suite { margin-top: 14px; }
+#HTMLReporter .suite a { color: #333333; }
+#HTMLReporter #details .specDetail { margin-bottom: 28px; }
+#HTMLReporter #details .specDetail .description { display: block; color: white; background-color: #b03911; }
+#HTMLReporter .resultMessage { padding-top: 14px; color: #333333; }
+#HTMLReporter .resultMessage span.result { display: block; }
+#HTMLReporter .stackTrace { margin: 5px 0 0 0; max-height: 224px; overflow: auto; 
+    line-height: 18px; color: #666666; border: 1px solid #ddd; background: white; white-space: pre; }
+
+
+.fold-buttons { float: right; }
+.fold-buttons a { color: #fff; font-size: 12px; }
+.fold-buttons { display: none } 
+#HTMLReporter .br { margin-top: 8px; }
+#HTMLReporter .section-starter { font-size: 14px; line-height: 18px }
+#HTMLReporter .summary-section { 
+  cursor: -webkit-zoom-out; cursor: -moz-zoom-out; cursor: zoom-out; 
+  background: #fafafa; 
+  padding: 10px; 
+  border-bottom: #eaeaea 1px solid; }
+#HTMLReporter .summary-section.folded { 
+  cursor: -webkit-zoom-in; cursor: -moz-zoom-in; cursor: zoom-in; 
+  padding-bottom: 8px;
+}
+#HTMLReporter .summary-section.folded div { display: none }
+#HTMLReporter .summary-section.folded div.section-starter { display: block }
+/*#HTMLReporter .summary-section:hover { background: #e9e9e9; }*/
+#HTMLReporter .summary-section:hover { background: #f5f5f5; }
+#HTMLReporter .summary-section-totals { 
+  font-size: 11px;
+  display: none; 
+  margin-left: 11px; 
+  overflow: hidden; 
+  position: relative;
+  top: -1px; 
+}
+#HTMLReporter .summary-section.folded .summary-section-totals { display: inline; }
+#HTMLReporter .summary-section-total { color: #fff; vertical-align: baseline; padding: 1px 8px; }
+#HTMLReporter .summary-section-total.passed { background: #5e7d00;  }
+#HTMLReporter .summary-section-total.failed { background: #b03911;  }
+#HTMLReporter .summary-section-total.skipped { background: #ba9d37;  }
+
+#HTMLReporter { font-size: 12px; line-height: 18px; } /*larget font-size*/
+
+</style>
+</head>
+
+<body id="HTMLReporter" class="html-reporter">
+<h1>Tested in Chrome 131.0.0.0 (Windows 10) on Mon Dec 30 2024</h1>
+
+<div class="alert">
+
+
+
+  
+  <span class="passingAlert bar"><span class="fold-buttons"><a href="#" onclick="fold();">Fold</a> | 
+  <a href="#" onclick="unfold();">Unfold</a></span>212 specs, 0 failed, 0 pending</span>
+  
+
+
+</div>
+<div class="results">
+  <div class="summary">
+  
+  
+  
+  
+  
+    <div class="suite passed">
+      <span class="description">AdicionarCategoriaCOmponent</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should initialize form with default values</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should get the last category ID on init</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should save category when form is valid</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should handle error when saving category fails</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should create</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should close the dialog on cancel</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">ConfirmDialogProductComponent</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should close the dialog with true when onConfirm is called</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should close the dialog with false when onCancel is called</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should create</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should display the correct title and message</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should call onConfirm when the Excluir button is clicked</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should call onCancel when the Cancelar button is clicked</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">AppCardsLojaComponent</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should apply price sorting</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should clear filters</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should apply search and filter</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should navigate to product details</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should create</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should load products on init</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should filter products by category</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should add product to cart</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">ProductService</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should update a product</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should delete a product</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should retrieve a product by id</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should retrieve products from /products2</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should be created</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should handle error response</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should retrieve all products</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should create a new product</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should handle empty response</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">ConfirmDialogComponent</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should close the dialog with true when onConfirm is called</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should close the dialog with false when onCancel is called</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should create</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should display the correct title and message</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have two buttons with correct text</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DashboardPlantService</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should fetch user plants with kits</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should fetch user plants</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should fetch all plants</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should fetch locations by user plant id</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should fetch plant details</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should associate kit to user plant</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should fetch all locations</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should fetch kit by id</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should be created</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should fetch user plants table</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">LocationService</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should fetch locations</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should be created</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should fetch a location by id</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should delete a location</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should fetch kit readings</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should add a location</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should update a location</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">TicketUserService</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should get user tickets</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should create a ticket</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should be created</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">LandingPageService</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should fetch populares products</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should be created</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should fetch novidades products</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should fetch mais vendidos products</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">AdminDashboardService</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should fetch products sold by category</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should fetch monthly sales with parameters</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should fetch monthly sales without parameters</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should fetch plant data by day</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should be created</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should fetch dashboard stats</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">PlantListComponent</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should load locations on init</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should filter plants correctly</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should create</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should load user plants on init</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should toggle description visibility</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">SensorService</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should be created</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return undefined for a non-existent sensor ID</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return a sensor by ID</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return a list of sensors</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">PlantInfoService</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should handle error when fetching plant information</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should fetch plant information</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should be created</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">PlantInfoCardComponent</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should create</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">CartService</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should be created</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should add an item to the cart</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should remove an item from the cart</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should update the quantity of an existing item in the cart</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">NotificationService</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should mark a notification as read via PUT</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should retrieve user notifications from the API via GET</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should retrieve admin notifications from the API via GET</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should be created</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">UserService</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should be created</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should get user details</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should update newsletter subscription</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should handle error when user_id is not found in sessionStorage</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should get user details header</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should be created</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should fetch user details</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should update user details</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">TicketAdminService</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should be created</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should delete a ticket</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should update a ticket</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should fetch tickets</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">CardDetailsComponent</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should create</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should load product details on init</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should not decrease quantity below 1</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should increase quantity</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should decrease quantity</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should add product to cart</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">TicketDetailsComponent</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should create</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have data injected</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should call someMethod</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">BlogUserService</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should fetch a blog post by id</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should be created</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should fetch blog posts</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should add a comment</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">EditProductModalComponent</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should save product</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should create</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should load categories on ngOnInit</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">AppTicketlistComponent</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should update row data</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should apply filter</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should sort table</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should load tickets on init</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should update ticket counts</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should delete row data</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should format date correctly</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should create</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">KitDetailsService</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should fetch kit details</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should handle 404 error</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should be created</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">AppaddplantComponent</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should create</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should add plant to dashboard and show success toast</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should set errorMessage on searchPlant error</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should search for plants and update searchResults on success</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">ToastComponent</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should create</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">CardComponent</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should create</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">ProductaddModalComponent</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should not close the dialog when form is invalid</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should close the dialog without data when close method is called</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should create</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should initialize form with default values</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should add selected file to form</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should close the dialog with form data when form is valid</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">ModalEditCategoriaComponent</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should create</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should handle error on save failure</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should initialize the form with category data</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should close the dialog on cancel</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should call updateCategory and close the dialog on successful save</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">KitService</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should handle error when fetching kits</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should fetch kits successfully</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should be created</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">IdentificarComponent</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should handle geolocation error</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should toggle geolocation</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should get geolocation</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should trigger file input</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should process plant data</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should create</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should handle upload error</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should handle file drop</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should handle file change</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should navigate to store</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">BlogPostService</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should delete a blog post</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should add a new blog post</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should update an existing blog post</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should retrieve a single blog post by id</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should retrieve all blog posts</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should be created</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">ToastService</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should be created</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">QuizService</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should get questions</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should submit answers</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should get results</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should be created</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">KitReadingService</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should be created</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should fetch readings by kit id</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should handle error response</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">AuthService</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should get user data</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should redirect after login</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should set and get redirect URL</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should get user details</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should register a new user</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should logout and clear token</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should be created</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should logout admin and clear token</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should login admin and set token</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should login and set token</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">ServiceProductAdmin</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should be created</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should update a product</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should fetch a product by id</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should fetch a product for update by id</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should fetch categories</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">AppComponent</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should create the app</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have as title 'CultivUA'</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should import RouterOutlet</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">LojaOnlineCarrinhoComponent</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should create</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should not decrease product quantity below 1</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should remove product from cart</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should calculate total correctly</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should calculate IVA correctly</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should calculate subtotal correctly</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should decrease product quantity</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should increase product quantity</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">AppSideLoginComponent</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should create</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should make password control required</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have a form with email and password controls</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should make email control required and validate as email</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">PlantInformacaoService</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should fetch plant data by userPlantId</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should be created</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should update plant image</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should fetch plant by userPlantId</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should fetch plant data by ID</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">UsersPlantsService</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should fetch user plants by userId</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should fetch plant by plantId</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should fetch locations</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should be created</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">PlantService</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should identify plant</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should add plant to dashboard</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should be created</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should search for plants</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should save plant</span>
+      </div>
+    
+    </div>
+  
+  
+</div>
+
+<div id="details">
+  
+</div>
+
+<script>
+
+var folded = false;
+
+document.body.onkeypress = function (e) {
+  if (!e || !e.keyCode) return;
+  switch (e.keyCode) {
+    case 102: toggleFold(); break;
+    case 49: showSummary(); break;
+    
+  }
+};
+
+function showSummary() { document.body.className = "html-reporter showSummary"; }
+function showFailures() { document.body.className = "html-reporter showDetails"; }
+
+function toggleSection(el) {
+  el.className = el.className === 'summary-section' ? 'summary-section folded' : 'summary-section';
+}
+
+function toggleFold() { (folded) ? unfold() : fold(); }
+function fold() {
+  var els = document.querySelectorAll('.summary-section');
+  for (var i = 0; i < els.length; i++) {
+    els[i].className = 'summary-section folded';
+  }
+  folded = true;
+}
+function unfold() {
+  var els = document.querySelectorAll('.summary-section');
+  for (var i = 0; i < els.length; i++) {
+    els[i].className = 'summary-section';
+  }
+  folded = false;
+}
+
+</script>
+
+
+</body>
+</html>
+

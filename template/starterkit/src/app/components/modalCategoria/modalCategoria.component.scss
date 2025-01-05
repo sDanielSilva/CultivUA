@@ -1,0 +1,72 @@
+$primary: #28a745; // Cor verde desejada (substitua pelo valor que preferir)
+@import "~bootstrap/scss/bootstrap";
+
+
+/* Container da imagem para cobrir a parte superior do diálogo */
+.image-preview-container {
+    width: 100%;
+    height: 200px;
+    /* Altura fixa para a imagem */
+    overflow: hidden;
+    /* Esconde as partes que saem da área definida */
+    position: relative;
+}
+
+/* A imagem cobrirá a área definida acima */
+.image-preview {
+    width: 100%;
+    height: 100%;
+    /* Garante que a imagem ocupe toda a altura */
+    object-fit: cover;
+    /* Faz a imagem cobrir a área, mantendo a proporção */
+    object-position: top;
+    /* Coloca a imagem com foco na parte superior */
+}
+
+/* Estilos do diálogo */
+.dialog-title {
+    font-size: 1.5rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+/* Estilos do conteúdo do diálogo */
+.dialog-content {
+    padding: 20px;
+}
+
+/* Espaçamento e estilo dos campos de formulário */
+.form-field {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+/* Botões */
+.image-button {
+    margin-top: 10px;
+    display: inline-block;
+}
+
+.action-button {
+    width: 100px;
+    margin-right: 10px;
+}
+
+.mat-raised-button {
+    text-transform: none;
+    /* Evita que o texto seja transformado em maiúsculas */
+}
+
+.mat-form-field-appearance-fill .mat-form-field-flex {
+    padding: 10px;
+}
+
+/* Estilos de layout */
+mat-dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+.verde {
+    color: #009A3E;
+}

@@ -1,0 +1,35 @@
+.button-container,
+.image-container {
+    display: inline-block;
+    /* Makes the divs appear side by side */
+    width: 5rem;
+    /* Adjust width to make it smaller */
+    height: 5rem;
+    /* Ensure height and width are the same for square shape */
+    position: relative;
+}
+
+.square-button {
+    width: 15px;
+    /* Button takes full width of its container */
+    height: 35px;
+    /* Button takes full height of its container */
+    border-radius: 50%;
+    /* Make the button circular */
+    padding: 0;
+    /* Remove padding to keep it exactly as the container size */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.product-image {
+    width: 15px;
+    /* Image fills the container */
+    height: 15px;
+    /* Image fills the container */
+    object-fit: cover;
+    /* Ensures image covers the div without distortion */
+    border-radius: 50%;
+    /* Makes the image circular */
+}

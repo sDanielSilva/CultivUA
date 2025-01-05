@@ -1,0 +1,125 @@
+/* Estilização Geral */
+.bg-dark {
+    background-color: #e5f5ec !important;
+    position: relative;
+    overflow: hidden;
+    border-radius: 0 120px 0 120px !important;
+}
+
+.section-title2 {
+    color: #333 !important;
+    font-weight: bold;
+    line-height: 1.2;
+}
+
+.verde {
+    color: #28a745; /* Verde mais destacado */
+  }
+
+  span {
+    background-color: transparent !important;
+    color: #28a745 !important;
+}
+
+.banner-title {
+    font-size: 2.75rem; /* Tamanho maior para maior impacto */
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+
+/* Destaque do Switch */
+.highlight-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+    transition: transform 0.2s ease;
+    cursor: pointer; /* Torna o card clicável */
+}
+
+.highlight-card:hover {
+    transform: scale(1.03);
+}
+
+.highlight-text {
+    font-size: 1.1rem;
+    color: #009a3e;
+    font-weight: bold;
+}
+
+/* Estilização do Switch */
+.mat-slide-toggle {
+    pointer-events: none;
+    font-size: 1rem;
+    color: #333;
+    font-weight: bold;
+}
+
+.mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+    background-color: #009a3e;
+}
+
+.mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+    background-color: #fff;
+}
+
+/* Imagem Ajustada */
+.image-wrapper {
+    position: relative;
+    z-index: 1;
+}
+
+.newsletter-img {
+    max-width: 300px;
+    margin: 0 auto;
+    position: relative;
+}
+
+@media (max-width: 992px) and (min-width: 768px) {
+    .newsletter-img {
+        max-width: 200px;
+        margin-left: auto;
+        margin-right: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .newsletter-img {
+        max-width: 150px;
+        margin: 0 auto;
+    }
+    .highlight-card {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+::ng-deep .custom-green-slider .mdc-switch__track {
+    background-color: #4caf50 !important;
+}
+
+::ng-deep .custom-green-slider .mdc-switch__track::after {
+    background-color: #4caf50 !important;
+    transform: translateX(-100%);
+}
+
+::ng-deep .custom-green-slider.mat-checked .mdc-switch__track::after {
+    background-color: #4caf50 !important;
+    transform: translateX(0);
+}
+
+::ng-deep .custom-green-slider .mdc-switch__track,
+::ng-deep .custom-green-slider .mdc-switch__track::after {
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+::ng-deep .custom-green-slider .mdc-switch--selected .mdc-switch__icon {
+    fill: #4caf50 !important;
+}
+
+::ng-deep .custom-green-slider {
+    margin-top: 10px;
+}

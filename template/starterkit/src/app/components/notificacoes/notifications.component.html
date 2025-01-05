@@ -1,0 +1,152 @@
+<div class="row">
+    <div class="col-12">
+        <mat-card class="mat-card-top cardWithShadow position-relative">
+            <mat-sidenav-container
+                class="bg-white"
+                [ngClass]="{
+                    'side-panel-opened': sidePanelOpened,
+                    'side-panel-closed': !sidePanelOpened
+                }"
+                style="min-height: 80vh"
+            >
+                <!-- Sidebar -->
+                <mat-sidenav
+                    #notifnav
+                    right
+                    class="app-left-sidebar"
+                    [mode]="isOver() ? 'over' : 'side'"
+                    [opened]="!isOver()"
+                    (open)="sidePanelOpened = true"
+                    (close)="sidePanelOpened = false"
+                    position="start"
+                >
+                    <mat-toolbar class="bg-white">
+                        <div class="row">
+                            <div class="col-12">
+                                <p class="f-w-500 f-s-18 m-0 mat-subtitle-1">
+                                    Notifications
+                                </p>
+                            </div>
+                        </div>
+                    </mat-toolbar>
+                    <mat-nav-list>
+                        <mat-list-item
+                            (click)="applyFilter('all')"
+                            class="all rounded-0"
+                            [class.bg-light-primary]="
+                                selectedCategory === 'all'
+                            "
+                        >
+                            <div class="d-flex align-items-center">
+                                <span class="mat-subtitle-2">All</span>
+                                <div class="m-l-auto">
+                                    <span
+                                        class="icon-27 bg-primary text-white rounded d-flex align-items-center justify-content-center"
+                                        >{{ notifications.length }}</span
+                                    >
+                                </div>
+                            </div>
+                        </mat-list-item>
+                        <mat-list-item
+                            [class.bg-light-primary]="
+                                selectedCategory === 'unread'
+                            "
+                            class="unread font-normal rounded-0"
+                            (click)="applyFilter('unread')"
+                        >
+                            <div class="d-flex align-items-center">
+                                <span class="mat-subtitle-2">Unread</span>
+                                <div class="m-l-auto">
+                                    <span
+                                        class="icon-27 bg-error text-white rounded d-flex align-items-center justify-content-center"
+                                        >{{ unreadNotifications() }}</span
+                                    >
+                                </div>
+                            </div>
+                        </mat-list-item>
+                        <mat-list-item
+                            [class.bg-light-primary]="
+                                selectedCategory === 'read'
+                            "
+                            class="read font-normal rounded-0"
+                            (click)="applyFilter('read')"
+                        >
+                            <div class="d-flex align-items-center">
+                                <span class="mat-subtitle-2">Read</span>
+                                <div class="m-l-auto">
+                                    <span
+                                        class="icon-27 bg-success text-white rounded d-flex align-items-center justify-content-center"
+                                        >{{
+                                            notifications.length -
+                                                unreadNotifications()
+                                        }}</span
+                                    >
+                                </div>
+                            </div>
+                        </mat-list-item>
+                    </mat-nav-list>
+                </mat-sidenav>
+                <mat-toolbar class="bg-white">
+                    <div class="d-flex align-items-center w-100">
+                        <button
+                            mat-icon-button
+                            (click)="notifnav.toggle()"
+                            class="ml-1 shadow-none"
+                        >
+                            <i-tabler
+                                name="align-left"
+                                class="icon-20"
+                            ></i-tabler>
+                        </button>
+                    </div>
+                </mat-toolbar>
+                <mat-divider></mat-divider>
+                <mat-card-content
+                    class="p-x-0 app-right-sidebar"
+                    style="min-height: 70vh"
+                >
+                    <div class="notifications-container">
+                        <div
+                            class="notification-item"
+                            *ngFor="let notification of filteredNotifications"
+                            [class.read]="notification.is_read"
+                            (click)="handleNotificationClick(notification)"
+                            (mouseover)="notification.hover = true"
+                            (mouseout)="notification.hover = false"
+                        >
+                            <div class="notification-content">
+                                <span
+                                    class="badge"
+                                    [ngClass]="{
+                                        'type-info':
+                                            notification.type ===
+                                            'new_blog_post',
+                                        'type-warning':
+                                            notification.type === 'plant_care',
+                                        'type-error':
+                                            notification.type === 'low_stock',
+                                        'type-success':
+                                            notification.type === 'new_ticket'
+                                    }"
+                                >
+                                    {{ mapNotificationType(notification.type) }}
+                                </span>
+
+                                <!-- Mensagem -->
+                                <p class="notification-message">
+                                    {{ notification.message }}
+                                </p>
+                                <!-- Data -->
+                                <span class="notification-date">
+                                    {{
+                                        notification.created_at | date : "short"
+                                    }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-sidenav-container>
+        </mat-card>
+    </div>
+</div>

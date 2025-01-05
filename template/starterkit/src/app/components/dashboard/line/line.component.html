@@ -1,0 +1,15 @@
+<mat-card class="cardWithShadow theme-card">
+    <mat-card-content class="b-t-1">
+      <apx-chart
+  [series]="mergedOptions.series || []"
+  [chart]="mergedOptions.chart || { type: 'line', height: 300 }"
+  [xaxis]="mergedOptions.xaxis || {}"
+  [yaxis]="mergedOptions.yaxis || {}"
+  [colors]="mergedOptions.colors || []"
+  [stroke]="mergedOptions.stroke || {}"
+  [legend]="mergedOptions.legend || {}"
+  [tooltip]="mergedOptions.tooltip || {}"
+></apx-chart>
+
+    </mat-card-content>
+  </mat-card>

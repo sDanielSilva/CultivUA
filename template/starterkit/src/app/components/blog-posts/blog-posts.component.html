@@ -1,0 +1,316 @@
+<ng-template #spinnerTemplate>
+    <mat-spinner diameter="24" class="custom-spinner"></mat-spinner>
+</ng-template>
+
+<ng-template #loadingPostsTemplate>
+    <div class="d-flex flex-column align-items-center justify-content-center">
+        <mat-spinner diameter="40"></mat-spinner>
+        <p class="text-center">Loading posts...</p>
+    </div>
+</ng-template>
+
+<ng-template #loadingCommentsTemplate>
+    <div class="d-flex flex-column align-items-center justify-content-center">
+        <mat-spinner diameter="40"></mat-spinner>
+        <p class="text-center">Loading comments...</p>
+    </div>
+</ng-template>
+
+<ng-template #successTemplate>
+    <i-tabler name="check" class="icon-24"></i-tabler>
+</ng-template>
+
+<mat-card class="mat-card-top blog-posts-app cardWithShadow full-height" style="border-radius: 15px;">
+    <mat-sidenav-container
+        class="h-100 bg-white"
+        [ngClass]="{
+            'side-panel-opened': sidePanelOpened,
+            'side-panel-closed': !sidePanelOpened
+        }"
+    >
+        <!-- Sidebar do lado esquerdo (Post listagem) -->
+        <mat-sidenav
+            #blogpostslist
+            [mode]="isOver() ? 'over' : 'side'"
+            [opened]="!isOver()"
+            (open)="sidePanelOpened = true"
+            (close)="sidePanelOpened = false"
+            style="width: 290px"
+        >
+            <ng-scrollbar class="position-relative" style="height: 100%">
+                <mat-toolbar class="bg-white">
+                    <div class="row m-t-24">
+                        <div class="col-12">
+                            <mat-form-field
+                                appearance="outline"
+                                class="w-100 hide-hint"
+                            >
+                                <input
+                                    matInput
+                                    type="text"
+                                    [(ngModel)]="searchText"
+                                    (input)="applyFilter()"
+                                    placeholder="Procurar publicações"
+                                />
+                                <mat-icon matSuffix>
+                                    <i-tabler
+                                        name="search"
+                                        class="icon-20"
+                                    ></i-tabler>
+                                </mat-icon>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </mat-toolbar>
+                <h4
+                    class="mat-subtitle-1 f-s-16 f-w-600 p-16 m-t-16 text-center"
+                >
+                    All Posts
+                </h4>
+
+                <mat-nav-list class="p-x-16">
+                    <ng-container *ngIf="loadingPosts; else postsContent">
+                        <ng-container
+                            *ngTemplateOutlet="loadingPostsTemplate"
+                        ></ng-container>
+                    </ng-container>
+
+                    <ng-template #postsContent>
+                        <ng-container
+                            *ngIf="filteredPosts.length > 0; else noPosts"
+                        >
+                            <mat-list-item
+                                *ngFor="
+                                    let post of filteredPosts;
+                                    trackBy: trackByPostId
+                                "
+                                class="blog-post-item rounded m-b-8 bg-light-green"
+                                (click)="onSelectPost(post)"
+                                [class.selected]="post === selectedPost"
+                            >
+                                <span
+                                    class="blog-post-title mat-subtitle-1 f-w-500"
+                                    matListItemTitle
+                                >
+                                    {{ post.title }}
+                                </span>
+                                <div class="d-flex justify-content-between">
+                                    <span class="blog-post-time f-s-12 f-w-500">
+                                        {{ post.created_at | date }}
+                                    </span>
+                                    <span
+                                        (click)="confirmRemovePost(post)"
+                                        class="remove-post"
+                                        matTooltip="Delete"
+                                    >
+                                        <i-tabler
+                                            name="trash"
+                                            class="icon-16"
+                                        ></i-tabler>
+                                    </span>
+                                </div>
+                            </mat-list-item>
+                        </ng-container>
+                    </ng-template>
+
+                    <ng-template #noPosts>
+                        <p class="m-b-0 text-center font-18 font-bold m-t-40">
+                            No posts were found
+                        </p>
+                    </ng-template>
+                </mat-nav-list>
+            </ng-scrollbar>
+        </mat-sidenav>
+        <mat-card-content class="p-24 w-100">
+            <div *ngIf="selectedPost" class="d-flex align-items-center">
+                <h4 class="mat-subtitle-1 f-s-16 f-w-600 m-y-16">
+                    Edit post "{{ selectedPost.title }}"
+                </h4>
+                <button
+                    mat-button
+                    color="warn"
+                    (click)="cancelEdit()"
+                    class="ml-4"
+                >
+                    <mat-icon>cancel</mat-icon> Cancel
+                </button>
+            </div>
+            <div *ngIf="selectedPost">
+                <mat-tab-group [(selectedIndex)]="selectedTabIndex">
+                    <mat-tab label="Content"></mat-tab>
+                    <mat-tab label="Comments" style="color: green;">
+                        <div class="comments-list">
+                            <ng-container *ngIf="loadingComments">
+                                <ng-container
+                                    *ngTemplateOutlet="loadingCommentsTemplate"
+                                ></ng-container>
+                            </ng-container>
+
+                            <ng-container *ngIf="!loadingComments">
+                                <br />
+                                <p
+                                    *ngIf="comments.length === 0"
+                                    class="text-center"
+                                >
+                                No comments for this post.
+                                </p>
+                                <div
+                                    *ngFor="let comment of comments"
+                                    [class.disabled]="comment.isVisible === 0"
+                                    class="bg-light rounded p-24 m-t-24"
+                                >
+                                    <div class="d-flex align-items-center">
+                                        <img
+                                            [src]="
+                                                comment.authorAvatar ||
+                                                '../../../assets/images/profile/user-1.jpg'
+                                            "
+                                            alt="user"
+                                            width="35"
+                                            class="rounded-circle"
+                                        />
+                                        <span class="mat-body-2 f-w-600 m-l-12">
+                                            {{ comment.author }}
+                                        </span>
+                                        <span
+                                            class="m-l-12 f-s-12 d-flex align-items-center"
+                                        >
+                                            <i-tabler
+                                                class="icon-7 op-5 d-flex m-r-4"
+                                                name="circle-filled"
+                                            ></i-tabler>
+                                            {{
+                                                comment.timestamp
+                                                    | date : "short"
+                                            }}
+                                        </span>
+                                    </div>
+                                    <p class="mat-body-1 m-t-16">
+                                        {{ comment.content }}
+                                    </p>
+                                    <button
+                                        mat-button
+                                        color="primary"
+                                        class="btn-with-text m-t-16"
+                                        matTooltip="Ocultar comentário"
+                                        (click)="
+                                            toggleCommentVisibility(comment)
+                                        "
+                                    >
+                                        <i-tabler
+                                            name="{{
+                                                comment.isVisible === 0
+                                                    ? 'eye'
+                                                    : 'eye-off'
+                                            }}"
+                                            class="icon-18"
+                                        ></i-tabler>
+                                        <span>
+                                            {{
+                                                comment.isVisible === 0
+                                                    ? "Show this comment"
+                                                    : "Hide this comment"
+                                            }}
+                                        </span>
+                                    </button>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </mat-tab>
+                </mat-tab-group>
+            </div>
+
+            <h4 class="mat-subtitle-1 f-s-16 f-w-600 m-y-16">
+                {{ selectedPost ? "" : "Add new post" }}
+            </h4>
+
+            <div
+                *ngIf="
+                    (selectedPost && selectedTabIndex === 0) || !selectedPost
+                "
+            >
+                <form [formGroup]="newPostForm">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Title</mat-label>
+                        <input matInput formControlName="title" />
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Description</mat-label>
+                        <textarea
+                            matInput
+                            rows="5"
+                            formControlName="content"
+                        ></textarea>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Category</mat-label>
+                        <mat-select formControlName="categoria_id">
+                            <mat-option
+                                *ngFor="let category of categories"
+                                [value]="category.id"
+                                >{{ category.name }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <!-- Campo de Input de Imagem -->
+                    <div class="file-upload">
+                        <button
+                            mat-stroked-button
+                            color="primary"
+                            class="file-upload-button"
+                            (click)="fileInput.click()"
+                        >
+                        Select an image
+                        </button>
+                        <input
+                            type="file"
+                            #fileInput
+                            (change)="onFileSelected($event)"
+                            accept="image/*"
+                            class="file-input"
+                            hidden
+                        />
+                    </div>
+
+                    <!-- Exibição da pré-visualização da imagem -->
+                    <div *ngIf="imagePreview">
+                        <p class="m-b-0 font-18 font-bold">
+                            Image preview:
+                        </p>
+                        <img
+                            [src]="imagePreview"
+                            alt="Image preview"
+                            class="image-preview"
+                        />
+                    </div>
+
+                    <mat-checkbox formControlName="isHighlighted"
+                        >Highlight this post</mat-checkbox
+                    >
+                </form>
+            </div>
+
+            <div class="actions m-t-16">
+                <button
+                    mat-flat-button
+                    color="primary"
+                    *ngIf="selectedPost && selectedTabIndex === 0"
+                    (click)="savePost()"
+                >
+                    Save
+                </button>
+
+                <button
+                    mat-flat-button
+                    color="primary"
+                    *ngIf="!selectedPost"
+                    (click)="addNewPost()"
+                    [disabled]="newPostForm.invalid"
+                >
+                    Publish
+                </button>
+            </div>
+        </mat-card-content>
+    </mat-sidenav-container>
+</mat-card>

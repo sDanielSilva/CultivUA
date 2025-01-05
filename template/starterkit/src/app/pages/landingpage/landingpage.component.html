@@ -1,0 +1,598 @@
+<mat-sidenav-container>
+    <mat-sidenav-content class="">
+        <!-- ------------------------------------------------------------------
+    Header
+    ------------------------------------------------------------------ -->
+        <!--         <mat-toolbar class="topbar topbar-xl m-auto">
+            <div class="container full-width p-xs-6 justify-content-between">
+                <div class="branding p-x-0">
+                    @if(options.theme === 'light') {
+                    <a href="/">
+                        <img
+                            src="./assets/images/logos/dark-logo.svg"
+                            class="align-middle m-2"
+                            alt="logo"
+                        />
+                    </a>
+                    } @if(options.theme === 'dark') {
+                    <a href="/">
+                        <img
+                            src="./assets/images/logos/light-logo.svg"
+                            class="align-middle m-2"
+                            alt="logo"
+                        />
+                    </a>
+                    }
+                </div>
+
+                <div class="d-none d-lg-flex">
+                    <button
+                        mat-button
+                        class="m-x-8 f-s-16 f-w-500"
+                        (click)="gotoDashboard()"
+                    >
+                        Dashboard
+                    </button>
+                    <button
+                        mat-button
+                        class="m-x-8 f-s-16 f-w-500"
+                        (click)="gotoLoja()"
+                    >
+                        Loja
+                    </button>
+                    <button
+                        mat-button
+                        class="m-x-8 f-s-16 f-w-500"
+                        (click)="gotoQuiz()"
+                    >
+                        Quiz
+                    </button>
+                    <button
+                        mat-button
+                        class="m-x-8 f-s-16 f-w-500"
+                        (click)="gotoBlog()"
+                    >
+                        Blog
+                    </button>
+                    <button
+                        mat-button
+                        class="m-x-8 f-s-16 f-w-500"
+                        (click)="gotoContactos()"
+                    >
+                        Contactos
+                    </button>
+                </div>
+
+                <div class="d-flex align-items-center gap-10">
+                    <a
+                        mat-stroked-button
+                        color="primary"
+                        class="custom-button m-l-10"
+                        >Login</a
+                    >
+                    <a mat-flat-button color="primary" class="m-l-10"
+                        >Register</a
+                    >
+
+                    <button
+                        mat-icon-button
+                        (click)="filterNavRight.toggle()"
+                        class="d-flex d-lg-none"
+                    >
+                        <i-tabler
+                            name="menu-2"
+                            class="icon-20 d-flex"
+                        ></i-tabler>
+                    </button>
+                </div>
+            </div>
+        </mat-toolbar> -->
+
+        <!-- ------------------------------------------------------------------
+   End Header
+    ------------------------------------------------------------------ -->
+
+        <!-- ------------------------------------------------------------------
+    Banner
+    ------------------------------------------------------------------ -->
+        <div class="overflow-hidden banner-section">
+            <div class="row align-items-center">
+                <div class="col-sm-6 left text-center text-sm-start">
+                    <img
+                        src="../../../assets/images/landingpage/Planta.svg"
+                        alt="Plant illustration"
+                        class="plant-image"
+                    />
+                </div>
+                <div class="col-sm-6 right">
+                    <div class="container d-flex align-items-center h-100">
+                        <div class="content-wrapper">
+                            <h1 class="banner-title m-0">
+                                Positive Impact On
+                                <span class="verde">Our Environment!</span>
+                            </h1>
+                            <p class="f-s-18 p-y-24 m-t-12 m-0 banner-subtitle">
+                                Lorem ipsum dolor sit, amet consectetur
+                                adipisicing elit. Alias, recusandae.
+                            </p>
+                            <div class="m-t-24">
+                                <a
+                                    mat-stroked-button
+                                    color="primary"
+                                    class="btn-custom"
+                                    (click)="gotoDashboard()"
+                                    >Dashboard</a
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ------------------------------------------------------------------
+    End Banner
+    ------------------------------------------------------------------ -->
+
+        <!-- ------------------------------------------------------------------
+    Template
+    ------------------------------------------------------------------ -->
+        <div class="spacer bg-white" id="demos">
+            <div class="container">
+                <div class="row align-items-center">
+                    <!-- Seção Esquerda: Título, Descrição e Botão -->
+                    <div class="col-lg-6 col-md-12 text-left content-left">
+                        <h1 class="banner-title m-0">
+                           Our<span class="verde"> Mission</span>
+                        </h1>
+                        <p class="f-s-18 p-y-24 m-t-12 m-0">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga ducimus,
+                            officiis possimus, velit quidem corrupti dicta qui adipisci libero hic
+                            quo tempore consequuntur amet numquam molestias, eveniet dolore
+                            laboriosam magnam!
+                            <a
+                            mat-stroked-button
+                            color="primary"
+                            class="btn-custom"
+                            (click)="gotoContactos()"
+                            >Learn more</a
+                        >
+                        </p>
+                        
+                        <div class="mt-2">
+                    
+                        </div>
+                    </div>
+                    
+
+                    <!-- Seção Direita: Vídeo com cantos arredondados -->
+                    <div class="col-lg-6 col-md-12 text-center">
+                        <div class="video-preview">
+                            <img src="https://wallpapers.com/images/featured/plant-background-mh4y9mexexlv960o.jpg" class="video-preview-image" alt="Video Preview">
+                            <div class="video-overlay">
+                                <div class="play-button">
+                                    <span>&#9654;</span> <!-- Símbolo de play -->
+                                </div>
+                            </div>
+                            <video class="w-100 rounded-video" controls>
+                                <source src="../../../assets/images/landingpage/Missao.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+
+                <div class="spacer"></div>
+
+                <div class="row">
+                    <!-- Card 1 -->
+                    <div class="col-lg-3 col-sm-6">
+                        <mat-card class="p-24 text-center">
+                            <div class="d-flex flex-column align-items-center justify-content-center">
+                                <div class="text-center mb-3" style="min-height: 70px;">
+                                    <!-- Ícone acima do título -->
+                                    <mat-icon class="mat-icon-large" style="font-size: 60px; color: #4CAF50;">local_shipping</mat-icon>
+                                </div>
+                                <h4 class="mat-subtitle-2 f-s-20 f-w-400 m-t-8">
+                                    Free Delivery
+                                </h4>
+                            </div>
+                        </mat-card>
+                    </div>
+                
+                    <!-- Card 2 -->
+                    <div class="col-lg-3 col-sm-6">
+                        <mat-card class="cardWithShadow text-center p-24">
+                            <div class="d-flex flex-column align-items-center justify-content-center">
+                                <div class="text-center mb-3" style="min-height: 70px;">
+                                    <!-- Ícone acima do título -->
+                                    <mat-icon class="mat-icon-large" style="font-size: 60px; color: #4CAF50;">credit_card</mat-icon>
+                                </div>
+                                <h4 class="mat-subtitle-2 f-s-20 f-w-400 m-t-8">
+                                    Secure Payment
+                                </h4>
+                            </div>
+                        </mat-card>
+                    </div>
+                
+                    <!-- Card 3 -->
+                    <div class="col-lg-3 col-sm-6">
+                        <mat-card class="cardWithShadow text-center p-24">
+                            <div class="d-flex flex-column align-items-center justify-content-center">
+                                <div class="text-center mb-3" style="min-height: 70px;">
+                                    <!-- Ícone acima do título -->
+                                    <mat-icon class="mat-icon-large" style="font-size: 60px; color: #4CAF50;">support_agent</mat-icon>
+                                </div>
+                                <h4 class="mat-subtitle-2 f-s-20 f-w-400 m-t-8">
+                                    Support
+                                </h4>
+                            </div>
+                        </mat-card>
+                    </div>
+                
+                    <!-- Card 4 -->
+                    <div class="col-lg-3 col-sm-6">
+                        <mat-card class="cardWithShadow text-center p-24">
+                            <div class="d-flex flex-column align-items-center justify-content-center">
+                                <div class="text-center mb-3" style="min-height: 70px;">
+                                    <!-- Ícone acima do título -->
+                                    <mat-icon class="mat-icon-large" style="font-size: 60px; color: #4CAF50;">autorenew</mat-icon>
+                                </div>
+                                <h4 class="mat-subtitle-2 f-s-20 f-w-400 m-t-8">
+                                    Returns
+                                </h4>
+                            </div>
+                        </mat-card>
+                    </div>
+                </div>
+                
+                
+
+                <div class="spacer"></div>
+                <div class="text-center">
+                    <h1 class="banner-title m-0">
+                        Here is How<span class="verde"> It Works</span>
+                    </h1>
+                    <br><br>
+                </div>
+                <div class="row">
+                    <!-- Card 1 -->
+                    <div class="col-lg-3 col-sm-6">
+                        <mat-card class="cardWithShadow text-center p-24">
+                            <div
+                                class="d-flex flex-column align-items-center justify-content-center"
+                            >
+                                <div class="text-center mb-3">
+                                    <!-- Imagem acima do título -->
+                                    <img
+                                        src="../../../assets/images/landingpage/leaf.svg"
+                                        alt="Escolha uma planta"
+                                        class="img-fluid"
+                                        width="50"
+                                    />
+                                </div>
+                                <h4 class="mat-subtitle-2 f-s-20 f-w-400 m-t-8">
+                                    Choose a plant
+                                </h4>
+                            </div>
+                        </mat-card>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="col-lg-3 col-sm-6">
+                        <mat-card class="cardWithShadow text-center p-24">
+                            <div
+                                class="d-flex flex-column align-items-center justify-content-center"
+                            >
+                                <div class="text-center mb-3">
+                                    <!-- Imagem acima do título -->
+                                    <img
+                                        src="../../../assets/images/landingpage/vase.svg"
+                                        alt="Escolha a cor do vaso"
+                                        class="img-fluid"
+                                        width="50"
+                                    />
+                                </div>
+                                <h4 class="mat-subtitle-2 f-s-20 f-w-400 m-t-8">
+                                    Choose a pot
+                                </h4>
+                            </div>
+                        </mat-card>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="col-lg-3 col-sm-6">
+                        <mat-card class="cardWithShadow text-center p-24">
+                            <div
+                                class="d-flex flex-column align-items-center justify-content-center"
+                            >
+                                <div class="text-center mb-3">
+                                    <!-- Imagem acima do título -->
+                                    <img
+                                        src="../../../assets/images/landingpage/box.svg"
+                                        alt="Planta é enviada"
+                                        class="img-fluid"
+                                        width="50"
+                                    />
+                                </div>
+                                <h4 class="mat-subtitle-2 f-s-20 f-w-400 m-t-8">
+                                    Plant is shipped
+                                </h4>
+                            </div>
+                        </mat-card>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="col-lg-3 col-sm-6">
+                        <mat-card class="cardWithShadow text-center p-24">
+                            <div
+                                class="d-flex flex-column align-items-center justify-content-center"
+                            >
+                                <div class="text-center mb-3">
+                                    <!-- Imagem acima do título -->
+                                    <img
+                                        src="../../../assets/images/landingpage/watering.svg"
+                                        alt="Monitorize a evolução"
+                                        class="img-fluid"
+                                        width="50"
+                                    />
+                                </div>
+                                <h4 class="mat-subtitle-2 f-s-20 f-w-400 m-t-8">
+                                    See the progress
+                                </h4>
+                            </div>
+                        </mat-card>
+                    </div>
+                </div>
+
+                <div class="spacer"></div>
+
+               
+                <!-- demos and apps -->
+                <div class="text-center">
+                    <h1 class="banner-title m-0">
+                        Our<span class="verde"> Products</span>
+                    </h1>
+                  </div>
+                  
+                  <div class="d-flex justify-content-center button-container">
+                    <a
+                      mat-stroked-button
+                      color="primary"
+                      class="m-l-10"
+                      [ngClass]="{ 'selected-button': selectedButton === 'populares' }"
+                      (click)="selectButton('populares')"
+                      >Trending</a
+                    >
+                    <a
+                      mat-stroked-button
+                      color="primary"
+                      class="custom-button m-l-10"
+                      [ngClass]="{ 'selected-button': selectedButton === 'novidades' }"
+                      (click)="selectButton('novidades')"
+                      >Arrivals</a
+                    >
+                    <a
+                      mat-stroked-button
+                      color="primary"
+                      class="custom-button m-l-10"
+                      [ngClass]="{ 'selected-button': selectedButton === 'mais-vendidos' }"
+                      (click)="selectButton('mais-vendidos')"
+                      >Best Sellers</a
+                    >
+                  </div>
+                  <br />
+                  
+                  <div *ngIf="isLoading" class="loading-container">
+                    <mat-spinner></mat-spinner>
+                  </div>
+
+                <div class="row m-t-24 justify-content-center" *ngIf="!isLoading">
+                    <div *ngFor="let product of products" class="col-lg-3 col-sm-6 m-b-16">
+                        <div class="demos-card overflow-hidden">
+                            <div class="bg-light-primary p-16 p-b-0">
+                                <div class="img-overlay overflow-hidden">
+                                    <img 
+                                    [src]="product.imagem" 
+                                    [alt]="product.name"  
+                                    class="w-100 p-b-16 cover-image"
+                                    onerror="this.onerror=null; this.src='https://wbco.sa/storage/images/documents/_res/wrh/def_product.png'"
+                                  />
+                                  
+                                    <div class="overlay-content">
+                                        <a mat-flat-button color="primary" [routerLink]="'/loja-online'">
+                                           Go to Store
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-16">
+                                <span class="f-s-16 d-block f-w-500">{{ product.name }}</span>
+                                <span class="f-s-14 d-block m-t-8">{{ product.price }} €</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="text-center m-t-30 m-b-32">
+
+                    <span
+                        class="bg-primary p-8 rounded-pill text-white f-w-600 p-x-10"
+                    >
+                        Apps
+                    </span>
+                </div>
+
+                <div class="row justify-content-center">
+                    @for(app of appdemos; track app.name) {
+                    <div class="col-lg-4 col-sm-6 m-t-16">
+                        <div>
+                            <div class="demos-card overflow-hidden">
+                                <div class="bg-light-primary p-16 p-b-0">
+                                    <div class="img-overlay">
+                                        <img
+                                            [src]="app.imgSrc"
+                                            alt="app"
+                                            class="w-100"
+                                        />
+                                        <div class="overlay-content">
+                                            <a
+                                                href="{{ app.url }}"
+                                                target="_blank"
+                                                mat-flat-button
+                                                color="primary"
+                                            >
+                                                Live preview
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="p-16">
+                                    <span class="f-s-16 d-block f-w-500">{{
+                                        app.name
+                                    }}</span>
+                                    <span class="f-s-14 d-block m-t-8">{{
+                                        app.subtext
+                                    }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    }
+                </div>-->
+
+                <!-- ------------------------------------------------------------------
+    End Template
+    ------------------------------------------------------------------ -->
+
+                <!-- ------------------------------------------------------------------
+    Features
+    ------------------------------------------------------------------ -->
+                <!-- <div class="spacer">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6 col-sm-8">
+                        <span class="d-block text-center f-w-500 f-s-16"
+                            >Almost Covered Everything</span
+                        >
+                        <h2 class="section-title text-center m-t-16">
+                            Other Amazing Features & Flexibility Provided
+                        </h2>
+                    </div>
+                </div>
+
+                <div class="row m-t-24">
+                    @for(feature of features; track feature.title) {
+                    <div class="col-sm-6 col-lg-3">
+                        <mat-card class="cardWithShadow">
+                            <mat-card-content>
+                                <span
+                                    class="icon-50 bg-light-{{
+                                        feature.color
+                                    }} rounded d-flex align-items-center justify-content-center"
+                                >
+                                    <i-tabler
+                                        [name]="feature.icon"
+                                        class="text-{{ feature.color }} icon-30"
+                                    ></i-tabler>
+                                </span>
+                                <h6 class="m-0 f-s-18 f-w-600 m-b-8 m-t-24">
+                                    {{ feature.title }}
+                                </h6>
+                                <span class="f-s-14 m-b-24 d-block lh-base">{{
+                                    feature.subtext
+                                }}</span>
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                    }
+                </div>
+            </div>
+        </div>-->
+
+                <!-- ------------------------------------------------------------------
+    End Features
+    ------------------------------------------------------------------ -->
+
+                <!-- ------------------------------------------------------------------
+    Testimonial
+    ------------------------------------------------------------------ -->
+
+                <br><br><div class="text-center mt-2">
+                    <h1 class="banner-title m-0">
+                        What Our<span class="verde"> Customers</span> Say
+                    </h1>
+                </div>
+
+                <div class="container">
+                    <div class="row m-t-24">
+                        <div
+                            class="col-lg-4 col-md-6 col-sm-12"
+                            *ngFor="let testimonial of testimonials"
+                        >
+                            <div class="p-24">
+                                <div
+                                    class="d-flex align-items-center justify-content-center"
+                                >
+                                    <i-tabler
+                                        *ngFor="
+                                            let star of [].constructor(
+                                                testimonial.rating
+                                            );
+                                            let i = index
+                                        "
+                                        name="star-filled"
+                                        class="fill-warning icon-26"
+                                        [ngClass]="{ 'm-l-4': i > 0 }"
+                                    ></i-tabler>
+                                </div>
+
+                                <p
+                                    class="m-t-24 review-subtext text-center f-w-500"
+                                >
+                                    {{ testimonial.text }}
+                                </p>
+
+                                <div
+                                    class="d-flex align-items-center justify-content-center m-t-24"
+                                >
+                                    <img
+                                        [src]="testimonial.image"
+                                        alt="profile"
+                                        class="rounded-circle"
+                                        width="64"
+                                    />
+                                    <div class="m-l-12">
+                                        <h6
+                                            class="mat-subtitle-1 f-s-16 f-w-600"
+                                        >
+                                            {{ testimonial.name }}
+                                        </h6>
+                                        <span class="f-s-14">{{
+                                            testimonial.position
+                                        }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <br />
+
+                <div class="spacer"></div>
+                <!-- ------------------------------------------------------------------
+    End Testimonial
+    ------------------------------------------------------------------ -->
+                <div id="newsletter-section"></div>
+                <app-newsletter></app-newsletter>
+            </div>
+        </div>
+
+        
+    </mat-sidenav-content>
+
+    <!-- ------------------------------------------------------------------
+    Mobile Sidebar
+    ------------------------------------------------------------------ -->
+</mat-sidenav-container>

@@ -1,0 +1,20 @@
+<div class="carregar">
+<mat-spinner *ngIf="isLoading" diameter="50"></mat-spinner>
+</div>
+<!-- Boas-vindas -->
+<mat-card class="cardWithShadow" *ngIf="!isLoading">
+  <mat-card-content>
+    <mat-card-title>Welcome back, <b>{{ username || 'User' }}!</b></mat-card-title>
+    <mat-card-subtitle class="calendar-text">
+      <mat-icon class="calendar-icon">calendar_today</mat-icon> {{ todayDate }}
+    </mat-card-subtitle>
+  </mat-card-content>
+</mat-card>
+
+<!-- Mostrar o card apenas se o utilizador não tiver plantas -->
+<app-card *ngIf="!hasPlants && !isLoading"></app-card>
+
+<!-- Mostrar a lista de plantas apenas se o utilizador tiver plantas -->
+<app-plant-list *ngIf="hasPlants && !isLoading"></app-plant-list>
+
+<app-faq *ngIf="!isLoading"></app-faq>

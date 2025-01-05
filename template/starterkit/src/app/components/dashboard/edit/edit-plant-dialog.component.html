@@ -1,0 +1,101 @@
+<mat-dialog-content class="dialog-content">
+    <!-- Preview da imagem -->
+    <div class="image-preview-container" *ngIf="image">
+        <img [src]="image" alt="Pré-visualização da imagem" class="image-preview">
+    </div>
+
+    <!-- Imagem input -->
+    <div mat-form-field class="form-field">
+        <button mat-raised-button style="background-color: green; color: white;" (click)="fileInput.click()" class="image-button">
+            Choose Image
+        </button>
+        <input #fileInput type="file" (change)="onImageChange($event)" style="display: none;">
+    </div>
+
+    <!-- Nome input -->
+    <mat-form-field class="form-field" appearance="fill">
+        <mat-label>Name</mat-label>
+        <input matInput [(ngModel)]="name" placeholder="Plant Name" required>
+    </mat-form-field>
+
+    <!-- Localização dropdown -->
+    <mat-form-field class="form-field" appearance="fill">
+        <mat-label>Location</mat-label>
+        <mat-select [(ngModel)]="locationId" placeholder="Choose Location">
+            <mat-option *ngFor="let location of locations" [value]="location.id">
+            {{ location.name }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions class="dialog-actions">
+    <button mat-button (click)="onCancel()" color="warn" class="action-button">Cancel</button>
+    <button mat-button (click)="onSave()" [disabled]="!name" style="background-color: green; color: white;" class="action-button">Save</button>
+</mat-dialog-actions>
+
+<style>
+
+/* Container da imagem para cobrir a parte superior do diálogo */
+.image-preview-container {
+    width: 100%;
+    height: 200px; /* Altura fixa para a imagem */
+    overflow: hidden; /* Esconde as partes que saem da área definida */
+    position: relative;
+}
+
+/* A imagem cobrirá a área definida acima */
+.image-preview {
+    width: 100%;
+    height: 100%; /* Garante que a imagem ocupe toda a altura */
+    object-fit: cover; /* Faz a imagem cobrir a área, mantendo a proporção */
+    object-position: top; /* Coloca a imagem com foco na parte superior */
+}
+
+    /* Estilos do diálogo */
+.dialog-title {
+    font-size: 1.5rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+/* Estilos do conteúdo do diálogo */
+.dialog-content {
+    padding: 20px;
+}
+
+/* Espaçamento e estilo dos campos de formulário */
+.form-field {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+/* Botões */
+.image-button {
+    margin-top: 10px;
+    display: inline-block;
+}
+
+.action-button {
+    width: 100px;
+    margin-right: 10px;
+}
+
+.mat-raised-button {
+    text-transform: none; /* Evita que o texto seja transformado em maiúsculas */
+}
+
+.mat-form-field-appearance-fill .mat-form-field-flex {
+    padding: 10px;
+}
+
+/* Estilos de layout */
+mat-dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+
+
+</style>

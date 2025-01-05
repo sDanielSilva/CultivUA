@@ -1,0 +1,110 @@
+.todo-item {
+    position: relative;
+    .edit-view {
+        position: absolute;
+        left: 0;
+        background: #fff;
+        width: 100%;
+        top: 20px;
+        padding: 0 13px;
+    }
+}
+
+.app-left-sidebar {
+    &.mat-sidenav {
+        width: 240px;
+    }
+}
+
+.app-right-sidebar {
+    padding: 0 !important;
+}
+
+/* Container principal */
+.notifications-container {
+    padding: 1rem;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Item de notificação */
+.notification-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    background-color: white;
+    border-radius: 8px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+    border: 1px solid #e0e0e0;
+}
+
+.notification-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+}
+
+/* Estilo quando lida */
+.notification-item.read {
+    opacity: 0.6;
+}
+
+/* Conteúdo da notificação */
+.notification-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+/* Tipo (badge) */
+.badge {
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 0.4rem 0.8rem;
+    border-radius: 12px;
+    margin-right: 1rem;
+    text-transform: capitalize;
+    color: white;
+    display: inline-block;
+}
+
+/* Estilos para diferentes tipos de notificações */
+.type-info {
+  background-color: #d0ebff; /* Azul pastel */
+  color: #084c61; /* Azul escuro para contraste */
+}
+
+.type-warning {
+  background-color: #fff4cc; /* Amarelo pastel */
+  color: #735c00; /* Amarelo escuro para contraste */
+}
+
+.type-error {
+  background-color: #ffd6d6; /* Vermelho pastel */
+  color: #780000; /* Vermelho escuro para contraste */
+}
+
+.type-success {
+  background-color: #d6f8d6; /* Verde pastel */
+  color: #1c451c; /* Verde escuro para contraste */
+}
+
+/* Mensagem */
+.notification-message {
+    font-size: 1rem;
+    color: #333;
+    flex: 1;
+    margin: 0;
+}
+
+/* Data */
+.notification-date {
+    font-size: 0.85rem;
+    color: #888;
+    white-space: nowrap;
+}

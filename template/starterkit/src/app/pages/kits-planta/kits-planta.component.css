@@ -1,0 +1,392 @@
+/* Layout Moderno */
+body {
+    font-family: "Poppins", sans-serif;
+    background-color: #f9f9f9;
+    color: #ffffff;
+}
+
+.card-title {
+    font-weight: 600;
+}
+
+.custom-card {
+    background: linear-gradient(135deg, #ffffff, #f7f9fc);
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.custom-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card-body {
+    padding: 1.2rem;
+    background-color: #009a3e;
+    border-radius: 12px;
+}
+
+.card i {
+    font-size: 2.5rem;
+    color: #ffffff;
+}
+
+.card p {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.card p small {
+    color: #ffffff !important;
+}
+
+.row {
+    gap: 1.5rem;
+}
+
+.col-md-4,
+.col-md-6 {
+    max-width: 100%;
+    flex: 1 1 calc(33.333% - 1.5rem);
+}
+
+
+.check-icon {
+    color: green;
+}
+
+.cancel-icon {
+    color: red;
+}
+
+@media (max-width: 768px) {
+    .col-md-4,
+    .col-md-6 {
+        flex: 1 1 100%;
+    }
+}
+.carregar {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    width: 100px;
+    height: 100px;
+}
+.mat-expansion-panel {
+    margin-bottom: 16px; /* Dá um espaçamento de 16px entre cada painel */
+}
+
+.plant-guides mat-expansion-panel-header {
+    background-color: #f1f1f1;
+}
+
+.plant-guides mat-panel-title {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.plant-guides mat-icon {
+    margin-right: 8px;
+}
+
+mat-tab-group {
+    height: auto; /* Deixe o tamanho das abas se ajustar automaticamente */
+    overflow-y: auto;
+    overflow-x: none;
+    margin-bottom: 40px;
+}
+
+.desativarx {
+    overflow-x: hidden;
+}
+
+header {
+    margin-top: 40px; /* Espaço entre as tabs e o conteúdo abaixo delas */
+}
+.map-button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    border-radius: 4px;
+}
+
+.map-button:hover {
+    background-color: #45a049;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.plant-details {
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.plant-header {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.plant-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #4caf50;
+}
+
+.plant-title h1 {
+    font-size: 2.2em;
+    margin: 0;
+    color: #4caf50;
+}
+
+.plant-title h2 {
+    font-size: 1.2em;
+    margin: 0;
+    color: #757575;
+}
+
+h3 {
+    font-size: 1.5em;
+    color: #4caf50;
+    margin-bottom: 15px;
+}
+
+
+mat-icon[ng-reflect-message="cancel"] {
+    color: #f44336;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    font-size: 1em;
+}
+
+ul li mat-icon {
+    font-size: 1.5rem;
+}
+
+.check-icon {
+    color: #4caf50;
+}
+
+.cancel-icon {
+    color: #f44336;
+}
+/* kits-planta.component.scss */
+
+/* A importar a fonte do Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+/* Aplicando a fonte no corpo do componente */
+:host {
+    font-family: "Poppins", sans-serif;
+}
+
+/* Estilos adicionais */
+.plant-details {
+    font-family: "Poppins", sans-serif;
+    margin-bottom: 100px;
+    width: 100% !important;
+    /* Outros estilos */
+}
+
+.card-verde {
+    background-color: #4caf50; /* Verde claro */
+    border-color: green;
+    color: white !important;
+}
+
+.card-amarelo {
+    background-color: #ffeb3b; /* Amarelo intenso, mas não irritante */
+    border-color: #fbc02d; /* Amarelo dourado mais forte para a borda */
+    color: black !important; /* Cor do texto principal */
+}
+
+.card-amarelo p,
+.card-amarelo small {
+    color: black !important; /* Garante que o texto dentro de <p> e <small> seja preto */
+}
+
+
+
+
+.card-laranja {
+    background-color: orangered; /* Laranja claro */
+    border-color: rgb(205, 55, 0);
+    color: white !important;
+}
+::ng-deep .mat-calendar {
+    font-size: 0.9rem; /* Ajuste do tamanho da fonte */
+    transform: none; /* Retirando a escala anterior */
+}
+
+::ng-deep .mat-calendar-body-cell {
+    height: 2.5rem;
+    width: 2.5rem;
+}
+
+::ng-deep .mat-calendar-body-cell.watered {
+    background-color: #4caf50 !important;
+    color: white !important;
+    border-radius: 50%;
+    background-size: 50%; /* A cor verde ocupará 50% da célula */
+    background-position: center;
+}
+
+::ng-deep .mat-calendar-body-cell.next-watering {
+    background-color: #ffeb3b !important;
+    color: black !important;
+    border-radius: 50%;
+    background-size: 50%; /* A cor amarela ocupará 50% da célula */
+    background-position: center;
+}
+
+::ng-deep .mat-calendar-body-cell-disabled {
+    pointer-events: none;
+}
+
+.watering-guide {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.watering-actions {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 100%;
+    size: 2rem;
+    text-align: right; /* Alinhando à direita */
+    margin-right: 15px;
+}
+
+.calendar-legend {
+    display: flex;
+    justify-content: flex-start; /* Alinhando as legendas à esquerda */
+    gap: 20px;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.legend-color {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+}
+
+.green {
+    background-color: #4caf50;
+}
+
+.yellow {
+    background-color: #ffeb3b;
+}
+
+mat-calendar {
+    width: 400px;  /* Definindo uma largura maior para o calendário */
+    height: 500px; /* Definindo uma altura maior para o calendário */
+    max-width: none; /* Desfaz a limitação de largura máxima */
+    max-height: none; /* Desfaz a limitação de altura máxima */
+    margin: 0 auto; /* Centraliza o calendário horizontalmente */
+    display: block; /* Garante que o calendário seja tratado como um bloco */
+    margin-top: 20px; /* Espaço de 20px acima do calendário */
+}
+
+.watering-guide {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.calendar-legend {
+    display: flex;
+    flex-direction: column; /* Coloca a legenda em coluna */
+    gap: 10px; /* Espaçamento entre os itens da legenda */
+    align-self: flex-start; /* Alinha a legenda à esquerda */
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.legend-color {
+    width: 12px;
+    height: 12px;
+    display: inline-block;
+    border-radius: 50%;
+}
+
+.watering-button {
+    width: 180px; /* Define uma largura fixa para o botão */
+    max-width: 100%; /* Responsivo, não ultrapassa a largura do contêiner */
+    margin-top: 20px; /* Espaço de 20px abaixo do calendário */
+    align-self: center; /* Centraliza o botão */
+}
+
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+}
+
+td {
+    padding: 0.8rem 0.5rem;
+    vertical-align: middle;
+}
+
+td:first-child {
+    width: 40%;
+    text-align: left;
+}
+
+td:last-child {
+    width: 60%;
+    text-align: left;
+}
+
+mat-icon {
+    vertical-align: middle;
+    margin-right: 0.5rem;
+    font-size: 1.5rem;
+}

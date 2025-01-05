@@ -1,0 +1,12 @@
+<div class="d-flex align-items-center justify-content-between">
+    <app-branding></app-branding>
+
+    @if(showToggle) {
+    <a
+        href="javascript:void(0)"
+        (click)="toggleMobileNav.emit()"
+        class="d-flex justify-content-center ng-star-inserted icon-40 align-items-center mat-body-1"
+    >
+    </a>
+    }
+</div>

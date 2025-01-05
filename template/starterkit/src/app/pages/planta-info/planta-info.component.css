@@ -1,0 +1,156 @@
+.card {
+    background-color: #E5F5EC;
+    border: 1px solid #E5F5EC;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+}
+
+.rounded-circle {
+    border: 2px solid #d1e7dd;
+    margin-right: 20px;
+}
+
+.text-container {
+    padding-left: 2px;
+}
+
+h5 {
+    margin-bottom: 0;
+    font-size: 1.25rem;
+    line-height: 1.2;
+}
+
+small {
+    display: block;
+    margin-top: 0.2rem;
+    font-size: 0.9rem;
+    color: #6c757d;
+    line-height: 1.1;
+}
+
+hr {
+    margin: 1rem 0;
+    border: 0;
+    border-top: 1px solid #e9ecef;
+}
+
+button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+}
+
+.custom-button {
+    width: 50px;
+    height: 50px;
+    background-color: #013220;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin-left: 10px;
+}
+
+.custom-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+}
+
+.custom-button:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.data-card {
+    padding: 1rem;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.data-card i {
+    font-size: 2rem;
+    color: #6c757d;
+    margin-bottom: 0.5rem;
+}
+
+.harvest, .temperature, .humidity, .sunlight, .watering, .kits {
+    background-color: #CEE1D7;
+}
+
+.kits-button {
+    width: 200px;
+    background-color: #013220;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin-left: 10px
+}
+
+.kits-button i {
+    margin-right: 10px;
+}
+
+.kits-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+}
+
+.kits-button:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.position-relative {
+    position: relative;
+    display: inline-block;
+}
+
+.edit-icon {
+    position: absolute;
+    top: 10px; /* Ajuste para alinhar o ícone */
+    right: 20px;
+    font-size: 1rem;
+    color: #013220;
+    cursor: pointer;
+    background-color: #CEE1D7;
+    border-radius: 20%;
+    padding: 5px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.edit-icon:hover {
+    transform: scale(1.2);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+.edit-input {
+    width: 100%;
+    padding: 5px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .edit-input:focus {
+    outline: none;
+    border-color: #4CAF50; /* Exemplo de borda quando o campo está focado */
+  }
+  

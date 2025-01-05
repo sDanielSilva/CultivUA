@@ -1,0 +1,84 @@
+<mat-card class="cardWithShadow">
+    <mat-card-content class="p-24">
+        <form [formGroup]="addForm">
+            <div class="row m-b-24">
+                <div class="col-sm-4 d-flex align-items-center">
+                    <h4 class="mat-subtitle-2 f-s-18 f-w-600">
+                        #{{ category?.id }}
+                    </h4>
+                </div>
+                <div class="col-sm-8 text-right">
+                    <a
+                        routerLink="/categoriaAdmin"
+                        mat-stroked-button
+                        color="warn"
+                        class="m-r-10"
+                    >
+                        Cancel
+                    </a>
+                    <button
+                        mat-flat-button
+                        color="primary"
+                        (click)="$event.preventDefault(); saveDetail()"
+                        [disabled]="isSaving"
+                    >
+                        Save Category
+                    </button>
+                </div>
+            </div>
+
+            <mat-divider></mat-divider>
+
+            <!-- Mostrar o spinner enquanto estiver carregando -->
+            <div *ngIf="isSaving" class="spinner-container">
+                <mat-spinner color="primary"></mat-spinner>
+                <div class="loading-message">Saving...</div>
+            </div>
+
+            <div class="table-responsive" *ngIf="!isSaving">
+                <table class="table table-hover b-1 no-wrap w-100 rounded">
+                    <thead>
+                        <tr>
+                            <th class="p-16">Category Name</th>
+                            <th class="p-16">Store</th>
+                            <th class="p-16">Blog</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="p-16">
+                                <mat-form-field
+                                    appearance="outline"
+                                    class="w-100 hide-hint"
+                                >
+                                    <input
+                                        matInput
+                                        type="text"
+                                        placeholder="Nome da Categoria"
+                                        formControlName="name"
+                                    />
+                                </mat-form-field>
+                            </td>
+                            <td class="p-16 text-center">
+                                <mat-checkbox
+                                    formControlName="show"
+                                    color="primary"
+                                >
+                                  Visible
+                                </mat-checkbox>
+                            </td>
+                            <td class="p-16 text-center">
+                                <mat-checkbox
+                                    formControlName="blog"
+                                    color="primary"
+                                >
+                                  Visible
+                                </mat-checkbox>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>

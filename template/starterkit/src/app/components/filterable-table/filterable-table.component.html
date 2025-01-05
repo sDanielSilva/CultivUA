@@ -1,0 +1,65 @@
+<mat-card class="cardWithShadow">
+    <mat-card-content class="p-24">
+        <div *ngIf="loading" class="spinner-container">
+            <mat-spinner></mat-spinner>
+        </div>
+
+        <div *ngIf="!loading" class="content-container">
+            <div class="row justify-content-between m-b-8">
+                <div class="col-sm-4 col-lg-4">
+                    <mat-card-title>Purchase History</mat-card-title>
+                    <mat-card-subtitle class="mat-body-1">
+                        Check your purchases
+                    </mat-card-subtitle>
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                    <mat-form-field
+                        appearance="outline"
+                        class="w-100 hide-hint"
+                    >
+                        <input
+                            matInput
+                            (keyup)="applyFilter($event)"
+                            placeholder="Search"
+                            #input
+                        />
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="table-responsive m-t-30">
+                <table mat-table [dataSource]="dataSource" class="w-100">
+                    <ng-container matColumnDef="created_at">
+                        <th mat-header-cell *matHeaderCellDef>Date</th>
+                        <td mat-cell *matCellDef="let element">
+                            {{ element.created_at | date }}
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="total_amount">
+                        <th mat-header-cell *matHeaderCellDef>Total</th>
+                        <td mat-cell *matCellDef="let element">
+                            {{ element.total_amount | currency : "EUR" }}
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="products">
+                        <th mat-header-cell *matHeaderCellDef>Products</th>
+                        <td mat-cell *matCellDef="let element">
+                            {{
+                                element.products_summary ||
+                                    "No products found"
+                            }}
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr
+                        mat-row
+                        *matRowDef="let row; columns: displayedColumns"
+                    ></tr>
+                </table>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>

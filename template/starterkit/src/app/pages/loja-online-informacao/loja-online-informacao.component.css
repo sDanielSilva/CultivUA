@@ -1,0 +1,152 @@
+.checkout-container {
+    background-color: #E5F5EC;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+}
+
+h2 {
+    font-size: 2.5em;
+    color: #4CAF50;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.checkout-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input-group {
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+label {
+    display: block;
+    font-size: 1.2em;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #333;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    font-size: 1.1em;
+    border: 1px solid #ccc;
+    border-radius: 5px; /* Arredondamento dos quatro cantos */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.postal-code input {
+    width: 120px;
+    text-align: center;
+    border-radius: 5px; /* Arredondamento de ambos os lados dos inputs */
+}
+
+
+
+
+input:focus {
+    border-color: #4CAF50;
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.2);
+    outline: none;
+}
+
+.postal-code {
+    padding-left: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.postal-code input {
+    width: 120px;
+    text-align: center;
+    font-size: 1.1em;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    width: 100%;
+}
+
+button {
+    padding: 14px 28px;
+    font-size: 1.2em;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    width: 45%;
+}
+
+.back-button {
+    background-color: #ccc;
+    color: white;
+    border: none;
+}
+
+.back-button:hover {
+    background-color: #999;
+    transform: scale(1.05);
+}
+
+.continue-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+}
+
+.continue-button:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .checkout-container {
+        padding: 25px;
+    }
+
+    h2 {
+        font-size: 2.2em;
+    }
+
+    input {
+        font-size: 1em;
+    }
+
+    .buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .buttons button {
+        margin-bottom: 10px;
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .checkout-container {
+        width: 100%;
+        padding: 15px;
+    }
+
+    h2 {
+        font-size: 1.8em;
+    }
+
+    input {
+        font-size: 0.9em;
+    }
+}

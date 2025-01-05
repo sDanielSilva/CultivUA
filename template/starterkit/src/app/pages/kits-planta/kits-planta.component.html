@@ -1,0 +1,638 @@
+<mat-card class="plant-details" style="width: 100%">
+    <mat-tab-group>
+        <mat-tab label="Characteristics">
+            <section class="plant-header" style="margin-top: 5rem">
+                <img
+                    [src]="
+                        kitData.Planta['image'] ||
+                        '../../../assets/images/landingpage/placeholder.svg'
+                    "
+                    alt="Imagem da Planta"
+                    class="plant-image"
+                />
+                <div class="plant-title">
+                    <h1>{{ kitData.Planta["name"] }}</h1>
+                    <h2>{{ kitData.Planta["species"] }}</h2>
+                </div>
+            </section>
+
+            <section class="plant-description">
+                <h3>Description</h3>
+                <p>
+                    {{
+                        kitData.Planta["description"] ||
+                            "No description available."
+                    }}
+                </p>
+            </section>
+
+            <section class="plant-characteristics">
+                <h3>General Characteristics</h3>
+                <table>
+                    <tr>
+                        <td><mat-icon>public</mat-icon> Origin:</td>
+                        <td>{{ kitData.Planta["origin"] || "N/A" }}</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <mat-icon>thermostat</mat-icon> Ideal Temperature:
+                        </td>
+                        <td>
+                            {{ kitData.Planta["ideal_temperature"] || "N/A" }}
+                            °C
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><mat-icon>opacity</mat-icon> Ideal Humidity:</td>
+                        <td>
+                            {{ kitData.Planta["ideal_humidity"] || "N/A" }}%
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><mat-icon>light_mode</mat-icon> Ideal Light:</td>
+                        <td>{{ kitData.Planta["ideal_light"] || "N/A" }}</td>
+                    </tr>
+                    <tr>
+                        <td><mat-icon>speed</mat-icon> Growth Rate:</td>
+                        <td>{{ kitData.Planta["growth_rate"] || "N/A" }}</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <mat-icon>water_drop</mat-icon> Watering Frequency:
+                        </td>
+                        <td>
+                            {{ kitData.Planta["watering_frequency"] || "N/A" }}
+                        </td>
+                    </tr>
+                </table>
+            </section>
+
+            <section class="plant-dimensions">
+                <h3>Dimensions</h3>
+                <table>
+                    <tr>
+                        <td><mat-icon>height</mat-icon> Minimum Dimension:</td>
+                        <td>
+                            {{ kitData.Planta["min_dimension"] || "N/A" }} cm
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <mat-icon>straighten</mat-icon> Maximum Dimension:
+                        </td>
+                        <td>
+                            {{ kitData.Planta["max_dimension"] || "N/A" }} cm
+                        </td>
+                    </tr>
+                </table>
+            </section>
+
+            <section class="plant-additional-info">
+                <h3>Additional Information</h3>
+                <table>
+                    <tr>
+                        <td><mat-icon>loop</mat-icon> Cicle:</td>
+                        <td>{{ kitData.Planta["cycle"] || "N/A" }}</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <mat-icon>calendar_month</mat-icon> Pruning Months:
+                        </td>
+                        <td>{{ kitData.Planta["pruning_months"] || "N/A" }}</td>
+                    </tr>
+                    <tr>
+                        <td><mat-icon>settings</mat-icon> Manutenção:</td>
+                        <td>{{ kitData.Planta["maintenance"] || "N/A" }}</td>
+                    </tr>
+                    <tr>
+                        <td><mat-icon>local_florist</mat-icon> Flower:</td>
+                        <td>
+                            <mat-icon
+                                *ngIf="kitData.Planta['flower']"
+                                class="check-icon"
+                                >check_circle</mat-icon
+                            >
+                            <mat-icon
+                                *ngIf="!kitData.Planta['flower']"
+                                class="cancel-icon"
+                                >cancel</mat-icon
+                            >
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><mat-icon>nature</mat-icon> Fruit:</td>
+                        <td>
+                            <mat-icon
+                                *ngIf="kitData.Planta['fruit']"
+                                class="check-icon"
+                                >check_circle</mat-icon
+                            >
+                            <mat-icon
+                                *ngIf="!kitData.Planta['fruit']"
+                                class="cancel-icon"
+                                >cancel</mat-icon
+                            >
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><mat-icon>pets</mat-icon> Toxic to Animals:</td>
+                        <td>
+                            <mat-icon
+                                *ngIf="kitData.Planta['poisonous_to_pets']"
+                                class="check-icon"
+                                >cancel</mat-icon
+                            >
+                            <mat-icon
+                                *ngIf="!kitData.Planta['poisonous_to_pets']"
+                                class="check-icon"
+                                >check_circle</mat-icon
+                            >
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <mat-icon>person</mat-icon> Toxic to Humans:
+                        </td>
+                        <td>
+                            <mat-icon
+                                *ngIf="kitData.Planta['poisonous_to_humans']"
+                                class="check-icon"
+                                >cancel</mat-icon
+                            >
+                            <mat-icon
+                                *ngIf="!kitData.Planta['poisonous_to_humans']"
+                                class="check-icon"
+                                >check_circle</mat-icon
+                            >
+                        </td>
+                    </tr>
+                </table>
+            </section>
+
+            <section class="plant-uses">
+                <h3>Uses</h3>
+                <table>
+                    <tr>
+                        <td><mat-icon>spa</mat-icon> Medicinal:</td>
+                        <td>
+                            <mat-icon
+                                *ngIf="kitData.Planta['medicinal']"
+                                class="check-icon"
+                                >check_circle</mat-icon
+                            >
+                            <mat-icon
+                                *ngIf="!kitData.Planta['medicinal']"
+                                class="cancel-icon"
+                                >cancel</mat-icon
+                            >
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <mat-icon>restaurant_menu</mat-icon> Culinary Use:
+                        </td>
+                        <td>
+                            <mat-icon
+                                *ngIf="kitData.Planta['cuisine']"
+                                class="check-icon"
+                                >check_circle</mat-icon
+                            >
+                            <mat-icon
+                                *ngIf="!kitData.Planta['cuisine']"
+                                class="cancel-icon"
+                                >cancel</mat-icon
+                            >
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><mat-icon>home</mat-icon> Indoor:</td>
+                        <td>
+                            <mat-icon
+                                *ngIf="kitData.Planta['indoor']"
+                                class="check-icon"
+                                >check_circle</mat-icon
+                            >
+                            <mat-icon
+                                *ngIf="!kitData.Planta['indoor']"
+                                class="cancel-icon"
+                                >cancel</mat-icon
+                            >
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <mat-icon>local_florist</mat-icon> Edible fruit:
+                        </td>
+                        <td>
+                            <mat-icon
+                                *ngIf="kitData.Planta['edible_fruit']"
+                                class="check-icon"
+                                >check_circle</mat-icon
+                            >
+                            <mat-icon
+                                *ngIf="!kitData.Planta['edible_fruit']"
+                                class="cancel-icon"
+                                >cancel</mat-icon
+                            >
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <mat-icon>local_florist</mat-icon> Edible leaves:
+                        </td>
+                        <td>
+                            <mat-icon
+                                *ngIf="kitData.Planta['edible_leaves']"
+                                class="check-icon"
+                                >check_circle</mat-icon
+                            >
+                            <mat-icon
+                                *ngIf="!kitData.Planta['edible_leaves']"
+                                class="cancel-icon"
+                                >cancel</mat-icon
+                            >
+                        </td>
+                    </tr>
+                </table>
+            </section>
+        </mat-tab>
+        <mat-tab *ngIf="kitData?.Planta?.kits?.length > 0" label="Sensors">
+            <section class="plant-sensors" style="overflow-x: hidden">
+                <h3>Sensors</h3>
+
+                <div *ngIf="kitData?.Planta?.kits?.length > 0">
+                    <div class="carregar">
+                        <mat-spinner
+                            *ngIf="isLoading"
+                            diameter="50"
+                        ></mat-spinner>
+                    </div>
+
+                    <div *ngIf="kitReadings && kitReadings.length > 0">
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <div class="card p-3 shadow-sm border-0">
+                                    <p>
+                                        <strong>Plant Name:</strong>
+                                        {{ kitData.Planta.name }}
+                                    </p>
+                                    <p>
+                                        <strong>Kit Name:</strong>
+                                        {{ kitData.Planta.kits[0].name }}
+                                    </p>
+                                    <p>
+                                        <strong>Kit Code:</strong>
+                                        {{ kitData.Planta.kits[0].codigo }}
+                                    </p>
+                                    <p>
+                                        <strong>Last reading date:</strong>
+                                        {{
+                                            kitReadings[kitReadings.length - 1]
+                                                .timestmp | date : "short"
+                                        }}
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Cartões de sensores com lógica condicional -->
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <!-- Temperatura -->
+                                    <div class="col-md-4 mb-4">
+                                        <div class="card custom-card">
+                                            <div
+                                                class="card-body"
+                                                [ngClass]="
+                                                    getTemperatureClass(
+                                                        kitReadings[
+                                                            kitReadings.length -
+                                                                1
+                                                        ]?.temperatura,
+                                                        kitData.Planta
+                                                            .ideal_temperature
+                                                    )
+                                                "
+                                            >
+                                                <div
+                                                    class="d-flex align-items-center"
+                                                >
+                                                    <div>
+                                                        <h5 class="card-title">
+                                                            Temperature
+                                                        </h5>
+                                                        <p>
+                                                            <strong>
+                                                                Current:
+                                                                {{
+                                                                    kitReadings[
+                                                                        kitReadings.length -
+                                                                            1
+                                                                    ]
+                                                                        ?.temperatura ||
+                                                                        "N/D"
+                                                                }}
+                                                                °C
+                                                            </strong>
+                                                        </p>
+                                                        <p>
+                                                            <small
+                                                                >Ideal:
+                                                                {{
+                                                                    kitData
+                                                                        .Planta
+                                                                        .ideal_temperature ||
+                                                                        "N/D"
+                                                                }}°C</small
+                                                            >
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Luz -->
+                                    <div class="col-md-4 mb-4">
+                                        <div class="card custom-card">
+                                            <div
+                                                class="card-body"
+                                                [ngClass]="
+                                                    getLightClass(
+                                                        kitReadings[
+                                                            kitReadings.length -
+                                                                1
+                                                        ]?.luz,
+                                                        kitData.Planta
+                                                            .ideal_light
+                                                    )
+                                                "
+                                            >
+                                                <div
+                                                    class="d-flex align-items-center"
+                                                >
+                                                    <div>
+                                                        <h5 class="card-title">
+                                                            Sunlight
+                                                        </h5>
+                                                        <p>
+                                                            <strong>
+                                                                Current:
+                                                                {{
+                                                                    kitReadings[
+                                                                        kitReadings.length -
+                                                                            1
+                                                                    ]?.luz ||
+                                                                        "N/D"
+                                                                }}
+                                                                Lux
+                                                            </strong>
+                                                        </p>
+                                                        <p>
+                                                            <small
+                                                                >Ideal:
+                                                                {{
+                                                                    kitData
+                                                                        .Planta
+                                                                        .ideal_light ||
+                                                                        "N/D"
+                                                                }}
+                                                                Lux</small
+                                                            >
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Humidade -->
+                                    <div class="col-md-4 mb-4">
+                                        <div class="card custom-card">
+                                            <div
+                                                class="card-body"
+                                                [ngClass]="
+                                                    getHumidityClass(
+                                                        kitReadings[
+                                                            kitReadings.length -
+                                                                1
+                                                        ]?.humidade,
+                                                        kitData.Planta
+                                                            .ideal_humidity
+                                                    )
+                                                "
+                                            >
+                                                <div
+                                                    class="d-flex align-items-center"
+                                                >
+                                                    <div>
+                                                        <h5 class="card-title">
+                                                            Humidity
+                                                        </h5>
+                                                        <p>
+                                                            <strong>
+                                                                Current:
+                                                                {{
+                                                                    kitReadings[
+                                                                        kitReadings.length -
+                                                                            1
+                                                                    ]
+                                                                        ?.humidade ||
+                                                                        "N/D"
+                                                                }}
+                                                                %
+                                                            </strong>
+                                                        </p>
+                                                        <p>
+                                                            <small
+                                                                >Ideal:
+                                                                {{
+                                                                    kitData
+                                                                        .Planta
+                                                                        .ideal_humidity ||
+                                                                        "N/D"
+                                                                }}%</small
+                                                            >
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div *ngIf="!kitReadings">
+                        <p>Loading readings...</p>
+                    </div>
+
+                    <div *ngIf="kitReadings && kitReadings.length > 0">
+                        <div class="row">
+                            <div class="col-md-4 mb-4">
+                                <div>
+                                    <mat-card-header>
+                                        <mat-card-title
+                                            >Temperature Chart</mat-card-title
+                                        >
+                                    </mat-card-header>
+                                    <mat-card-content>
+                                        <app-area
+                                            [areaChartOptions]="
+                                                temperatureChartOptions
+                                            "
+                                        ></app-area>
+                                    </mat-card-content>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4 mb-4">
+                                <div>
+                                    <mat-card-header>
+                                        <mat-card-title
+                                            >Humidity Chart</mat-card-title
+                                        >
+                                    </mat-card-header>
+                                    <mat-card-content>
+                                        <app-area
+                                            [areaChartOptions]="
+                                                humidityChartOptions
+                                            "
+                                        ></app-area>
+                                    </mat-card-content>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4 mb-4">
+                                <div>
+                                    <mat-card-header>
+                                        <mat-card-title
+                                            >Sunlight Chart</mat-card-title
+                                        >
+                                    </mat-card-header>
+                                    <mat-card-content>
+                                        <app-area
+                                            [areaChartOptions]="
+                                                lightChartOptions
+                                            "
+                                        ></app-area>
+                                    </mat-card-content>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div *ngIf="!isLoading">
+                        <mat-card-header>
+                            <mat-card-title class="m-b-0"
+                                >Reading History (Last 24h)</mat-card-title
+                            >
+                        </mat-card-header>
+                        <mat-card-content style="overflow-x: hidden">
+                            <app-line
+                                [lineChartOptions]="lineChartOptions"
+                            ></app-line>
+                        </mat-card-content>
+                    </div>
+                </div>
+            </section>
+        </mat-tab>
+
+        <mat-tab label="Watering">
+            <section class="watering-guide">
+                <!-- Guia de Rega -->
+                <h3>Watering Guide</h3>
+                <p>{{ kitData.Planta["watering_guide"] || "N/A" }}</p>
+
+                <!-- Histórico de Rega (Calendário) -->
+                <h3>Watering History</h3>
+                <div class="calendar-legend">
+                    <div class="legend-item">
+                        <span
+                            class="legend-color green"
+                            matTooltip="Watering: Date and Time"
+                        ></span>
+                        Watered
+                    </div>
+                    <div class="legend-item">
+                        <span
+                            class="legend-color yellow"
+                            matTooltip="Next watering period"
+                        ></span>
+                        Next Watering
+                    </div>
+                </div>
+
+                <!-- Calendário -->
+                <mat-calendar
+                    #calendar
+                    [dateClass]="dateClass"
+                    (click)="preventDateSelection($event)"
+                ></mat-calendar>
+
+                <!-- Botão para marcar rega -->
+                <button
+                    mat-raised-button
+                    color="primary"
+                    (click)="markWatering()"
+                    class="watering-button"
+                >
+                Mark Watering
+                </button>
+            </section>
+        </mat-tab>
+
+        <mat-tab label="Guides">
+            <section class="plant-guides">
+                <h3>Guides</h3>
+                <mat-accordion>
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                <mat-icon>water_drop</mat-icon> Watering Guide
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <p>{{ kitData.Planta["watering_guide"] || "N/A" }}</p>
+                    </mat-expansion-panel>
+
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                <mat-icon>content_cut</mat-icon> Pruning Guide
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <p>{{ kitData.Planta["pruning_guide"] || "N/A" }}</p>
+                    </mat-expansion-panel>
+
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                <mat-icon>sunny</mat-icon> Sunlight Guide
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <p>{{ kitData.Planta["sunlight_guide"] || "N/A" }}</p>
+                    </mat-expansion-panel>
+                </mat-accordion>
+            </section>
+        </mat-tab>
+
+        <mat-tab label="FAQs">
+            <section class="plant-faqs">
+                <h3>Frequently Asked Questions</h3>
+                <mat-accordion *ngIf="!isLoading; else loadingTemplate">
+                    <mat-expansion-panel *ngFor="let faq of plantFaqs">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                {{ faq.question }}
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <p>{{ faq.answer }}</p>
+                    </mat-expansion-panel>
+                </mat-accordion>
+                <ng-template #loadingTemplate>
+                    <p>Loading FAQs...</p>
+                </ng-template>
+            </section>
+        </mat-tab>
+    </mat-tab-group>
+</mat-card>

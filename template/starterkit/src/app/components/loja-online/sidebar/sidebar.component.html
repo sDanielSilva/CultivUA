@@ -1,0 +1,51 @@
+<div class="sidebar" style="padding-top: 50px;"> <!-- Ajustando altura da sidebar -->
+    <div class="filters">
+      <h3 class="sidebar-title">Filters</h3>
+      
+      <!-- Categorias -->
+      <div class="categories">
+        <h6>Categories</h6>
+        <div *ngFor="let category of categories">
+          <label class="category-label">
+            <input 
+              type="checkbox" 
+              [id]="category.id" 
+              (change)="toggleCategory(category.name)" 
+              [checked]="selectedCategories.has(category.name)" 
+              class="category-checkbox"
+            />
+            <span>{{ category.name }}</span>
+          </label>
+        </div>
+      </div>
+  
+      <!-- Preço -->
+      <div class="price-filter">
+        <h6>Intervalo de Preço</h6>
+        <div class="price-inputs">
+          <div class="input-group">
+            <label for="minPrice">Mínimo</label>
+            <input 
+              id="minPrice" 
+              type="number" 
+              [(ngModel)]="minPrice" 
+              class="price-input" 
+              (input)="setPriceFilter()"
+              min="0"
+            />
+          </div>
+          <div class="input-group">
+            <label for="maxPrice">Máximo</label>
+            <input 
+              id="maxPrice" 
+              type="number" 
+              [(ngModel)]="maxPrice" 
+              class="price-input" 
+              (input)="setPriceFilter()"
+              min="0"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

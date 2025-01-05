@@ -1,0 +1,146 @@
+<mat-card class="cardWithShadow">
+    <mat-card-content>
+        <div class="row justify-content-between gap-16">
+            <!-- Botão "Adicionar Produto" à esquerda -->
+            <div class="col-sm-4 d-flex align-items-center">
+<a mat-button (click)="openProductModal()" mat-flat-button color="primary">
+    Add Product
+</a>
+            </div>
+
+            <!-- Campo de pesquisa à direita -->
+            <div class="col-sm-4 d-flex align-items-center justify-content-end">
+                <mat-form-field appearance="outline" class="w-100 hide-hint">
+                    <input matInput placeholder="Search Product" (keyup)="filter($any($event.target).value)" />
+                    <mat-icon matSuffix>
+                        <i-tabler name="search" class="icon-20"></i-tabler>
+                    </mat-icon>
+                </mat-form-field>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>
+
+<div *ngIf="isLoading" class="spinner-container">
+    <mat-spinner color="primary"></mat-spinner>
+    <div class="loading-message">Loading products...</div>
+  </div>
+
+<mat-card class="cardWithShadow">
+    <div class="table-responsive"  *ngIf="!isLoading">
+        <table mat-table [dataSource]="invoiceList" matSort class="no-wrap m-t-0 v-middle w-100"
+            style="table-layout: fixed;">
+            <!-- Id Column -->
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header class="f-w-600 f-s-15">
+                    Id
+                </th>
+                <td mat-cell *matCellDef="let element" class="f-s-14">
+                    {{ element.id }}
+                </td>
+            </ng-container>
+
+            <!-- Nome Column -->
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header class="f-w-600 f-s-15">
+                    Name
+                </th>
+                <td mat-cell *matCellDef="let element" class="f-s-14">
+                    {{ element.name }}
+                </td>
+            </ng-container>
+
+            <!-- Categoria Column -->
+            <ng-container matColumnDef="category">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header class="f-w-600 f-s-15">
+                    Category
+                </th>
+                <td mat-cell *matCellDef="let element" class="f-s-14">
+                    {{ element.categories_id }}
+                </td>
+            </ng-container>
+
+                       <!-- Coluna Kit -->
+                        <ng-container matColumnDef="kit">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header class="f-w-600 f-s-15">
+                                Kit
+                            </th>
+                            <td mat-cell *matCellDef="let element" class="f-s-14">
+                                {{ element.mostrarKit ? 'Sim' : 'Não' }}
+                            </td>
+                        </ng-container>
+
+
+            <!-- Preço Column -->
+            <ng-container matColumnDef="price">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header class="f-w-600 f-s-15">
+                    Price
+                </th>
+                <td mat-cell *matCellDef="let element" class="f-s-14">
+                    <span class="p-x-8 p-y-4 bg-light f-w-600 rounded-pill f-s-12">
+                        {{ element.price }}
+                    </span>
+                </td>
+            </ng-container>
+
+            <!-- Stock Column -->
+            <ng-container matColumnDef="stock">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header class="f-w-600 f-s-15">
+                    Stock
+                </th>
+                <td mat-cell *matCellDef="let element" class="f-s-14">
+                    <span class="p-x-8 p-y-4 bg-light f-w-600 rounded-pill f-s-12">
+                        {{ element.stock }}
+                    </span>
+                </td>
+            </ng-container>
+            <!-- Threshold Column -->
+            <ng-container matColumnDef="threshold">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header class="f-w-600 f-s-15">
+                    Threshold
+                </th>
+                <td mat-cell *matCellDef="let element" class="f-s-14">
+                    <span class="p-x-8 p-y-4 bg-light f-w-600 rounded-pill f-s-12">
+                        {{ element.threshold }}
+                    </span>
+                </td>
+            </ng-container>
+
+            <!-- Imagem Column -->
+            <ng-container matColumnDef="image">
+                <th mat-header-cell *matHeaderCellDef class="f-w-600 f-s-15">
+                    Image
+                </th>
+                <td mat-cell *matCellDef="let element" class="f-s-14">
+                    <img *ngIf="element.imagem" [src]="element.imagem" alt="Product Image"
+                        style="max-width: 45px; max-height: 45px; object-fit: cover;" />
+                    <span *ngIf="!element.imagem">Without imagem</span>
+                </td>
+            </ng-container>
+
+            <!-- Editar Column -->
+            <ng-container matColumnDef="editar">
+                <th mat-header-cell *matHeaderCellDef class="f-w-600 f-s-15" style="width: 120px;">
+                    Edit
+                </th>
+                <td mat-cell *matCellDef="let element" class="f-s-14 d-flex justify-content-center align-items-center"
+                    style="width: 120px;">
+    <a *ngIf="element.id" mat-icon-button (click)="openEditModal(element)"
+        class="d-flex align-items-center justify-content-center" aria-label="Editar Localização">
+        <i-tabler name="pencil" class="icon-18 d-flex align-items-center" style="color:green"></i-tabler>
+    </a>
+
+<button mat-icon-button (click)="deleteInvoice(element.id)">
+    <i-tabler name="trash" class="icon-18 d-flex align-items-center" style="color:green;"></i-tabler>
+</button>
+                </td>
+            </ng-container>
+
+            <!-- Table Rows -->
+            <tr mat-header-row *matHeaderRowDef ="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[5, 8, 10]" showFirstLastButtons></mat-paginator>
+    </div>
+</mat-card>
+

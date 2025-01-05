@@ -1,0 +1,128 @@
+.product-container {
+  margin-top: 20px;
+}
+
+.img-container {
+  height: 200px;
+  overflow: hidden;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.img-container img {
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
+}
+
+.card {
+  border: none;
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efeito ao passar o rato */
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+  text-align: center;
+}
+
+.btn-success {
+  border-radius: 5px;
+  border-style: none;
+  font-weight: bold;
+  background-color: #28a745;
+}
+
+.btn-success:hover {
+  background-color: #04301C;
+  color: white;
+}
+
+/* Estilizando o botão "Mostrar Todos" */
+.custom-btn-filter {
+  background-color: #f8f9fa; /* Cor de fundo padrão */
+  color: #28a745; /* Cor verde para o texto */
+  border: 1px solid #28a745; /* Cor verde para a borda */
+  transition: background-color 0.3s, border-color 0.3s, color 0.3s; /* Transições suaves */
+}
+
+/* Cor de fundo e texto ao passar o mouse (hover) */
+.custom-btn-filter:hover {
+  background-color: #218838; /* Verde escuro no hover */
+  color: white; /* Cor do texto em branco no hover */
+  border-color: #218838; /* Borda verde escuro no hover */
+}
+
+/* Cor quando o botão "Mostrar Todos" for selecionado (focus) */
+.custom-btn-filter:focus {
+  background-color: #04301C; /* Cor verde escuro quando selecionado */
+  border-color: #04301C; /* Borda verde escuro */
+  color: white; /* Cor do texto em branco */
+}
+
+/* Prevenir que o botão tenha um estilo azul (caso o foco padrão do Bootstrap seja azul) */
+.custom-btn-filter:focus, .custom-btn:active {
+  box-shadow: none; /* Remover sombra azul do foco */
+}
+
+
+/* Contêiner da barra de pesquisa e filtros */
+.search-filters-container {
+  width: 100%;
+  padding: 10px;
+}
+
+/* Barra de pesquisa */
+.search-input {
+  width: 50%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+/* Estilizando os botões de filtro */
+.category-filters .btn-outline-primary {
+  background-color: #28a745; /* Cor verde */
+  color: white;
+  border: 1px solid #28a745;
+}
+
+.category-filters .btn-outline-primary:hover {
+  background-color: #218838; /* Verde mais escuro ao passar o mouse */
+  border-color: #218838;
+}
+
+/* Cor quando o botão de filtro é selecionado */
+.category-filters .btn-outline-primary:focus {
+  background-color: #04301C; /* Cor verde escuro */
+  border-color: #04301C;
+  color: white;
+}
+
+.category-filters .btn-outline-secondary {
+  background-color: #f8f9fa; /* Cor para o botão "Mostrar Todos" */
+  color: #007bff; /* Cor azul */
+  border: 1px solid #007bff;
+}
+
+.category-filters .btn-outline-secondary:hover {
+  background-color: #e2e6ea; /* Cor de fundo ao passar o mouse */
+  border-color: #007bff;
+}
+
+/* Cor quando o botão "Mostrar Todos" é selecionado */
+.category-filters .btn-outline-secondary:focus {
+  background-color: #04301C; /* Cor verde escuro */
+  border-color: #04301C;
+  color: white;
+}

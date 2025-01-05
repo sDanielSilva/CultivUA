@@ -1,0 +1,151 @@
+.text-primary {color: #009a3e!important;}
+.blog-posts-app {
+    height: calc(105vh - 200px);
+    border-radius: 12px!important;
+}
+
+.full-height {
+    height: 85vh;
+}
+
+.blog-post {
+    position: relative;
+    padding: 1rem 0;
+    width: 100%;
+}
+
+.blog-post-item {
+    transition: all 0.1s ease-in 0s;
+    transform: scale(0.95);
+    &.mdc-list-item:hover::before {
+        background-color: inherit !important;
+    }
+}
+
+.blog-post-item.selected {
+    transition: all 0.15s ease-in 0s;
+    transform: scale(1);
+    .blog-post-title {
+        color: white;
+    }
+    .blog-post-time {
+        color: white;
+    }
+    .remove-post {
+        color: white;
+    }
+    background-color: #009a3e;
+    &.mdc-list-item:hover::before {
+        background-color: #009a3e !important;
+    }
+}
+
+.blog-post-title {
+    width: 175px;
+    height: 35px;
+    font-size: 16px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.remove-post {
+    margin-left: auto;
+}
+
+.remove-post,
+.blog-post-item {
+    cursor: pointer;
+}
+
+.bg-light-green {
+    background-color: #cee1d7;
+}
+
+/* Estilo para a imagem de pré-visualização */
+.image-preview {
+    max-width: 150px; /* Tamanho reduzido da imagem */
+    max-height: 150px; /* Tamanho reduzido da imagem */
+    object-fit: cover; /* Para garantir que a imagem se ajuste bem */
+    margin-top: 10px; /* Espaço entre a imagem e o conteúdo acima */
+    border-radius: 12px;
+}
+
+/* Margem extra para o checkbox */
+.file-upload {
+    margin-bottom: 10px; /* Adiciona mais espaço abaixo da checkbox */
+}
+
+mat-spinner{
+    margin-top: 40px;
+}
+
+/* Estilo geral para as tabs */
+mat-tab-group {
+    margin-bottom: 32px;
+}
+
+/* Estilos para o conteúdo de comentários */
+.comments-list {
+    max-height: 100%;
+    overflow-y: auto;
+}
+
+.comments-list mat-list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.comments-list mat-icon {
+    cursor: pointer;
+}
+
+.comments-list .bg-light {
+    position: relative;
+    padding-right: 50px; /* Espaço para o botão */
+}
+
+.comments-list .bg-light .btn-with-text {
+    position: absolute;
+    top: 12px; /* Alinha verticalmente com o avatar */
+    right: 12px; /* Espaçamento da margem direita */
+    display: flex;
+    align-items: center; /* Alinha o ícone e o texto verticalmente */
+    justify-content: center; /* Garante que o conteúdo (ícone + texto) fiquem centrados */
+    z-index: 10;
+    padding: 8px 16px; /* Espessura maior para acomodar o texto */
+    background-color: transparent; /* Remove o fundo do botão */
+    border: 1px solid #009a3e; /* Cor da borda do botão */
+    border-radius: 24px; /* Borda arredondada */
+}
+
+.mat-card {
+    border-radius: 24px!important;
+}
+
+.comments-list .bg-light .btn-with-text i-tabler {
+    margin-right: 8px; /* Espaço entre o ícone e o texto */
+    vertical-align: middle; /* Alinha o ícone verticalmente */
+}
+
+.comments-list .bg-light .btn-with-text span {
+    white-space: nowrap; /* Garante que o texto não quebre em várias linhas */
+}
+
+
+mat-toolbar {
+    min-height: 80px; /* Altura suficiente para o input */
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    margin-left: 1.5%;
+}
+
+.disabled {
+    opacity: 0.5; /* Torna o comentário visualmente desativado */
+    cursor: not-allowed; /* Mostra um cursor de "não permitido" */
+    scale: 0.95; /* Reduz o tamanho do comentário */
+}

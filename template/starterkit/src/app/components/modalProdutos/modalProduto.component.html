@@ -1,0 +1,83 @@
+<h2  mat-dialog-title>Add Product</h2>
+<mat-dialog-content>
+    <form [formGroup]="productForm">
+        <mat-form-field appearance="outline" class="w-100" style="margin-top: 0.5rem;">
+            <mat-label>Product Name</mat-label>
+            <input type="text" matInput formControlName="name" />
+            <mat-error *ngIf="productForm.get('name')?.hasError('required')">
+                The product name is required
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Category</mat-label>
+            <mat-select formControlName="category">
+                <mat-option *ngFor="let category of categories" [value]="category.id">
+                    {{ category.name }}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="productForm.get('category')?.hasError('required')">
+               The Category name is required
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Price</mat-label>
+            <input type="number" matInput formControlName="price" />
+            <mat-error *ngIf="productForm.get('price')?.hasError('required')">
+               The price is requiered
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Stock</mat-label>
+            <input type="number" matInput formControlName="stock" />
+            <mat-error *ngIf="productForm.get('stock')?.hasError('required')">
+                The stock is required
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Threshold</mat-label>
+            <input type="number" matInput formControlName="threshold" />
+            <mat-error *ngIf="productForm.get('threshold')?.hasError('required')">
+                The threshold is required
+            </mat-error>
+        </mat-form-field>
+
+         <!-- Nome Científico -->
+         <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Scientific Name</mat-label>
+            <input type="text" matInput formControlName="scientific_name" />
+        </mat-form-field>
+
+        <!-- Descrição -->
+        <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Description</mat-label>
+            <textarea matInput formControlName="description"></textarea>
+        </mat-form-field>
+
+        <!-- Tamanho -->
+        <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Size</mat-label>
+            <input type="text" matInput formControlName="size" />
+        </mat-form-field>
+
+        <!-- Kit -->
+        <div class="kit-checkbox">
+            <mat-checkbox formControlName="isKit" style="color:green;">Is it a Kit?</mat-checkbox>
+        </div>
+
+        <div class="image-container">
+            <button mat-raised-button class="mb-4" style="background-color:green; color:white" (click)="fileInput.click()">Choose Image</button>
+            <input type="file" #fileInput accept="image/*" (change)="onFileSelected($event)" hidden />
+            <div *ngIf="selectedImage" class="image-preview">
+                <p>Selected image: {{ selectedImage }}</p>
+            </div>
+        </div>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-stroked-button color="warn" (click)="close()">Cancel</button>
+    <button mat-raised-button style="background-color:green; color:white" [disabled]="productForm.invalid" (click)="saveProduct()">Save</button>
+</mat-dialog-actions>

@@ -1,0 +1,32 @@
+@if(pageInfo?.['title'] != 'Dashboard 1' && pageInfo?.['title'] !=
+'Dashboard2'){ @if(pageInfo?.['title']) {
+<div>
+    <div
+        class="rounded bg-white p-y-10 p-x-24 m-b-30 overflow-hidden"
+        style="margin-left: 2%; margin-right: 2%;"
+    >
+        <div class="d-flex align-items-center justify-content-between">
+            <h4 class="page-title m-0 f-s-20 f-w-600">
+                {{ pageInfo?.['title'] }}
+            </h4>
+            <div class="d-flex align-items-center">
+                @for (url of pageInfo?.['urls']; track url.url;let index =
+                $index,last = $last ){ @if(!last) {
+                <li class="breadcrumb-item" [routerLink]="url.url">
+                    <a [routerLink]="url.url" class="text-primary" style="color: green!important;">{{
+                        url.title
+                    }}</a>
+                </li>
+                } @if(last) {
+                <li class="breadcrumb-item active">{{ url.title }}</li>
+                } }
+            </div>
+        </div>
+    </div>
+</div>
+} }
+<style>
+    .breadcrumb-item.active::before {
+    content: none;
+}
+</style>
