@@ -66,27 +66,31 @@ To set up CultivUA locally, ensure you have:
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/your-repo/cultivua.git
+   git clone https://github.com/sDanielSilva/cultivua.git
    cd cultivua
    ```
 
-2. **Backend setup (Laravel)**:
+2. **Launch Docker containers**:
+   ```bash
+   docker-compose up
+   ```
+
+3. **Backend setup (Laravel)**:
    ```bash
    cd backend
    composer install
    cp .env.example .env
    php artisan key:generate
+   php artisan migrate
+   php artisan db:seed
+   php artisan serve
    ```
 
-3. **Frontend setup (Angular)**:
+4. **Frontend setup (Angular)**:
    ```bash
-   cd ../frontend
+   cd ./template/starterkit
    npm install
-   ```
-
-4. **Launch Docker containers**:
-   ```bash
-   docker-compose up
+   ng serve
    ```
 
 5. **Access the application**:
@@ -104,25 +108,9 @@ CultivUA follows a **modular MVC architecture**, ensuring scalability and mainta
 
 ---
 
-## 🤝 Contributing to CultivUA
-We value collaboration! Here’s how you can contribute:
+## 📝 Documentation
 
-1. Fork the repository.
-2. Create a new feature branch:
-   ```bash
-   git checkout -b feature/your-feature
-   ```
-3. Commit and push your changes:
-   ```bash
-   git commit -m "Add feature XYZ"
-   git push origin feature/your-feature
-   ```
-4. Submit a pull request for review.
-
----
-
-## 🔒 Licensing
-CultivUA is open-source under the [MIT License](LICENSE). You are free to use, modify, and distribute the project in line with the license terms.
+See the full report: [**CultivUA Report**](CultivUA.pdf) for more information and details.
 
 ---
 
